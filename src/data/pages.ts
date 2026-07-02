@@ -105,7 +105,7 @@ export const innerPages = {
     },
     hero: {
       eyebrow: 'About Mahaa Foundation',
-      title: 'About Our Mission',
+      title: 'About Mahaa Foundation Mahalingpur',
       description:
         'Mahaa Foundation Mahalingpur serves people through ration support, student assistance, tree plantation, health awareness, and volunteer-driven social service in Mahalingpur and nearby areas.',
       primaryCta: { label: 'Join Our Mission', href: '/volunteer' },
@@ -117,7 +117,7 @@ export const innerPages = {
       eyebrow: 'Foundation Story',
       title: 'Started for Service and Community Welfare',
       content:
-        'Mahaa Foundation Mahalingpur was started on 1 December 2025 by Anilkumar Ullagaddi with a commitment to serve people and support community welfare in Mahalingpur and nearby areas. The foundation focuses on ration distribution, student support, tree plantation, health camp support, cleanliness awareness, and social service.',
+        'Mahaa Foundation Mahalingpur was started on 1 December 2025 by Anilkumar Ullagaddi with a commitment to serve people and support community welfare in Mahalingpur and nearby areas. The foundation focuses on ration distribution, student support, tree plantation, health camp support, cleanliness awareness, and social service. Mahaa Foundation Mahalingpur serves communities in Mahalingpur, Bagalkot district, and nearby areas including Mudhol, Jamkhandi, Chikodi, and North Karnataka.',
     },
     features: {
       eyebrow: 'Mission, Vision and Values',
@@ -257,7 +257,7 @@ export const innerPages = {
     },
     hero: {
       eyebrow: 'Tree Plantation',
-      title: 'Tree Plantation for a Greener Mahalingpur',
+      title: 'Tree Plantation in Mahalingpur',
       description:
         'Mahaa Foundation Mahalingpur planted 100 trees on both sides of Double Road in Mahalingpur through its own contribution.',
       primaryCta: { label: 'Volunteer for Plantation', href: '/volunteer' },
@@ -311,7 +311,7 @@ export const innerPages = {
     },
     hero: {
       eyebrow: 'Ration Distribution',
-      title: 'Monthly Ration Support for Families in Need',
+      title: 'Ration Distribution for Families in Need',
       description:
         'Mahaa Foundation supports backward-class families and people in need with monthly ration support, one-month food supplies, groceries, and medical support items wherever required.',
       primaryCta: { label: 'Donate for Ration Kits', href: '/donate' },
@@ -374,7 +374,7 @@ export const innerPages = {
     },
     hero: {
       eyebrow: 'Social Service',
-      title: 'Social Service for Students, Children and Families',
+      title: 'Social Service, Student Support and Health Camps',
       description:
         'Mahaa Foundation works for community welfare through student support, health awareness, medical camp support, cleanliness awareness, and public responsibility programs.',
       primaryCta: { label: 'Volunteer for Social Work', href: '/volunteer' },
@@ -441,7 +441,7 @@ export const innerPages = {
     },
     hero: {
       eyebrow: 'Volunteer With Us',
-      title: 'Become a Volunteer',
+      title: 'Volunteer with Mahaa Foundation',
       description:
         'Anyone above 15 years can volunteer with Mahaa Foundation. Students, working professionals, community groups, schools, and local residents are welcome to join.',
       primaryCta: { label: 'WhatsApp Us to Volunteer', href: 'whatsapp', variant: 'whatsapp' },
@@ -508,7 +508,7 @@ export const innerPages = {
     },
     hero: {
       eyebrow: 'ದಾನ ಮಾಡಿ - ಸಮಾಜ ಸೇವೆಗೆ ನಿಮ್ಮ ಬೆಂಬಲ ನೀಡಿ',
-      title: 'Donate for a Better Mahalingpur',
+      title: 'Donate to Support Mahaa Foundation',
       description:
         'Mahaa Foundation currently accepts donations through UPI and bank transfer for ration kits, student support, tree plantation, health camp support, awareness programs, and social service.',
       primaryCta: { label: 'Send Screenshot on WhatsApp', href: site.whatsappHref, external: true, variant: 'whatsapp' },
@@ -576,9 +576,9 @@ export const innerPages = {
     },
     hero: {
       eyebrow: 'Contact Us',
-      title: 'Contact Our NGO',
+      title: 'Contact Mahaa Foundation',
       description:
-        'Contact Mahaa Foundation Mahalingpur for volunteering, donation support, ration distribution, student help, health camp support, tree plantation, awareness programs, and community welfare.',
+        'Contact Mahaa Foundation Mahalingpur for volunteering, donation support, ration distribution, student help, health camp support, tree plantation, awareness programs, and community welfare in Mahalingpur, Bagalkot district, Mudhol, Jamkhandi, Chikodi, and North Karnataka.',
       primaryCta: { label: 'WhatsApp Us', href: 'whatsapp', variant: 'whatsapp' },
       secondaryCta: { label: 'Call Now', href: site.phoneHref },
       image: imagePaths.contact,

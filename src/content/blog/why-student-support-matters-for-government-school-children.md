@@ -10,7 +10,7 @@ tags:
   - "education"
   - "Mahalingpur"
 image: "/images/blog/why-student-support-matters-government-school-children.jpg"
-imageAlt: "Notebook and pen support for government school children placeholder image"
+imageAlt: "Students receiving notebooks and pens from Mahaa Foundation"
 seoTitle: "Why Student Support Matters for Government School Children"
 seoDescription: "Understand how stationery support and encouragement can help government school children continue learning with confidence."
 ---

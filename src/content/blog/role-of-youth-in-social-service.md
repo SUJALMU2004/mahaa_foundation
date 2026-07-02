@@ -10,7 +10,7 @@ tags:
   - "volunteering"
   - "community welfare"
 image: "/images/blog/role-of-youth-in-social-service.jpg"
-imageAlt: "Youth volunteers supporting social service placeholder image"
+imageAlt: "Youth volunteers supporting social service activities"
 seoTitle: "Role of Youth in Social Service | Mahaa Foundation"
 seoDescription: "Understand how youth participation can strengthen social service, student support, tree plantation, awareness, and community welfare."
 ---
@@ -51,6 +51,6 @@ Mahaa Foundation encourages young people to serve with humility. The goal is not
 
 ## How Youth Can Join
 
-Youth who want to join can visit the [Volunteer page](/volunteer), read about work areas on [Our Work](/our-work), or contact the team through the [Contact page](/contact). They can choose a support area based on time, interest, and ability.
+Youth who want to join can visit the [Volunteer page](/volunteer), read about work areas on [Our Work](/our-work), explore [Social Service](/social-service), or follow upcoming [Activities](/activities). They can choose a support area based on time, interest, and ability.
 
 When youth serve responsibly, they strengthen both the present and the future. Social service becomes more powerful when the next generation learns to care.

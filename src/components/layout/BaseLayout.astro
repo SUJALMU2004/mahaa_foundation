@@ -4,6 +4,7 @@ import Header from '../common/Header.astro';
 import Footer from '../common/Footer.astro';
 import FloatingWhatsAppButton from '../cta/FloatingWhatsAppButton.astro';
 import StickyMobileCta from '../cta/StickyMobileCta.astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import Seo from '../common/Seo.astro';
 import JsonLd from '../common/JsonLd.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
@@ -34,9 +35,7 @@ export interface Props {
 
 const { schema, ...seoProps } = Astro.props;
 
-const verifiedSocialLinks = site.socialLinks.filter(
-  (link) => link.url && !link.url.includes('example.org/social/'),
-);
+const verifiedSocialLinks = site.socialLinks.filter((link) => link.url);
 
 const organizationSchema = {
   '@context': 'https://schema.org',
@@ -68,6 +67,7 @@ const organizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+917019170976',
+    email: site.email,
     contactType: 'NGO Enquiry',
     areaServed: 'IN',
     availableLanguage: ['English', 'Hindi', 'Kannada'],

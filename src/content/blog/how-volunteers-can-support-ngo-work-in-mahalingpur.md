@@ -10,7 +10,7 @@ tags:
   - "Mahalingpur"
   - "social service"
 image: "/images/blog/how-volunteers-can-support-ngo-work-in-mahalingpur.jpg"
-imageAlt: "Volunteers planning NGO work in Mahalingpur placeholder image"
+imageAlt: "Volunteers planning Mahaa Foundation NGO work in Mahalingpur"
 seoTitle: "How Volunteers Can Support NGO Work in Mahalingpur"
 seoDescription: "Learn how volunteers can support Mahaa Foundation activities in Mahalingpur with discipline, care, and practical service."
 ---
@@ -51,6 +51,6 @@ The website uses placeholder media until verified photos and videos are availabl
 
 ## How to Start
 
-To begin, visit the [Volunteer page](/volunteer) and submit the WhatsApp enquiry form. The form opens WhatsApp with a pre-filled message, and you must manually tap Send. You can also call or visit the [Contact page](/contact).
+To begin, visit the [Volunteer page](/volunteer) and submit the WhatsApp enquiry form. You can also review all service areas on [Our Work](/our-work). The form opens WhatsApp with a pre-filled message, and you must manually tap Send. You can also call or visit the [Contact page](/contact).
 
 Volunteering becomes meaningful when it is consistent. Even a few hours of responsible support can help a family, a student, a public activity, or a tree plantation drive succeed.

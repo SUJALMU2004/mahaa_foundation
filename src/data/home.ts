@@ -1,4 +1,17 @@
 import { site } from './site';
+import type { ImageMetadata } from 'astro';
+import heroImage from '../assets/home/hero.png';
+import rationDistributionCardImage from '../assets/home/ration-distribution-card.png';
+import studentSupportCardImage from '../assets/home/student-support-card.png';
+import treePlantationCardImage from '../assets/home/tree-plantation-card.png';
+import healthCampSupportCardImage from '../assets/home/health-camp-support-card.jpeg';
+import socialServiceAwarenessCardImage from '../assets/home/social-service-awareness-card.jpeg';
+import treePlantationFeatureImage from '../assets/home/tree-plantation-feature.jpeg';
+import rationSupportFeatureImage from '../assets/home/ration-support-feature.png';
+import studentSupportPreviewImage from '../assets/home/student-support-preview.png';
+import healthCampPreviewImage from '../assets/home/health-camp-preview.jpeg';
+import awarenessProgramsPreviewImage from '../assets/home/awareness-programs-preview.png';
+import teamServiceWorkPreviewImage from '../assets/home/team-service-work-preview.jpeg';
 
 export type Cta = {
   label: string;
@@ -7,7 +20,7 @@ export type Cta = {
 };
 
 export type MediaPlaceholder = {
-  image: string;
+  image: ImageMetadata;
   alt: string;
   label: string;
 };
@@ -16,8 +29,6 @@ export const home = {
   hero: {
     eyebrow: 'Mahaa Foundation Mahalingpur',
     title: 'Serving People, Supporting Students and Growing a Greener Mahalingpur',
-    kannadaLine:
-      'ಜನಸೇವೆ, ವಿದ್ಯಾರ್ಥಿ ಸಹಾಯ ಮತ್ತು ಹಸಿರು ಮಹಾಲಿಂಗಪುರಕ್ಕಾಗಿ ಮಹಾ ಫೌಂಡೇಶನ್',
     kannadaLine: 'Mahaa Foundation Mahalingpur',
     description:
       'Mahaa Foundation Mahalingpur is a social service NGO in Bagalkot, Karnataka, working for ration distribution, student support, tree plantation, health camp support, cleanliness awareness, and community welfare. We bring volunteers and supporters together to help families, students, children, and local communities.',
@@ -27,9 +38,9 @@ export const home = {
       { label: 'Donate Now', href: '/donate' },
     ],
     media: {
-      image: '/images/placeholders/ngo-hero-placeholder.jpg',
-      alt: 'Mahaa Foundation volunteers supporting ration, student, health, and tree plantation work',
-      label: 'Future homepage image or video area',
+      image: heroImage,
+      alt: 'Mahaa Foundation Mahalingpur team members and volunteers supporting social service work',
+      label: 'Mahaa Foundation Mahalingpur service work',
     },
   },
 
@@ -80,40 +91,40 @@ export const home = {
       href: '/ration-distribution',
       description:
         'Monthly ration support with one-month food supplies, groceries, and medical support items wherever required.',
-      image: '/images/work/ration-distribution-card.jpg',
-      imageAlt: 'Ration distribution activity placeholder',
+      image: rationDistributionCardImage,
+      imageAlt: 'Ration distribution support by Mahaa Foundation Mahalingpur',
     },
     {
       title: 'Student Support',
       href: '/social-service',
       description:
         'Notebook, pen, stationery, and basic school support for government school students.',
-      image: '/images/work/student-aid-card.jpg',
-      imageAlt: 'Student support activity placeholder',
+      image: studentSupportCardImage,
+      imageAlt: 'Student support activity by Mahaa Foundation Mahalingpur',
     },
     {
       title: 'Tree Plantation',
       href: '/tree-plantation',
       description:
         '100 trees planted on both sides of Double Road, Mahalingpur, through foundation contribution.',
-      image: '/images/work/tree-plantation-card.jpg',
-      imageAlt: 'Tree plantation activity placeholder',
+      image: treePlantationCardImage,
+      imageAlt: 'Tree plantation work in Mahalingpur by Mahaa Foundation',
     },
     {
       title: 'Health Camp Support',
       href: '/social-service',
       description:
         'Health awareness, medical camp support, and polio vaccination camp coordination with health department guidance.',
-      image: '/images/work/health-camp-support-card.jpg',
-      imageAlt: 'Health camp support placeholder',
+      image: healthCampSupportCardImage,
+      imageAlt: 'Health camp support activity by Mahaa Foundation Mahalingpur',
     },
     {
       title: 'Social Service and Awareness',
       href: '/social-service',
       description:
         'Cleanliness awareness, plastic-free awareness, community welfare, and volunteer-based social service.',
-      image: '/images/work/social-service-card.jpg',
-      imageAlt: 'Social service activity placeholder',
+      image: socialServiceAwarenessCardImage,
+      imageAlt: 'Social service and awareness activity by Mahaa Foundation Mahalingpur',
     },
   ],
 
@@ -132,9 +143,9 @@ export const home = {
       primaryCta: { label: 'View Tree Plantation Work', href: '/tree-plantation' },
       secondaryCta: { label: 'Volunteer With Us', href: '/volunteer' },
       media: {
-        image: '/images/work/tree-plantation-home.jpg',
-        alt: 'Tree plantation on Double Road Mahalingpur placeholder image',
-        label: 'Tree plantation media placeholder',
+        image: treePlantationFeatureImage,
+        alt: 'Tree plantation work on Double Road Mahalingpur',
+        label: 'Tree plantation in Mahalingpur',
       },
     },
     rationSupport: {
@@ -151,9 +162,9 @@ export const home = {
       primaryCta: { label: 'Support Ration Distribution', href: '/ration-distribution' },
       secondaryCta: { label: 'Donate Now', href: '/donate' },
       media: {
-        image: '/images/work/ration-distribution-home.jpg',
-        alt: 'Ration distribution support placeholder image',
-        label: 'Ration support media placeholder',
+        image: rationSupportFeatureImage,
+        alt: 'Ration distribution support for families in need',
+        label: 'Ration support in Mahalingpur',
       },
     },
   },
@@ -183,33 +194,33 @@ export const home = {
 
   galleryPreview: [
     {
-      image: '/images/gallery/tree-plantation/double-road-tree-plantation.jpg',
-      alt: 'Tree plantation activity on Double Road Mahalingpur placeholder',
+      image: treePlantationFeatureImage,
+      alt: 'Tree plantation activity on Double Road Mahalingpur',
       caption: 'Tree plantation in Mahalingpur',
     },
     {
-      image: '/images/gallery/ration-distribution/monthly-ration-support.jpg',
-      alt: 'Monthly ration support placeholder',
+      image: rationDistributionCardImage,
+      alt: 'Monthly ration support by Mahaa Foundation Mahalingpur',
       caption: 'Ration distribution support',
     },
     {
-      image: '/images/gallery/student-aid/notebook-pen-distribution.jpg',
-      alt: 'Notebook and pen distribution placeholder',
+      image: studentSupportPreviewImage,
+      alt: 'Student support activity by Mahaa Foundation Mahalingpur',
       caption: 'Student support',
     },
     {
-      image: '/images/gallery/health-camp/polio-camp-support.jpg',
-      alt: 'Polio vaccination camp support placeholder',
+      image: healthCampPreviewImage,
+      alt: 'Health camp support activity in Mahalingpur',
       caption: 'Health camp support',
     },
     {
-      image: '/images/gallery/awareness/plastic-free-awareness.jpg',
-      alt: 'Plastic-free awareness talk placeholder',
+      image: awarenessProgramsPreviewImage,
+      alt: 'Cleanliness and plastic-free awareness activity by Mahaa Foundation',
       caption: 'Awareness programs',
     },
     {
-      image: '/images/gallery/team/team-service-work.jpg',
-      alt: 'Mahaa Foundation team work placeholder',
+      image: teamServiceWorkPreviewImage,
+      alt: 'Mahaa Foundation Mahalingpur team service work',
       caption: 'Team service work',
     },
   ],

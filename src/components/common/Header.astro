@@ -6,6 +6,8 @@ import {
   primaryNavigation,
 } from '../../data/navigation';
 import { site } from '../../data/site';
+import logoImage from '../../assets/logo/logo.png';
+import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
@@ -18,12 +20,14 @@ function isActive(href: string) {
 <header class="site-header">
   <Container class="site-header__inner">
     <a class="site-header__brand" href="/" aria-label={`${site.siteName} home`}>
-      <img
+      <Image
         class="site-header__logo"
-        src={site.logo}
+        src={logoImage}
         alt=""
-        width="681"
-        height="366"
+        width={190}
+        format="webp"
+        quality={90}
+        loading="eager"
         decoding="async"
         fetchpriority="high"
       />

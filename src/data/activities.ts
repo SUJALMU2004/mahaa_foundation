@@ -60,7 +60,7 @@ export const activities: ActivityItem[] = [
     description:
       'Before the formal launch of Mahaa Foundation Mahalingpur, the founding team supported the nine-day Koppal Gavi Siddeshwar Appaji Pravachana program by providing parking service from 22 November 2025 to 30 November 2025.',
     image: '/images/activities/koppal-pravachana-parking-service.jpg',
-    imageAlt: 'Parking service during Koppal Gavi Siddeshwar Appaji Pravachana placeholder',
+    imageAlt: 'Parking service during Koppal Gavi Siddeshwar Appaji Pravachana program',
     featured: true,
     draft: false,
     tags: ['parking service', 'social service', 'volunteer support', 'koppal'],
@@ -85,15 +85,15 @@ export const activities: ActivityItem[] = [
     impactHighlights: ['Parking service support', 'Nine-day program', 'Founding team service'],
     gallery: [
       {
-        title: 'Parking Service Placeholder',
+        title: 'Parking Service Support',
         image: '/images/activities/koppal-pravachana-parking-service-1.jpg',
-        imageAlt: 'Placeholder for parking service support at Koppal',
+        imageAlt: 'Parking service support at Koppal',
         caption: 'Parking service support during the nine-day program.',
       },
       {
-        title: 'Volunteer Coordination Placeholder',
+        title: 'Volunteer Coordination',
         image: '/images/activities/koppal-pravachana-parking-service-2.jpg',
-        imageAlt: 'Placeholder for volunteer coordination at Koppal',
+        imageAlt: 'Volunteer coordination at Koppal',
         caption: 'Founding team service support placeholder.',
       },
     ],
@@ -114,7 +114,7 @@ export const activities: ActivityItem[] = [
     description:
       'Mahaa Foundation planted 100 trees on both sides of Double Road in Mahalingpur through its own contribution to support greenery and public environmental responsibility.',
     image: '/images/activities/double-road-tree-plantation-mahalingpur.jpg',
-    imageAlt: '100 trees planted on Double Road Mahalingpur placeholder',
+    imageAlt: '100 trees planted on Double Road Mahalingpur',
     draft: false,
     tags: ['tree plantation', 'mahalingpur', 'green community work'],
     overviewTitle: 'About This Tree Plantation Work',
@@ -136,15 +136,15 @@ export const activities: ActivityItem[] = [
     impactHighlights: ['100 trees planted', 'Double Road, Mahalingpur', 'Foundation contribution'],
     gallery: [
       {
-        title: 'Double Road Plantation Placeholder',
+        title: 'Double Road Plantation',
         image: '/images/activities/double-road-tree-plantation-1.jpg',
-        imageAlt: 'Placeholder for trees planted on Double Road',
+        imageAlt: 'Trees planted on Double Road Mahalingpur',
         caption: 'Tree plantation on Double Road, Mahalingpur.',
       },
       {
-        title: 'Tree Care Awareness Placeholder',
+        title: 'Tree Care Awareness',
         image: '/images/activities/double-road-tree-plantation-2.jpg',
-        imageAlt: 'Placeholder for tree care awareness',
+        imageAlt: 'Tree care awareness activity in Mahalingpur',
         caption: 'Awareness about caring for planted trees.',
       },
     ],
@@ -168,7 +168,7 @@ export const activities: ActivityItem[] = [
     description:
       'On Sunday, 28 June 2026, Mahaa Foundation supported a polio vaccination activity at Mahalingpur Bus Stand with health department guidance. The activity helped reach 70 children below the age of five.',
     image: '/images/activities/polio-vaccination-camp-support.jpg',
-    imageAlt: 'Polio vaccination camp support at Mahalingpur Bus Stand placeholder',
+    imageAlt: 'Polio vaccination camp support at Mahalingpur Bus Stand',
     draft: false,
     tags: ['health support', 'polio vaccination support', 'children', 'mahalingpur'],
     overviewTitle: 'About This Health Support Activity',
@@ -191,15 +191,15 @@ export const activities: ActivityItem[] = [
     impactHighlights: ['70 children reached', 'Health department guidance', '8:00 AM to 5:00 PM'],
     gallery: [
       {
-        title: 'Camp Support Placeholder',
+        title: 'Camp Support',
         image: '/images/activities/polio-vaccination-camp-support-1.jpg',
-        imageAlt: 'Placeholder for polio vaccination camp support',
+        imageAlt: 'Polio vaccination camp support activity',
         caption: 'Health support activity at Mahalingpur Bus Stand.',
       },
       {
-        title: 'Children Health Support Placeholder',
+        title: 'Children Health Support',
         image: '/images/activities/polio-vaccination-camp-support-2.jpg',
-        imageAlt: 'Placeholder for child health support activity',
+        imageAlt: 'Child health support activity',
         caption: 'Child health support with health department guidance.',
       },
     ],
@@ -221,7 +221,7 @@ export const activities: ActivityItem[] = [
     description:
       'Mahaa Foundation has provided free ration, stationery, and medicine support to poor families and people in need as part of its community welfare work.',
     image: '/images/activities/free-ration-stationery-medicine-support.jpg',
-    imageAlt: 'Free ration stationery and medicine support placeholder',
+    imageAlt: 'Free ration stationery and medicine support for people in need',
     draft: false,
     tags: ['community welfare', 'ration support', 'stationery support', 'medicine support'],
     overviewTitle: 'About This Community Welfare Support',
@@ -243,9 +243,9 @@ export const activities: ActivityItem[] = [
     impactHighlights: ['Ration support', 'Stationery support', 'Medicine support'],
     gallery: [
       {
-        title: 'Community Welfare Placeholder',
+        title: 'Community Welfare Support',
         image: '/images/activities/free-ration-stationery-medicine-support-1.jpg',
-        imageAlt: 'Placeholder for community welfare support',
+        imageAlt: 'Community welfare support items',
         caption: 'Free ration, stationery, and medicine support.',
       },
     ],
@@ -266,7 +266,7 @@ export const activities: ActivityItem[] = [
     description:
       'Mahaa Foundation distributed notebooks and pens to 200 government school students to support their basic educational needs.',
     image: '/images/activities/notebook-pen-distribution-students.jpg',
-    imageAlt: 'Notebook and pen distribution for government school students placeholder',
+    imageAlt: 'Notebook and pen distribution for government school students',
     draft: false,
     tags: ['student support', 'government school', 'notebook distribution', 'education support'],
     overviewTitle: 'About This Student Support Activity',
@@ -288,9 +288,9 @@ export const activities: ActivityItem[] = [
     impactHighlights: ['200 students supported', 'Notebook distribution', 'Pen distribution'],
     gallery: [
       {
-        title: 'Student Support Placeholder',
+        title: 'Student Support',
         image: '/images/activities/notebook-pen-distribution-1.jpg',
-        imageAlt: 'Placeholder for notebook and pen distribution',
+        imageAlt: 'Notebook and pen distribution for students',
         caption: 'Notebook and pen support for government school students.',
       },
     ],
@@ -311,7 +311,7 @@ export const activities: ActivityItem[] = [
     description:
       'Mahaa Foundation conducts monthly awareness talks in government schools to educate students about reducing plastic use, maintaining cleanliness, and building responsible habits.',
     image: '/images/activities/monthly-plastic-free-cleanliness-awareness.jpg',
-    imageAlt: 'Plastic-free living and cleanliness awareness talks placeholder',
+    imageAlt: 'Plastic-free living and cleanliness awareness talks in government schools',
     draft: false,
     tags: ['awareness', 'plastic-free awareness', 'cleanliness', 'government schools'],
     overviewTitle: 'About These Monthly Awareness Talks',
@@ -333,9 +333,9 @@ export const activities: ActivityItem[] = [
     impactHighlights: ['Monthly activity', 'Plastic-free awareness', 'Cleanliness awareness'],
     gallery: [
       {
-        title: 'Awareness Talk Placeholder',
+        title: 'Awareness Talk',
         image: '/images/activities/monthly-plastic-free-cleanliness-awareness-1.jpg',
-        imageAlt: 'Placeholder for school awareness talk',
+        imageAlt: 'School awareness talk about plastic-free living and cleanliness',
         caption: 'Plastic-free living and cleanliness awareness talk.',
       },
     ],

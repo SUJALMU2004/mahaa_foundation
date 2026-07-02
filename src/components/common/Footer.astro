@@ -14,17 +14,17 @@ const currentYear = new Date().getFullYear();
         <h2 id="footer-about" class="site-footer__logo-text">{site.siteName}</h2>
         <p class="site-footer__tagline">{site.tagline}</p>
         <p class="site-footer__mission">
-          Dedicated to supporting gobierno school students, planting trees, and distributing monthly ration kits to families in need across {site.city}.
+          Dedicated to supporting government school students, planting trees, and distributing monthly ration kits to families in need across Mahalingpur, Bagalkot district, Mudhol, Jamkhandi, Chikodi, and North Karnataka.
         </p>
         <div class="site-footer__socials">
           <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
             WhatsApp
           </a>
-          <span class="social-sep">·</span>
+          <span class="social-sep">-</span>
           <a href={site.locationUrl} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Maps Location">
             Location
           </a>
-          <span class="social-sep">·</span>
+          <span class="social-sep">-</span>
           <a href={site.emailHref} class="social-link" aria-label="Email">
             Email
           </a>
@@ -54,7 +54,7 @@ const currentYear = new Date().getFullYear();
         </address>
         <div class="site-footer__cta-box">
           <p class="cta-note">Want to support our community work?</p>
-          <a href="/donate" class="footer-cta-link">Support Our Mission →</a>
+          <a href="/donate" class="footer-cta-link">Support Our Mission</a>
         </div>
       </section>
     </div>
@@ -64,7 +64,7 @@ const currentYear = new Date().getFullYear();
         <p>&copy; {currentYear} {site.siteName}. All rights reserved.</p>
       </div>
       <div class="site-footer__meta">
-        <p>{site.foundedDisplay} · Fast Static Platform</p>
+        <p>{site.foundedDisplay} - Fast Static Platform</p>
       </div>
     </div>
   </Container>

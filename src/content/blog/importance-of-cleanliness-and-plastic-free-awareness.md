@@ -10,7 +10,7 @@ tags:
   - "environmental responsibility"
   - "Mahalingpur"
 image: "/images/blog/cleanliness-and-plastic-free-awareness.jpg"
-imageAlt: "Cleanliness and plastic-free awareness placeholder image"
+imageAlt: "Cleanliness and plastic-free awareness program in Mahalingpur"
 seoTitle: "Importance of Cleanliness and Plastic-Free Awareness"
 seoDescription: "Read why cleanliness awareness and plastic-free habits are important for public responsibility, health, and greener local communities."
 ---
@@ -51,6 +51,6 @@ Good volunteers should avoid shaming people. Awareness works better when it is p
 
 ## Join Awareness Work
 
-To join awareness activities, visit the [Volunteer page](/volunteer). To understand related work, explore [Social Service](/social-service) and [Tree Plantation](/tree-plantation). To contact the team, visit the [Contact page](/contact).
+To join awareness activities, visit the [Volunteer page](/volunteer). To understand related work, explore [Social Service](/social-service), [Tree Plantation](/tree-plantation), and current [Activities](/activities). To contact the team, visit the [Contact page](/contact).
 
 Cleanliness and plastic-free awareness are not one-day tasks. They are habits that grow when people repeat them together. Mahaa Foundation Mahalingpur aims to support those habits through community participation.

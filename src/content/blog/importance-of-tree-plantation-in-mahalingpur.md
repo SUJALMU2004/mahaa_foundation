@@ -10,7 +10,7 @@ tags:
   - "environmental responsibility"
   - "volunteering"
 image: "/images/blog/importance-of-tree-plantation-in-mahalingpur.jpg"
-imageAlt: "Tree plantation in Mahalingpur placeholder image"
+imageAlt: "Mahaa Foundation volunteers planting trees on Double Road Mahalingpur"
 seoTitle: "Importance of Tree Plantation in Mahalingpur | Mahaa Foundation"
 seoDescription: "Understand why tree plantation in Mahalingpur supports public spaces, shade, cleaner surroundings, and community responsibility."
 featured: true
@@ -46,6 +46,6 @@ This is why Mahaa Foundation keeps environmental content under practical work ar
 
 ## Join the Work
 
-If you want to support greener public spaces in Mahalingpur, visit the [Tree Plantation page](/tree-plantation). To give your time, visit the [Volunteer page](/volunteer). To support future activities, visit the [Donate page](/donate).
+If you want to support greener public spaces in Mahalingpur, visit the [Tree Plantation page](/tree-plantation). To give your time, visit the [Volunteer page](/volunteer). To see activity photos, visit the [Gallery](/gallery). To support future activities, visit the [Donate page](/donate).
 
 Tree plantation becomes meaningful when people continue caring after the photo is taken. With volunteers, donors, students, and residents working together, Mahalingpur can become greener and more responsible one activity at a time.

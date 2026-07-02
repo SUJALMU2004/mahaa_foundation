@@ -10,7 +10,7 @@ tags:
   - "families in need"
   - "Mahalingpur"
 image: "/images/blog/how-ration-distribution-supports-families-in-need.jpg"
-imageAlt: "Ration support items arranged for families placeholder image"
+imageAlt: "Ration support items arranged for families in need"
 seoTitle: "How Ration Distribution Supports Families in Need | Mahaa Foundation"
 seoDescription: "Learn how ration distribution helps families with essential food support, dignity, and short-term relief during difficult situations."
 ---

@@ -10,7 +10,7 @@ tags:
   - "ration support"
   - "Mahaa Foundation"
 image: "/images/blog/food-donation-and-community-welfare.jpg"
-imageAlt: "Food donation and community welfare placeholder image"
+imageAlt: "Ration kits prepared for families in need"
 seoTitle: "Food Donation and Community Welfare | Mahaa Foundation"
 seoDescription: "Learn how food donation and ration support can strengthen community welfare when handled with dignity and responsibility."
 ---

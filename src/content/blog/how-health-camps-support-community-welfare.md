@@ -10,7 +10,7 @@ tags:
   - "public health"
   - "Mahalingpur"
 image: "/images/blog/how-health-camps-support-community-welfare.jpg"
-imageAlt: "Health camp support activity placeholder image"
+imageAlt: "Health camp support activity in Mahalingpur"
 seoTitle: "How Health Camps Support Community Welfare"
 seoDescription: "Understand how health camp support and public health coordination can help families, children, and local communities."
 ---
@@ -51,6 +51,6 @@ Volunteers should be calm, patient, and respectful. Public health activities can
 
 ## Support Health Work
 
-To support health-related activities, explore the [Social Service page](/social-service), join through the [Volunteer page](/volunteer), or contact Mahaa Foundation through the [Contact page](/contact).
+To support health-related activities, explore the [Social Service page](/social-service), review current [Activities](/activities), join through the [Volunteer page](/volunteer), or contact Mahaa Foundation through the [Contact page](/contact).
 
 Health camp support is not about making large claims. It is about helping people access organized support with dignity and care.

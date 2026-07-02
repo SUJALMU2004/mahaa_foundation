@@ -349,9 +349,9 @@ ul {
 
 .site-header__logo {
   display: block;
-  width: clamp(120px, 14vw, 150px);
+  width: clamp(128px, 15vw, 165px);
   height: auto;
-  max-height: 52px;
+  max-height: 58px;
   object-fit: contain;
 }
 
@@ -787,8 +787,8 @@ ul {
 
 @media (max-width: 420px) {
   .site-header__logo {
-    width: 110px;
-    max-height: 46px;
+    width: 118px;
+    max-height: 50px;
   }
 
   .placeholder-hero__actions .button {

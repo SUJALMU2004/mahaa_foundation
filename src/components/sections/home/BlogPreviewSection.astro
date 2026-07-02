@@ -42,7 +42,11 @@ import { home } from '../../../data/home';
   .blog-section__heading {
     display: grid;
     gap: var(--space-4);
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-5);
+  }
+
+  .blog-section__heading :global(.section-header) {
+    max-width: 760px;
   }
 
   .blog-grid {
@@ -97,7 +101,11 @@ import { home } from '../../../data/home';
   @media (min-width: 760px) {
     .blog-section__heading {
       grid-template-columns: 1fr auto;
-      align-items: end;
+      align-items: start;
+    }
+
+    .blog-section__heading :global(.button) {
+      margin-top: var(--space-5);
     }
 
     .blog-grid {

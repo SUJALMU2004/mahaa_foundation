@@ -2,6 +2,7 @@
 import Container from '../../common/Container.astro';
 import Button from '../../common/Button.astro';
 import { home } from '../../../data/home';
+import { Image } from 'astro:assets';
 
 const { hero } = home;
 ---
@@ -23,13 +24,17 @@ const { hero } = home;
       </div>
 
       <div class="home-hero__media-wrapper">
-        <div
-          class="home-hero__media"
-          role="img"
-          aria-label={hero.media.alt}
-          data-image={hero.media.image}
-          style={`--media-image: url("${hero.media.image}")`}
-        >
+        <div class="home-hero__media">
+          <Image
+            src={hero.media.image}
+            alt={hero.media.alt}
+            width={1200}
+            format="webp"
+            quality={82}
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
         <p class="home-hero__media-caption">{hero.media.label} — {hero.phrase}</p>
       </div>
@@ -39,43 +44,46 @@ const { hero } = home;
 
 <style>
   .home-hero {
-    padding: var(--space-9) 0 var(--space-8);
+    padding: var(--space-8) 0;
     background: var(--color-bg-soft);
   }
 
   .home-hero__grid {
     display: grid;
-    gap: var(--space-8);
-    align-items: center;
+    gap: var(--space-7);
+    align-items: start;
   }
 
   .home-hero__eyebrow {
     margin-bottom: var(--space-3);
     color: var(--color-accent);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
   .home-hero h1 {
-    max-width: 15ch;
+    max-width: 13.5ch;
+    margin-bottom: var(--space-4);
+    font-size: clamp(2.8rem, 5.8vw, 5.6rem);
+    line-height: 0.98;
   }
 
   .home-hero__lead {
-    max-width: 44rem;
+    max-width: 38rem;
     color: var(--color-muted);
-    font-size: 1.15rem;
-    line-height: 1.75;
+    font-size: 1.04rem;
+    line-height: 1.72;
   }
 
   .home-hero__kannada {
     max-width: 44rem;
     color: var(--color-primary);
     font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 500;
-    margin-bottom: var(--space-4);
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
   }
 
   .home-hero__phrase {
@@ -107,13 +115,20 @@ const { hero } = home;
 
   .home-hero__media {
     display: block;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 11;
     overflow: hidden;
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
-    background-image: var(--media-image);
-    background-position: center;
-    background-size: cover;
+    background: var(--color-bg-soft);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .home-hero__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
   }
 
   .home-hero__media-caption {
@@ -125,7 +140,41 @@ const { hero } = home;
 
   @media (min-width: 768px) {
     .home-hero__grid {
-      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+      align-items: stretch;
+    }
+
+    .home-hero__media-wrapper {
+      height: 100%;
+      margin-top: 0;
+    }
+
+    .home-hero__media {
+      height: clamp(430px, 48vw, 560px);
+      aspect-ratio: auto;
+    }
+  }
+
+  @media (min-width: 1180px) {
+    .home-hero__grid {
+      grid-template-columns: minmax(500px, 0.95fr) minmax(560px, 1.05fr);
+      gap: var(--space-7);
+    }
+
+    .home-hero__media {
+      height: clamp(560px, 44vw, 680px);
+      aspect-ratio: auto;
+    }
+
+    .home-hero__media-wrapper {
+      margin-top: 0;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .home-hero h1 {
+      max-width: 14.5ch;
+      font-size: 5.2rem;
     }
   }
 
