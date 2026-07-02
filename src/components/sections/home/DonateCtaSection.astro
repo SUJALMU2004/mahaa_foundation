@@ -1,0 +1,79 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { home } from '../../../data/home';
+
+const cta = home.ctas.donate;
+---
+
+<section class="donate-section" aria-labelledby="donate-cta-title">
+  <Container>
+    <div class="donate-band">
+      <p class="donate-band__phrase">{cta.supportPhrase}</p>
+      <h2 id="donate-cta-title">{cta.title}</h2>
+      <p>{cta.content}</p>
+      <div class="donate-band__actions">
+        <Button href={cta.primaryCta.href} variant="primary">{cta.primaryCta.label}</Button>
+        <Button href={cta.secondaryCta.href} variant="outline">{cta.secondaryCta.label}</Button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .donate-section {
+    padding: 0 0 var(--space-7);
+  }
+
+  .donate-band {
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgb(15 79 42 / 0.95), rgb(47 111 115 / 0.95)),
+      var(--color-primary-dark);
+    color: #ffffff;
+    padding: var(--space-6);
+  }
+
+  .donate-band__phrase {
+    display: inline-flex;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius);
+    background: rgb(255 255 255 / 0.14);
+    padding: 0.55rem 0.75rem;
+    color: #ffffff;
+    font-weight: 900;
+  }
+
+  .donate-band h2 {
+    max-width: 760px;
+  }
+
+  .donate-band p:not(.donate-band__phrase) {
+    max-width: 720px;
+    color: #eaf4ed;
+    font-size: 1.05rem;
+  }
+
+  .donate-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .donate-band :global(.button--outline) {
+    border-color: rgb(255 255 255 / 0.7);
+    background: transparent;
+    color: #ffffff;
+  }
+
+  .donate-band :global(.button--outline:hover) {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  @media (max-width: 420px) {
+    .donate-band__actions :global(.button) {
+      width: 100%;
+    }
+  }
+</style>

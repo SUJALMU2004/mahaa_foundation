@@ -1,0 +1,43 @@
+---
+import { whatsappUrl } from '../../utils/seo';
+---
+
+<a
+  class="floating-whatsapp"
+  href={whatsappUrl()}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat with us on WhatsApp"
+>
+  WhatsApp
+</a>
+
+<style>
+  .floating-whatsapp {
+    position: fixed;
+    right: var(--space-4);
+    bottom: var(--space-4);
+    z-index: 35;
+    display: none;
+    min-height: 46px;
+    align-items: center;
+    border-radius: var(--radius);
+    background: #128c4a;
+    color: #ffffff;
+    box-shadow: 0 16px 40px rgb(18 140 74 / 0.28);
+    padding: 0.72rem 1rem;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .floating-whatsapp:hover {
+    background: #0f6f3c;
+    color: #ffffff;
+  }
+
+  @media (min-width: 760px) {
+    .floating-whatsapp {
+      display: inline-flex;
+    }
+  }
+</style>

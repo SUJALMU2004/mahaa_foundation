@@ -1,0 +1,124 @@
+---
+import BlogMeta from './BlogMeta.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  category: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  author: string;
+  readingTime: string;
+  tags: readonly string[];
+  image: string;
+  imageAlt: string;
+}
+
+const {
+  title,
+  description,
+  category,
+  publishDate,
+  updatedDate,
+  author,
+  readingTime,
+  tags,
+  image,
+  imageAlt,
+} = Astro.props;
+---
+
+<header class="article-header">
+  <p class="article-header__category">{category}</p>
+  <h1>{title}</h1>
+  <p class="article-header__description">{description}</p>
+  <BlogMeta
+    publishDate={publishDate}
+    updatedDate={updatedDate}
+    author={author}
+    readingTime={readingTime}
+  />
+  <ul class="article-header__tags" aria-label="Post tags">
+    {tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+  <div
+    class="article-header__media"
+    role="img"
+    aria-label={imageAlt}
+    data-image={image}
+    style={`--article-image: url("${image}")`}
+  >
+    <span>Future blog image area</span>
+  </div>
+</header>
+
+<style>
+  .article-header {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: var(--space-7) 1rem var(--space-5);
+  }
+
+  .article-header__category {
+    display: inline-flex;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius);
+    background: var(--color-accent-soft);
+    color: var(--color-text);
+    padding: 0.4rem 0.6rem;
+    font-weight: 900;
+  }
+
+  .article-header h1 {
+    max-width: 14ch;
+  }
+
+  .article-header__description {
+    max-width: 760px;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+  }
+
+  .article-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-4) 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .article-header__tags li {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    color: var(--color-muted);
+    padding: 0.3rem 0.5rem;
+    font-size: 0.84rem;
+    font-weight: 800;
+  }
+
+  .article-header__media {
+    display: grid;
+    aspect-ratio: 16 / 9;
+    place-items: end start;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-image:
+      linear-gradient(135deg, rgb(23 107 58 / 0.18), rgb(217 140 36 / 0.12)),
+      var(--article-image),
+      var(--color-primary-soft);
+    background-position: center;
+    background-size: cover;
+    box-shadow: var(--shadow-soft);
+    padding: var(--space-4);
+  }
+
+  .article-header__media span {
+    border-radius: var(--radius);
+    background: rgb(255 255 255 / 0.92);
+    color: var(--color-primary-dark);
+    padding: 0.55rem 0.75rem;
+    font-weight: 900;
+  }
+</style>

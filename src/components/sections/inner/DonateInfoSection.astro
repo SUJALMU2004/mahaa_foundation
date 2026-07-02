@@ -1,0 +1,275 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { site } from '../../../data/site';
+import { whatsappUrl } from '../../../utils/seo';
+
+const donationDetailItems = [
+  { id: 'upi', label: 'UPI ID', value: site.upiId },
+  {
+    id: 'bank-branch',
+    label: 'Bank & Branch',
+    value: `${site.bankDetails.bankName}, ${site.bankDetails.branch} Branch`,
+  },
+  { id: 'account-name', label: 'Account Name', value: site.bankDetails.accountName },
+  { id: 'account-number', label: 'Account Number', value: site.bankDetails.accountNumber },
+  { id: 'ifsc', label: 'IFSC', value: site.bankDetails.ifsc },
+];
+---
+
+<section class="donate-info" aria-labelledby="donate-info-title">
+  <Container>
+    <div class="donate-info__inner">
+      <div class="donate-info__content">
+        <p class="donate-info__eyebrow">Verified Donation Details</p>
+        <h2 id="donate-info-title">Support Mahaa Foundation by UPI or Bank Transfer</h2>
+        <p>
+          This website does not use a payment gateway. Donate through the details below and send
+          the payment screenshot on WhatsApp so the team can acknowledge and stay connected with you.
+        </p>
+
+        <div class="donation-details" aria-label="Donation account details">
+          {
+            donationDetailItems.map((item) => (
+              <div class="donation-detail">
+                <span>{item.label}</span>
+                <div class="donation-details__copy-row">
+                  <strong id={`donation-${item.id}`}>{item.value}</strong>
+                  <button
+                    class="copy-button"
+                    type="button"
+                    data-copy-value={item.value}
+                    data-copy-label={item.label}
+                    aria-label={`Copy ${item.label}`}
+                    aria-describedby={`donation-${item.id}-copy-status`}
+                  >
+                    Copy
+                  </button>
+                </div>
+                <span
+                  class="copy-status"
+                  id={`donation-${item.id}-copy-status`}
+                  aria-live="polite"
+                />
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="donate-info__actions">
+          <Button href={whatsappUrl('Hello Mahaa Foundation, I have donated and want to share the screenshot.')} variant="whatsapp" external>
+            Send Screenshot on WhatsApp
+          </Button>
+          <Button href={site.phoneHref} variant="primary">Call for Donation Help</Button>
+          <Button href="/contact" variant="outline">Contact Us</Button>
+        </div>
+      </div>
+
+      <div class="donation-qr" aria-label="Mahaa Foundation donation QR code">
+        <img
+          src={site.donationQrImage}
+          alt="Mahaa Foundation Mahalingpur donation QR code for UPI support"
+          width="1079"
+          height="1363"
+          loading="lazy"
+          decoding="async"
+        />
+        <p>Scan the QR code to donate by UPI, then send the payment screenshot on WhatsApp.</p>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .donate-info {
+    padding: var(--space-7) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .donate-info__inner {
+    display: grid;
+    gap: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-6);
+    box-shadow: 0 18px 45px rgba(17, 73, 44, 0.08);
+  }
+
+  .donate-info__eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .donate-info p {
+    color: var(--color-muted);
+  }
+
+  .donate-info__content > p {
+    max-width: 760px;
+  }
+
+  .donation-details {
+    display: grid;
+    gap: var(--space-3);
+    margin: var(--space-5) 0;
+  }
+
+  .donation-detail {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg-soft);
+    padding: var(--space-3);
+  }
+
+  .donation-details span {
+    display: block;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .donation-details strong {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--color-text);
+    word-break: break-word;
+  }
+
+  .donation-details__copy-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-top: 0.2rem;
+  }
+
+  .donation-details__copy-row strong {
+    margin-top: 0;
+  }
+
+  .copy-button {
+    min-height: 2.5rem;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius);
+    background: #ffffff;
+    color: var(--color-primary-dark);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 900;
+    padding: 0.45rem 0.8rem;
+  }
+
+  .copy-button:hover,
+  .copy-button:focus-visible {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .copy-status {
+    min-height: 1.2rem;
+    margin-top: 0.35rem;
+    color: var(--color-primary-dark);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .copy-status:empty::before {
+    content: '';
+  }
+
+  .donate-info__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .donation-qr {
+    display: grid;
+    min-height: 360px;
+    place-items: center;
+    align-content: center;
+    gap: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-5);
+    text-align: center;
+  }
+
+  .donation-qr img {
+    width: min(100%, 440px);
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .donation-qr p {
+    max-width: 18rem;
+    margin: 0;
+    font-size: 0.92rem;
+  }
+
+  @media (min-width: 760px) {
+    .donation-details {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .donate-info__inner {
+      grid-template-columns: minmax(0, 1.2fr) minmax(390px, 0.8fr);
+      align-items: start;
+    }
+  }
+</style>
+
+<script>
+  const copyButtons = document.querySelectorAll('[data-copy-value]');
+
+  copyButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const copyValue = button.getAttribute('data-copy-value') ?? '';
+      const statusId = button.getAttribute('aria-describedby');
+      const status = statusId ? document.getElementById(statusId) : null;
+      const originalText = button.textContent ?? 'Copy';
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(copyValue);
+        } else {
+          const textarea = document.createElement('textarea');
+          textarea.value = copyValue;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.append(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          textarea.remove();
+        }
+
+        button.textContent = 'Copied';
+        const copyLabel = button.getAttribute('data-copy-label') ?? 'Detail';
+        if (status) status.textContent = `${copyLabel} copied.`;
+
+        window.setTimeout(() => {
+          button.textContent = originalText;
+          if (status) status.textContent = '';
+        }, 2200);
+      } catch {
+        if (status) status.textContent = 'Copy failed. Please copy manually.';
+      }
+    });
+  });
+</script>

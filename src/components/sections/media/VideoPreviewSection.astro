@@ -1,0 +1,78 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import VideoCard from '../../media/VideoCard.astro';
+import type { VideoItem } from '../../../data/media';
+
+export interface Props {
+  videos: VideoItem[];
+}
+
+const { videos } = Astro.props;
+---
+
+<section class="video-preview" aria-labelledby="video-preview-title">
+  <Container>
+    <div class="video-preview__header">
+      <div>
+        <p class="eyebrow">Video Placeholders</p>
+        <h2 id="video-preview-title">Activity Videos</h2>
+        <p>
+          Local videos can be added later. Until then, these cards reserve stable space for
+          activity proof without loading external players.
+        </p>
+      </div>
+      <Button href="/videos" variant="outline">View All Videos</Button>
+    </div>
+    <div class="video-preview__grid">
+      {
+        videos.slice(0, 3).map((video) => (
+          <VideoCard
+            title={video.title}
+            description={video.description}
+            category={video.category}
+            poster={video.poster}
+            videoSrc={video.videoSrc}
+            duration={video.duration}
+            relatedHref={video.relatedHref}
+            videoAltText={video.videoAltText}
+          />
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .video-preview {
+    padding: var(--space-7) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .video-preview__header {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .video-preview__header p:not(.eyebrow) {
+    max-width: 760px;
+    color: var(--color-muted);
+  }
+
+  .video-preview__grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 760px) {
+    .video-preview__header {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+
+    .video-preview__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { home } from '../../../data/home';
+import { whatsappUrl } from '../../../utils/seo';
+
+const cta = home.ctas.final;
+const whatsappHref = whatsappUrl(cta.whatsappMessage);
+---
+
+<section class="final-cta" aria-labelledby="final-cta-title">
+  <Container>
+    <div class="final-cta__inner">
+      <p class="final-cta__eyebrow">Take Action</p>
+      <h2 id="final-cta-title">{cta.title}</h2>
+      <p>{cta.content}</p>
+      <div class="final-cta__actions">
+        <Button href="/volunteer" variant="primary">Become a Volunteer</Button>
+        <Button href="/donate" variant="secondary">Donate Now</Button>
+        <Button href="/contact" variant="outline">Contact Us</Button>
+        <Button href={whatsappHref} variant="whatsapp" external>WhatsApp Us</Button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .final-cta {
+    padding: var(--space-7) 0 var(--space-8);
+  }
+
+  .final-cta__inner {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 0.95), rgb(232 243 235 / 0.9)),
+      #ffffff;
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .final-cta__eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .final-cta h2,
+  .final-cta p {
+    margin-inline: auto;
+  }
+
+  .final-cta h2 {
+    max-width: 780px;
+  }
+
+  .final-cta p:not(.final-cta__eyebrow) {
+    max-width: 620px;
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+
+  .final-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  @media (max-width: 420px) {
+    .final-cta__actions :global(.button) {
+      width: 100%;
+    }
+  }
+</style>

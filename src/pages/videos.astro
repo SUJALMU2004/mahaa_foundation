@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import VideosHeroSection from '../components/sections/media/VideosHeroSection.astro';
+import VideoGridSection from '../components/sections/media/VideoGridSection.astro';
+import MediaCtaSection from '../components/sections/media/MediaCtaSection.astro';
+import { videoCategories, videoItems } from '../data/media';
+import { seo } from '../data/seo';
+import { absoluteUrl } from '../utils/seo';
+
+const page = {
+  ...seo.videos,
+  ogTitle: 'Mahaa Foundation Videos in Mahalingpur',
+  ogDescription:
+    'Watch videos from Mahaa Foundation tree plantation, ration distribution, student support, health support, awareness, social service, and volunteer activities.',
+  twitterImage: seo.videos.ogImage,
+  schema: {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Mahaa Foundation Activity Videos',
+    description:
+      'Watch Mahaa Foundation videos from tree plantation, ration distribution, student support, health support, awareness, social service, and volunteer activities.',
+    url: absoluteUrl('/videos'),
+  },
+};
+---
+
+<BaseLayout {...page}>
+  <VideosHeroSection />
+  <VideoGridSection categories={videoCategories} videos={videoItems} />
+  <MediaCtaSection
+    title="Join the Work Shown in Our Videos"
+    description="Support tree plantation, ration distribution, student support, health support, awareness, social service, and volunteer-led activities."
+    primaryCta={{ label: 'Become a Volunteer', href: '/volunteer' }}
+    secondaryCta={{ label: 'View Gallery', href: '/gallery' }}
+    tertiaryCta={{ label: 'Contact Us', href: '/contact' }}
+  />
+</BaseLayout>

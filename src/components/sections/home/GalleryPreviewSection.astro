@@ -1,0 +1,112 @@
+---
+import Container from '../../common/Container.astro';
+import SectionHeader from '../../common/SectionHeader.astro';
+import Button from '../../common/Button.astro';
+import { home } from '../../../data/home';
+---
+
+<section class="gallery-section" aria-labelledby="gallery-title">
+  <Container>
+    <div class="gallery-section__heading">
+      <SectionHeader
+        headingId="gallery-title"
+        eyebrow="Activity Moments"
+        title="Moments from Our Activities"
+        description="A glimpse of our plantation drives, ration distribution activities, environmental campaigns, and volunteer work."
+      />
+      <div class="gallery-section__actions">
+        <Button href="/gallery" variant="outline">View Gallery</Button>
+        <Button href="/activities" variant="link">View Activities</Button>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      {
+        home.galleryPreview.map((item) => (
+          <figure class="gallery-card">
+            <div
+              class="gallery-card__media"
+              role="img"
+              aria-label={item.alt}
+              data-image={item.image}
+              style={`--media-image: url("${item.image}")`}
+            >
+              <span aria-hidden="true"></span>
+            </div>
+            <figcaption>{item.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .gallery-section {
+    padding: var(--space-7) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .gallery-section__heading {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .gallery-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .gallery-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .gallery-card {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+  }
+
+  .gallery-card__media {
+    display: grid;
+    aspect-ratio: 4 / 3;
+    place-items: center;
+    background-image:
+      linear-gradient(135deg, rgb(23 107 58 / 0.15), rgb(217 140 36 / 0.12)),
+      var(--media-image),
+      var(--color-primary-soft);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .gallery-card__media span {
+    width: 42px;
+    height: 42px;
+    border: 8px solid rgb(255 255 255 / 0.78);
+    border-radius: var(--radius);
+    background: var(--color-primary);
+    transform: rotate(8deg);
+  }
+
+  .gallery-card figcaption {
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text);
+    font-weight: 800;
+  }
+
+  @media (min-width: 760px) {
+    .gallery-section__heading {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

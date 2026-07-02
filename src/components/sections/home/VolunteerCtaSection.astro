@@ -1,0 +1,75 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { home } from '../../../data/home';
+
+const cta = home.ctas.volunteer;
+---
+
+<section class="cta-section cta-section--volunteer" aria-labelledby="volunteer-cta-title">
+  <Container>
+    <div class="cta-band">
+      <div>
+        <p class="cta-band__eyebrow">Volunteer for NGO</p>
+        <h2 id="volunteer-cta-title">{cta.title}</h2>
+        <p>{cta.content}</p>
+      </div>
+      <div class="cta-band__actions">
+        <Button href={cta.primaryCta.href} variant="primary">{cta.primaryCta.label}</Button>
+        <Button href={cta.secondaryCta.href} variant="outline">{cta.secondaryCta.label}</Button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .cta-section {
+    padding: var(--space-7) 0;
+  }
+
+  .cta-band {
+    display: grid;
+    gap: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgb(232 243 235 / 0.9), rgb(255 244 228 / 0.86)),
+      #ffffff;
+    padding: var(--space-6);
+  }
+
+  .cta-band__eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cta-band p:not(.cta-band__eyebrow) {
+    max-width: 760px;
+    margin-bottom: 0;
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+
+  .cta-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 900px) {
+    .cta-band {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .cta-band__actions :global(.button) {
+      width: 100%;
+    }
+  }
+</style>

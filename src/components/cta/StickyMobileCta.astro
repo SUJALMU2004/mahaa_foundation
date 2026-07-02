@@ -1,0 +1,55 @@
+---
+import { site } from '../../data/site';
+import { whatsappUrl } from '../../utils/seo';
+---
+
+<nav class="sticky-mobile-cta" aria-label="Quick contact actions">
+  <a href={site.phoneHref} aria-label="Call Mahaa Foundation">Call</a>
+  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Mahaa Foundation">
+    WhatsApp
+  </a>
+</nav>
+
+<style>
+  .sticky-mobile-cta {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 36;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgb(255 255 255 / 0.24);
+    background: #ffffff;
+    box-shadow: 0 -14px 34px rgb(23 35 29 / 0.14);
+  }
+
+  .sticky-mobile-cta a {
+    display: inline-flex;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .sticky-mobile-cta a:first-child {
+    background: var(--color-primary);
+  }
+
+  .sticky-mobile-cta a:last-child {
+    background: #128c4a;
+  }
+
+  @media (min-width: 760px) {
+    .sticky-mobile-cta {
+      display: none;
+    }
+  }
+
+  @media (max-width: 759px) {
+    :global(body) {
+      padding-bottom: 54px;
+    }
+  }
+</style>

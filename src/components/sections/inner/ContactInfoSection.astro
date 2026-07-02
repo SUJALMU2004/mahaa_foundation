@@ -1,0 +1,115 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { site } from '../../../data/site';
+import { whatsappUrl } from '../../../utils/seo';
+---
+
+<section class="contact-info" aria-labelledby="contact-info-title">
+  <Container>
+    <div class="contact-info__grid">
+      <div>
+        <p class="contact-info__eyebrow">Contact Information</p>
+        <h2 id="contact-info-title">Contact Details</h2>
+        <p>
+          Reach out to volunteer, donate, collaborate, or ask about our social service, student
+          support, health support, awareness, and tree plantation work in {site.city}.
+        </p>
+      </div>
+
+      <address class="contact-info__cards">
+        <a href={site.phoneHref} class="contact-info__card">
+          <span>Phone</span>
+          <strong>{site.phoneDisplay}</strong>
+        </a>
+        <a href={whatsappUrl()} class="contact-info__card" target="_blank" rel="noopener noreferrer">
+          <span>WhatsApp</span>
+          <strong>{site.whatsappDisplay}</strong>
+        </a>
+        <a href={site.emailHref} class="contact-info__card">
+          <span>Email</span>
+          <strong>{site.email}</strong>
+        </a>
+        <a href={site.locationUrl} class="contact-info__card" target="_blank" rel="noopener noreferrer">
+          <span>Location</span>
+          <strong>Open Google Location</strong>
+        </a>
+      </address>
+    </div>
+
+    <div class="contact-info__actions">
+      <Button href={whatsappUrl()} variant="whatsapp" external>WhatsApp Us</Button>
+      <Button href={site.phoneHref} variant="primary">Call Now</Button>
+      <Button href={site.emailHref} variant="outline">Email Us</Button>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .contact-info {
+    padding: var(--space-7) 0;
+  }
+
+  .contact-info__grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .contact-info__eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .contact-info p {
+    color: var(--color-muted);
+  }
+
+  .contact-info__cards {
+    display: grid;
+    gap: var(--space-3);
+    font-style: normal;
+  }
+
+  .contact-info__card {
+    display: grid;
+    gap: var(--space-1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-4);
+    text-decoration: none;
+  }
+
+  .contact-info__card span {
+    color: var(--color-muted);
+    font-size: 0.82rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .contact-info__card strong {
+    color: var(--color-text);
+    overflow-wrap: anywhere;
+  }
+
+  .contact-info__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  @media (min-width: 820px) {
+    .contact-info__grid {
+      grid-template-columns: 0.8fr 1.2fr;
+    }
+
+    .contact-info__cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

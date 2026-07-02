@@ -1,0 +1,190 @@
+---
+import BlogMeta from './BlogMeta.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  category: string;
+  publishDate: Date;
+  tags?: readonly string[];
+  variant?: 'default' | 'modern' | 'featured';
+}
+
+const {
+  title,
+  description,
+  href,
+  image,
+  imageAlt,
+  category,
+  publishDate,
+  tags = [],
+  variant = 'default',
+} = Astro.props;
+---
+
+<article class:list={['blog-card', `blog-card--${variant}`]}>
+  <div
+    class="blog-card__media"
+    role="img"
+    aria-label={imageAlt}
+    data-image={image}
+    style={`--blog-image: url("${image}")`}
+  >
+    <span>{category}</span>
+  </div>
+  <div class="blog-card__body">
+    <BlogMeta publishDate={publishDate} />
+    <h3><a href={href}>{title}</a></h3>
+    <p>{description}</p>
+    {
+      tags.length > 0 && (
+        <ul aria-label="Post tags">
+          {tags.slice(0, 3).map((tag) => <li>{tag}</li>)}
+        </ul>
+      )
+    }
+    <a class="blog-card__link" href={href}>Read More</a>
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: 0 10px 28px rgb(23 35 29 / 0.05);
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .blog-card--modern:hover,
+  .blog-card--modern:focus-within,
+  .blog-card--featured:hover,
+  .blog-card--featured:focus-within {
+    border-color: rgb(23 107 58 / 0.3);
+    box-shadow: 0 18px 44px rgb(23 35 29 / 0.1);
+    transform: translateY(-3px);
+  }
+
+  .blog-card__media {
+    display: grid;
+    aspect-ratio: 16 / 10;
+    place-items: end start;
+    background-image:
+      linear-gradient(135deg, rgb(23 107 58 / 0.18), rgb(217 140 36 / 0.14)),
+      var(--blog-image),
+      var(--color-primary-soft);
+    background-position: center;
+    background-size: cover;
+    padding: var(--space-4);
+  }
+
+  .blog-card--modern .blog-card__media,
+  .blog-card--featured .blog-card__media {
+    background-image:
+      var(--blog-image),
+      linear-gradient(135deg, #f6faf7, #fff8ed);
+    background-color: var(--color-bg-soft);
+  }
+
+  .blog-card__media span {
+    border-radius: var(--radius);
+    background: rgb(255 255 255 / 0.92);
+    color: var(--color-primary-dark);
+    padding: 0.45rem 0.65rem;
+    font-size: 0.84rem;
+    font-weight: 900;
+  }
+
+  .blog-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: var(--space-5);
+  }
+
+  .blog-card h3 {
+    margin: var(--space-3) 0;
+    font-size: clamp(1.1rem, 0.9vw + 0.9rem, 1.35rem);
+  }
+
+  .blog-card h3 a,
+  .blog-card__link {
+    color: var(--color-primary-dark);
+    text-decoration: none;
+  }
+
+  .blog-card h3 a:hover,
+  .blog-card__link:hover {
+    text-decoration: underline;
+  }
+
+  .blog-card h3 a:focus-visible,
+  .blog-card__link:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  .blog-card p {
+    color: var(--color-muted);
+  }
+
+  .blog-card ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  .blog-card li {
+    border-radius: var(--radius);
+    background: var(--color-bg-soft);
+    color: var(--color-muted);
+    padding: 0.25rem 0.45rem;
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .blog-card__link {
+    margin-top: auto;
+    font-weight: 900;
+    text-underline-offset: 0.18em;
+  }
+
+  @media (min-width: 820px) {
+    .blog-card--featured {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+      align-items: stretch;
+    }
+
+    .blog-card--featured .blog-card__media {
+      min-height: 320px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-card {
+      transition: none;
+    }
+
+    .blog-card--modern:hover,
+    .blog-card--modern:focus-within,
+    .blog-card--featured:hover,
+    .blog-card--featured:focus-within {
+      transform: none;
+    }
+  }
+</style>

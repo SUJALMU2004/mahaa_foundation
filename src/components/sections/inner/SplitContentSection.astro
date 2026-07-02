@@ -1,0 +1,129 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import type { CtaLink } from '../../../data/pages';
+
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  bulletPoints?: readonly string[];
+  image: string;
+  imageAlt: string;
+  imagePosition?: 'left' | 'right';
+  primaryCta?: CtaLink;
+  secondaryCta?: CtaLink;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  bulletPoints = [],
+  image,
+  imageAlt,
+  imagePosition = 'left',
+  primaryCta,
+  secondaryCta,
+} = Astro.props;
+---
+
+<section class:list={['split-content', imagePosition === 'right' && 'split-content--reverse']} aria-labelledby="split-title">
+  <Container>
+    <div class="split-content__grid">
+      <div class="split-content__media">
+        <img src={image} alt={imageAlt} width="720" height="540" loading="lazy" decoding="async" />
+      </div>
+      <div class="split-content__body">
+        {eyebrow && <p class="split-content__eyebrow">{eyebrow}</p>}
+        <h2 id="split-title">{title}</h2>
+        <p>{description}</p>
+        {
+          bulletPoints.length > 0 && (
+            <ul>
+              {bulletPoints.map((point) => <li>{point}</li>)}
+            </ul>
+          )
+        }
+        {
+          (primaryCta || secondaryCta) && (
+            <div class="split-content__actions">
+              {primaryCta && <Button href={primaryCta.href} variant={primaryCta.variant ?? 'primary'}>{primaryCta.label}</Button>}
+              {secondaryCta && <Button href={secondaryCta.href} variant={secondaryCta.variant ?? 'outline'}>{secondaryCta.label}</Button>}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .split-content {
+    padding: var(--space-7) 0;
+  }
+
+  .split-content__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .split-content__media {
+    position: relative;
+    display: flex;
+    aspect-ratio: 4 / 3;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #f7f8f5;
+    box-shadow: 0 14px 34px rgb(23 35 29 / 0.06);
+  }
+
+  .split-content__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .split-content__eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .split-content__body > p {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+
+  .split-content ul {
+    display: grid;
+    gap: var(--space-2);
+    padding-left: 1.25rem;
+  }
+
+  .split-content__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .split-content__grid {
+      grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    .split-content--reverse .split-content__media {
+      order: 2;
+    }
+  }
+</style>

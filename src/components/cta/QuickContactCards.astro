@@ -1,0 +1,67 @@
+---
+import { contactCards } from '../../data/contact';
+---
+
+<div class="quick-contact-grid">
+  {
+    contactCards.map((card) => (
+      <a
+        class="quick-contact-card"
+        href={card.href}
+        target={card.external ? '_blank' : undefined}
+        rel={card.external ? 'noopener noreferrer' : undefined}
+      >
+        <span>{card.label}</span>
+        <strong>{card.value}</strong>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .quick-contact-grid {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .quick-contact-card {
+    display: grid;
+    gap: var(--space-1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-4);
+    text-decoration: none;
+    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
+  }
+
+  .quick-contact-card:hover {
+    border-color: rgb(23 107 58 / 0.34);
+    background: var(--color-primary-soft);
+  }
+
+  .quick-contact-card span {
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .quick-contact-card strong {
+    color: var(--color-text);
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 720px) {
+    .quick-contact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1020px) {
+    .quick-contact-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import Container from '../../common/Container.astro';
+import MediaGrid from '../../media/MediaGrid.astro';
+import type { GalleryItem } from '../../../data/media';
+
+export interface Props {
+  items: GalleryItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="gallery-grid-section" aria-labelledby="gallery-grid-title">
+  <Container>
+    <div class="gallery-grid-section__header">
+      <div>
+        <p class="eyebrow">Activity Proof</p>
+        <h2 id="gallery-grid-title">Photos from NGO Activities</h2>
+        <p>
+          Browse photo moments from tree plantation, ration distribution, student support, health
+          support, social service, awareness, and volunteer activities.
+        </p>
+      </div>
+    </div>
+    <MediaGrid items={items} />
+  </Container>
+</section>
+
+<style>
+  .gallery-grid-section {
+    padding: var(--space-7) 0 var(--space-8);
+    background: #ffffff;
+  }
+
+  .gallery-grid-section__header {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    max-width: 820px;
+  }
+
+  .gallery-grid-section__header p:not(.eyebrow) {
+    max-width: 760px;
+    color: var(--color-muted);
+  }
+</style>

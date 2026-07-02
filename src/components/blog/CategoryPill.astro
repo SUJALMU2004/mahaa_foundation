@@ -1,0 +1,30 @@
+---
+export interface Props {
+  label: string;
+  href: string;
+}
+
+const { label, href } = Astro.props;
+---
+
+<a class="category-pill" href={href}>{label}</a>
+
+<style>
+  .category-pill {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    color: var(--color-primary-dark);
+    padding: 0.55rem 0.78rem;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .category-pill:hover {
+    border-color: rgb(23 107 58 / 0.34);
+    background: var(--color-primary-soft);
+  }
+</style>

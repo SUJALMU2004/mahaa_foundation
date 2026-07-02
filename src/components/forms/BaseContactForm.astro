@@ -1,0 +1,121 @@
+---
+import FormSubmitNote from './FormSubmitNote.astro';
+import { site } from '../../data/site';
+
+export interface Props {
+  title: string;
+  description: string;
+  type: 'volunteer' | 'donation' | 'contact';
+  submitLabel: string;
+}
+
+const { title, description, type, submitLabel } = Astro.props;
+---
+
+<section class="form-section" aria-labelledby={`${type}-form-title`}>
+  <div class="form-card">
+    <div class="form-card__header">
+      <p class="eyebrow">WhatsApp Enquiry</p>
+      <h2 id={`${type}-form-title`}>{title}</h2>
+      <p>{description}</p>
+      <p class="form-card__required-note">Fields marked with * are required.</p>
+    </div>
+
+    <form
+      class="form-card__form"
+      action={site.whatsappHref}
+      method="get"
+      target="_blank"
+      data-whatsapp-form
+      data-whatsapp-type={type}
+    >
+      <div class="form-grid">
+        <slot />
+      </div>
+      <FormSubmitNote />
+      <div class="form-card__actions">
+        <button class="button button--whatsapp" type="submit">{submitLabel}</button>
+        <a class="form-card__fallback" href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
+          Open WhatsApp directly
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/whatsapp-forms';
+</script>
+
+<style>
+  .form-section {
+    width: 100%;
+  }
+
+  .form-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
+    padding: var(--space-5);
+  }
+
+  .form-card__header {
+    max-width: 760px;
+    margin-bottom: var(--space-5);
+  }
+
+  .form-card__header p:not(.eyebrow) {
+    color: var(--color-muted);
+  }
+
+  .form-card__required-note {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  .form-card__form {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .form-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .form-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .form-card__actions :global(.button) {
+    cursor: pointer;
+  }
+
+  .form-card__fallback {
+    color: var(--color-primary-dark);
+    font-weight: 900;
+  }
+
+  @media (min-width: 720px) {
+    .form-card {
+      padding: var(--space-6);
+    }
+
+    .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 420px) {
+    .form-card__actions :global(.button),
+    .form-card__fallback {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

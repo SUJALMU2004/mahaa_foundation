@@ -1,0 +1,74 @@
+---
+import Container from '../../common/Container.astro';
+import SectionHeader from '../../common/SectionHeader.astro';
+import type { FeatureItem } from '../../../data/pages';
+
+export interface Props {
+  title: string;
+  description?: string;
+  steps: readonly FeatureItem[];
+}
+
+const { title, description, steps } = Astro.props;
+const headingId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+---
+
+<section class="process-section" aria-labelledby={headingId}>
+  <Container>
+    <SectionHeader title={title} description={description} headingId={headingId} />
+    <div class="process-grid">
+      {
+        steps.map((step, index) => (
+          <article class="process-step">
+            <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .process-section {
+    padding: var(--space-7) 0;
+  }
+
+  .process-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .process-step {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-5);
+  }
+
+  .process-step span {
+    display: inline-flex;
+    margin-bottom: var(--space-4);
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+
+  .process-step p {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 760px) {
+    .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1040px) {
+    .process-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+</style>

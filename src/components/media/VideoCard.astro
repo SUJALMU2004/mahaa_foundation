@@ -1,0 +1,110 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  category: string;
+  poster: string;
+  videoSrc?: string;
+  duration?: string;
+  relatedHref?: string;
+  videoAltText: string;
+}
+
+const {
+  title,
+  description,
+  category,
+  poster,
+  videoSrc,
+  duration,
+  relatedHref,
+  videoAltText,
+} = Astro.props;
+
+const videoFilePath = videoSrc ? join(process.cwd(), 'public', videoSrc.replace(/^\/+/, '')) : '';
+const hasLocalVideo = Boolean(videoSrc && existsSync(videoFilePath));
+---
+
+<article class="video-card">
+  <div class="video-card__media">
+    {
+      hasLocalVideo && videoSrc ? (
+        <video controls preload="metadata" poster={poster} aria-label={videoAltText}>
+          <source src={videoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        <MediaPlaceholder type="video" label={videoAltText} image={poster} aspectRatio="16 / 9" />
+      )
+    }
+  </div>
+  <div class="video-card__content">
+    <p class="video-card__category">{category}</p>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    {
+      duration && <p class="video-card__duration">Duration placeholder: {duration}</p>
+    }
+    {
+      !hasLocalVideo && (
+        <p class="video-card__notice">Real local video can be added later in public/videos/.</p>
+      )
+    }
+    {
+      relatedHref && (
+        <a class="video-card__link" href={relatedHref}>
+          View related work
+        </a>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .video-card {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
+  }
+
+  .video-card__media video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--color-primary-soft);
+    object-fit: cover;
+  }
+
+  .video-card__content {
+    padding: var(--space-4);
+  }
+
+  .video-card__category {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .video-card p {
+    color: var(--color-muted);
+  }
+
+  .video-card__duration,
+  .video-card__notice {
+    font-size: 0.9rem;
+  }
+
+  .video-card__link {
+    color: var(--color-primary-dark);
+    font-weight: 900;
+  }
+</style>

@@ -1,0 +1,94 @@
+---
+import Container from '../../common/Container.astro';
+import SectionHeader from '../../common/SectionHeader.astro';
+import Button from '../../common/Button.astro';
+import { home } from '../../../data/home';
+---
+
+<section class="blog-section" aria-labelledby="blog-title">
+  <Container>
+    <div class="blog-section__heading">
+      <SectionHeader
+        headingId="blog-title"
+        eyebrow="NGO Blog"
+        title="Latest From Our NGO Blog"
+        description="Read updates, awareness articles, and stories about social service, tree plantation, student support, health support, awareness, and community welfare."
+      />
+      <Button href="/blog" variant="outline">Visit Blog</Button>
+    </div>
+
+    <div class="blog-grid">
+      {
+        home.blogPreview.map((post) => (
+          <article class="blog-card">
+            <p class="blog-card__category">{post.category}</p>
+            <h3>{post.title}</h3>
+            <p>{post.excerpt}</p>
+            <a href={post.href}>Read updates on the blog</a>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .blog-section {
+    padding: var(--space-7) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .blog-section__heading {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .blog-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .blog-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-5);
+  }
+
+  .blog-card__category {
+    display: inline-flex;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius);
+    background: var(--color-accent-soft);
+    color: var(--color-text);
+    padding: 0.35rem 0.55rem;
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .blog-card p:not(.blog-card__category) {
+    color: var(--color-muted);
+  }
+
+  .blog-card a {
+    color: var(--color-primary-dark);
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .blog-card a:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 760px) {
+    .blog-section__heading {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+
+    .blog-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

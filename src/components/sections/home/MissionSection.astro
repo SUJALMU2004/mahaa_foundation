@@ -1,0 +1,90 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { home } from '../../../data/home';
+---
+
+<section class="mission-section" aria-labelledby="mission-title">
+  <Container>
+    <div class="mission-section__intro">
+      <p class="home-eyebrow">Mission</p>
+      <h2 id="mission-title">Serving People. Supporting Education. Growing Greener Communities.</h2>
+      <p>
+        Our mission is to serve communities in need through ration support, student assistance,
+        health awareness, tree plantation, and volunteer-driven social service activities in
+        Mahalingpur and nearby areas.
+      </p>
+      <Button href="/about" variant="outline">Learn About Our NGO</Button>
+    </div>
+
+    <div class="mission-grid">
+      {
+        home.missionCards.map((card) => (
+          <article class="mission-card">
+            <span aria-hidden="true"></span>
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .mission-section {
+    padding: var(--space-7) 0;
+  }
+
+  .mission-section__intro {
+    max-width: 760px;
+    margin-bottom: var(--space-6);
+  }
+
+  .mission-section__intro p:not(.home-eyebrow) {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+
+  .home-eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mission-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .mission-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-5);
+    box-shadow: 0 12px 32px rgb(23 35 29 / 0.06);
+  }
+
+  .mission-card span {
+    display: block;
+    width: 42px;
+    height: 42px;
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  }
+
+  .mission-card p {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 768px) {
+    .mission-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

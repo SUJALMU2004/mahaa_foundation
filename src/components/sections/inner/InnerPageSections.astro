@@ -1,0 +1,42 @@
+---
+import PageHero from './PageHero.astro';
+import IntroTextSection from './IntroTextSection.astro';
+import FeatureGridSection from './FeatureGridSection.astro';
+import SplitContentSection from './SplitContentSection.astro';
+import ProcessSection from './ProcessSection.astro';
+import ImpactHighlightSection from './ImpactHighlightSection.astro';
+import FaqSection from './FaqSection.astro';
+import InnerCtaSection from './InnerCtaSection.astro';
+import ContactInfoSection from './ContactInfoSection.astro';
+import DonateInfoSection from './DonateInfoSection.astro';
+import TeamSection from './TeamSection.astro';
+import type { InnerPage } from '../../../data/pages';
+
+export interface Props {
+  page: InnerPage;
+  contactInfo?: boolean;
+  donateInfo?: boolean;
+  teamInfo?: boolean;
+  hideProcess?: boolean;
+}
+
+const {
+  page,
+  contactInfo = false,
+  donateInfo = false,
+  teamInfo = false,
+  hideProcess = false,
+} = Astro.props;
+---
+
+<PageHero {...page.hero} />
+<IntroTextSection {...page.intro} />
+{contactInfo && <ContactInfoSection />}
+{donateInfo && <DonateInfoSection />}
+{page.features && <FeatureGridSection {...page.features} />}
+{page.split && <SplitContentSection {...page.split} />}
+{page.process && !hideProcess && <ProcessSection {...page.process} />}
+{page.highlight && <ImpactHighlightSection {...page.highlight} />}
+{teamInfo && <TeamSection />}
+{page.faqs && <FaqSection title="Common Questions" description="Helpful answers for people who want to join, support, or understand this work." faqs={page.faqs} />}
+<InnerCtaSection {...page.cta} />

@@ -1,0 +1,48 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { site } from '../../../data/site';
+---
+
+<section class="videos-hero" aria-labelledby="videos-page-title">
+  <Container>
+    <div class="videos-hero__content">
+      <p class="eyebrow">Videos</p>
+      <h1 id="videos-page-title">NGO Activity Videos</h1>
+      <p>
+        Watch NGO videos from {site.city}, including tree plantation drives, ration distribution
+        activities, student support, health support, awareness programs, volunteer work, and
+        community welfare.
+      </p>
+      <div>
+        <Button href="/gallery" variant="primary">View Gallery</Button>
+        <Button href="/activities" variant="outline">View Activities</Button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .videos-hero {
+    padding: var(--space-7) 0;
+    background:
+      radial-gradient(circle at 0 0, rgb(232 243 235 / 0.9), transparent 30rem),
+      #ffffff;
+  }
+
+  .videos-hero__content {
+    max-width: 860px;
+  }
+
+  .videos-hero p:not(.eyebrow) {
+    color: var(--color-muted);
+    font-size: 1.12rem;
+  }
+
+  .videos-hero__content > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+</style>

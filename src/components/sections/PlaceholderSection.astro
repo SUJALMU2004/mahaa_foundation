@@ -1,0 +1,63 @@
+---
+import Container from '../common/Container.astro';
+import Button from '../common/Button.astro';
+
+type Link = {
+  label: string;
+  href: string;
+};
+
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  intro: string;
+  primaryCta?: Link;
+  secondaryCta?: Link;
+  relatedLinks?: Link[];
+}
+
+const {
+  eyebrow = 'Phase 1 Foundation',
+  title,
+  intro,
+  primaryCta = { label: 'Become a Volunteer', href: '/volunteer' },
+  secondaryCta = { label: 'Explore Our Work', href: '/our-work' },
+  relatedLinks = [],
+} = Astro.props;
+---
+
+<section class="placeholder-hero" aria-labelledby="page-title">
+  <Container>
+    <div class="placeholder-hero__grid">
+      <div class="placeholder-hero__content">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1 id="page-title">{title}</h1>
+        <p class="placeholder-hero__intro">{intro}</p>
+        <div class="placeholder-hero__actions" aria-label="Page actions">
+          <Button href={primaryCta.href} variant="primary">{primaryCta.label}</Button>
+          <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>
+        </div>
+      </div>
+
+      <aside class="placeholder-hero__panel" aria-labelledby="foundation-status">
+        <h2 id="foundation-status">Foundation Ready</h2>
+        <p>
+          This page is prepared with clean static HTML, unique SEO metadata, internal links, and a
+          reusable layout so full content can be added in the next phase.
+        </p>
+        {
+          relatedLinks.length > 0 && (
+            <div class="placeholder-hero__related">
+              <h3>Related Pages</h3>
+              <ul>
+                {relatedLinks.map((link) => (
+                  <li><a href={link.href}>{link.label}</a></li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </Container>
+</section>

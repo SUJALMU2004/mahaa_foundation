@@ -1,0 +1,19 @@
+---
+import type { ActivityItem } from '../../data/activities';
+
+export interface Props {
+  activity: ActivityItem;
+}
+
+const { activity } = Astro.props;
+---
+
+<article class="activity-detail" aria-label={activity.title}>
+  <slot />
+</article>
+
+<style>
+  .activity-detail {
+    background: #ffffff;
+  }
+</style>

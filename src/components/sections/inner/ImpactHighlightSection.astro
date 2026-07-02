@@ -1,0 +1,196 @@
+---
+import Container from '../../common/Container.astro';
+import type { FeatureItem } from '../../../data/pages';
+
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  items?: readonly FeatureItem[];
+  variant?: 'default' | 'stats-row';
+}
+
+const { eyebrow, title, description, items = [], variant = 'default' } = Astro.props;
+
+function splitStatTitle(title: string) {
+  const [value, ...labelParts] = title.split(' ');
+  return {
+    value,
+    label: labelParts.join(' '),
+  };
+}
+---
+
+<section class:list={['highlight-section', `highlight-section--${variant}`]} aria-labelledby="highlight-title">
+  <Container>
+    <div class="highlight-section__inner">
+      <div>
+        {eyebrow && <p class="highlight-section__eyebrow">{eyebrow}</p>}
+        <h2 id="highlight-title">{title}</h2>
+        <p>{description}</p>
+      </div>
+      {
+        items.length > 0 && (
+          <div class="highlight-section__links">
+            {items.map((item) => {
+              const stat = splitStatTitle(item.title);
+
+              return (
+                <article>
+                  {
+                    variant === 'stats-row' ? (
+                      <>
+                        <strong class="highlight-section__stat">{stat.value}</strong>
+                        <h3>{stat.label}</h3>
+                      </>
+                    ) : (
+                      <h3>{item.title}</h3>
+                    )
+                  }
+                  <p>{item.description}</p>
+                  {item.href && item.linkLabel && <a href={item.href}>{item.linkLabel}</a>}
+                </article>
+              );
+            })}
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .highlight-section {
+    padding: var(--space-7) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .highlight-section__inner {
+    display: grid;
+    gap: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-6);
+  }
+
+  .highlight-section__eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .highlight-section p {
+    color: var(--color-muted);
+  }
+
+  .highlight-section__links {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .highlight-section__links article {
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-bg-soft);
+    padding: var(--space-4);
+  }
+
+  .highlight-section__links p {
+    margin-bottom: var(--space-2);
+  }
+
+  .highlight-section__links a {
+    color: var(--color-primary-dark);
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .highlight-section__links a:hover {
+    text-decoration: underline;
+  }
+
+  .highlight-section__links a:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  .highlight-section--stats-row .highlight-section__inner {
+    gap: var(--space-6);
+  }
+
+  .highlight-section--stats-row .highlight-section__links {
+    gap: var(--space-4);
+  }
+
+  .highlight-section--stats-row .highlight-section__links article {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-4);
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      transform 160ms ease;
+  }
+
+  .highlight-section--stats-row .highlight-section__links article:hover {
+    border-color: rgb(23 107 58 / 0.28);
+    box-shadow: 0 14px 34px rgb(23 35 29 / 0.08);
+    transform: translateY(-3px);
+  }
+
+  .highlight-section--stats-row .highlight-section__links h3 {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .highlight-section__stat {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1;
+  }
+
+  .highlight-section--stats-row .highlight-section__links p {
+    flex: 1;
+  }
+
+  @media (min-width: 900px) {
+    .highlight-section__inner {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .highlight-section--stats-row .highlight-section__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .highlight-section--stats-row .highlight-section__links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1120px) {
+    .highlight-section--stats-row .highlight-section__links {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .highlight-section--stats-row .highlight-section__links article {
+      transition: none;
+    }
+
+    .highlight-section--stats-row .highlight-section__links article:hover {
+      transform: none;
+    }
+  }
+</style>

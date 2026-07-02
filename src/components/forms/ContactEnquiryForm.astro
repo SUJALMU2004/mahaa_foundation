@@ -1,0 +1,41 @@
+---
+import BaseContactForm from './BaseContactForm.astro';
+import FormField from './FormField.astro';
+import FormSelect from './FormSelect.astro';
+import FormTextarea from './FormTextarea.astro';
+import { contactReasonOptions } from '../../data/contact';
+---
+
+<BaseContactForm
+  title="Send Message on WhatsApp"
+  description="Share your enquiry details and WhatsApp will open with a pre-filled message. Please review it and tap Send."
+  type="contact"
+  submitLabel="Send Message on WhatsApp"
+>
+  <FormField id="contact-name" name="name" label="Full Name" required autocomplete="name" />
+  <FormField
+    id="contact-phone"
+    name="phone"
+    label="Phone Number"
+    required
+    inputmode="tel"
+    autocomplete="tel"
+    pattern="[0-9+\-\s]{10,15}"
+    placeholder="Enter your phone number"
+  />
+  <FormField id="contact-email" name="email" label="Email Address" type="email" autocomplete="email" />
+  <FormSelect
+    id="contact-reason"
+    name="reason"
+    label="Reason for Contact"
+    options={contactReasonOptions}
+    required
+  />
+  <FormTextarea
+    id="contact-message"
+    name="message"
+    label="Message"
+    placeholder="Write your message here"
+    required
+  />
+</BaseContactForm>

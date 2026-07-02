@@ -1,0 +1,40 @@
+---
+import type { MediaCategory } from '../../data/media';
+
+export interface Props {
+  categories: MediaCategory[];
+  ariaLabel?: string;
+}
+
+const { categories, ariaLabel = 'Media categories' } = Astro.props;
+---
+
+<nav class="category-pills" aria-label={ariaLabel}>
+  {categories.map((category) => <a href={category.href}>{category.label}</a>)}
+</nav>
+
+<style>
+  .category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .category-pills a {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    color: var(--color-primary-dark);
+    padding: 0.55rem 0.78rem;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .category-pills a:hover {
+    border-color: rgb(23 107 58 / 0.34);
+    background: var(--color-primary-soft);
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import HeroSection from '../components/sections/home/HeroSection.astro';
+import ImpactStatsSection from '../components/sections/home/ImpactStatsSection.astro';
+import MissionSection from '../components/sections/home/MissionSection.astro';
+import WorkHighlightsSection from '../components/sections/home/WorkHighlightsSection.astro';
+import TreePlantationSection from '../components/sections/home/TreePlantationSection.astro';
+import RationSupportSection from '../components/sections/home/RationSupportSection.astro';
+import TrustSection from '../components/sections/home/TrustSection.astro';
+import GalleryPreviewSection from '../components/sections/home/GalleryPreviewSection.astro';
+import BlogPreviewSection from '../components/sections/home/BlogPreviewSection.astro';
+import { homeWebsiteSchema } from '../data/home';
+import { seo } from '../data/seo';
+
+const page = {
+  ...seo.home,
+  ogTitle: 'Mahaa Foundation Mahalingpur',
+  ogDescription:
+    'Serving people, supporting students, providing ration help, organizing health awareness, and growing greener communities in Mahalingpur, Bagalkot, Karnataka.',
+  twitterImage: '/images/og/home-og.jpg',
+  schema: homeWebsiteSchema,
+};
+---
+
+<BaseLayout {...page}>
+  <HeroSection />
+  <ImpactStatsSection />
+  <MissionSection />
+  <WorkHighlightsSection />
+  <TreePlantationSection />
+  <RationSupportSection />
+  <TrustSection />
+  <GalleryPreviewSection />
+  <BlogPreviewSection />
+</BaseLayout>

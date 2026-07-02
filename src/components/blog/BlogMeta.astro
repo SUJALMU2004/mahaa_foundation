@@ -1,0 +1,45 @@
+---
+import { formatDate } from '../../utils/blog';
+
+export interface Props {
+  publishDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  readingTime?: string;
+}
+
+const { publishDate, updatedDate, author, readingTime } = Astro.props;
+---
+
+<div class="blog-meta">
+  <time datetime={publishDate.toISOString()}>{formatDate(publishDate)}</time>
+  {updatedDate && <span>Updated <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>}
+  {author && <span>{author}</span>}
+  {readingTime && <span>{readingTime}</span>}
+</div>
+
+<style>
+  .blog-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .blog-meta span,
+  .blog-meta time {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .blog-meta span::before {
+    width: 0.32rem;
+    height: 0.32rem;
+    margin-right: var(--space-2);
+    border-radius: 50%;
+    background: var(--color-accent);
+    content: "";
+  }
+</style>

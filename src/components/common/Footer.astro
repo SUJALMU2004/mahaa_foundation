@@ -1,0 +1,85 @@
+---
+import Container from './Container.astro';
+import Button from './Button.astro';
+import { mainNavigation, workNavigation } from '../../data/navigation';
+import { site } from '../../data/site';
+import { whatsappUrl } from '../../utils/seo';
+
+const quickLinks = mainNavigation.filter((item) =>
+  [
+    '/',
+    '/about',
+    '/our-work',
+    '/volunteer',
+    '/donate',
+    '/gallery',
+    '/activities',
+    '/videos',
+    '/blog',
+    '/contact',
+  ].includes(item.href),
+);
+
+const verifiedSocialLinks = site.socialLinks.filter(
+  (link) => link.url && !link.url.includes('example.org/social/'),
+);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <Container>
+    <div class="site-footer__grid">
+      <section class="site-footer__about" aria-labelledby="footer-about">
+        <h2 id="footer-about">{site.siteName}</h2>
+        <p>
+          {site.tagline} We work for ration support, student support, health support,
+          tree plantation, awareness, and community welfare in {site.city}.
+        </p>
+        <Button href={whatsappUrl()} variant="whatsapp" external ariaLabel="Contact Mahaa Foundation on WhatsApp">
+          WhatsApp Us
+        </Button>
+      </section>
+
+      <nav aria-labelledby="footer-quick-links">
+        <h2 id="footer-quick-links">Quick Links</h2>
+        <ul class="site-footer__links">
+          {quickLinks.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-work-links">
+        <h2 id="footer-work-links">Our Work</h2>
+        <ul class="site-footer__links">
+          {workNavigation.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <section aria-labelledby="footer-contact">
+        <h2 id="footer-contact">Contact</h2>
+        <address class="site-footer__contact">
+          <span>{site.address}</span>
+          <a href={site.phoneHref}>{site.phoneDisplay}</a>
+          <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
+            WhatsApp {site.whatsappDisplay}
+          </a>
+          <a href={site.emailHref}>{site.email}</a>
+          <a href={site.locationUrl} target="_blank" rel="noopener noreferrer">Open Location</a>
+        </address>
+        {
+          verifiedSocialLinks.length > 0 && (
+            <div class="site-footer__social" aria-label="Social links">
+              {verifiedSocialLinks.map((link) => (
+                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>
+              ))}
+            </div>
+          )
+        }
+      </section>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; {currentYear} {site.siteName}. All rights reserved.</p>
+      <p>{site.foundedDisplay}. Built as a fast static website for community service.</p>
+    </div>
+  </Container>
+</footer>

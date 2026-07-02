@@ -1,0 +1,8 @@
+---
+import SplitFeatureSection from './SplitFeatureSection.astro';
+import { home } from '../../../data/home';
+
+const section = home.focusedWorkSections.rationSupport;
+---
+
+<SplitFeatureSection id="ration-support-home" {...section} reverse />

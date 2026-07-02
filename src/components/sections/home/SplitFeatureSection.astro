@@ -1,0 +1,169 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import type { Cta, MediaPlaceholder } from '../../../data/home';
+
+export interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+  content: string;
+  bullets: readonly string[];
+  primaryCta: Cta;
+  secondaryCta: Cta;
+  media: MediaPlaceholder;
+  reverse?: boolean;
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  content,
+  bullets,
+  primaryCta,
+  secondaryCta,
+  media,
+  reverse = false,
+} = Astro.props;
+
+const headingId = `${id}-title`;
+---
+
+<section class:list={['split-feature', reverse && 'split-feature--reverse']} aria-labelledby={headingId}>
+  <Container>
+    <div class="split-feature__grid">
+      <div
+        class="split-feature__media"
+        role="img"
+        aria-label={media.alt}
+        data-image={media.image}
+        style={`--media-image: url("${media.image}")`}
+      >
+        <span>{media.label}</span>
+      </div>
+
+      <div class="split-feature__content">
+        <p class="split-feature__eyebrow">{eyebrow}</p>
+        <h2 id={headingId}>{title}</h2>
+        <p>{content}</p>
+        <ul>
+          {bullets.map((item) => <li>{item}</li>)}
+        </ul>
+        <div class="split-feature__actions">
+          <Button href={primaryCta.href} variant="primary">{primaryCta.label}</Button>
+          <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .split-feature {
+    padding: var(--space-7) 0;
+  }
+
+  .split-feature--reverse {
+    background: var(--color-bg-soft);
+  }
+
+  .split-feature__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .split-feature__media {
+    display: grid;
+    min-height: 260px;
+    aspect-ratio: 4 / 3;
+    place-items: end start;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-image:
+      linear-gradient(135deg, rgb(23 107 58 / 0.16), rgb(217 140 36 / 0.12)),
+      var(--media-image),
+      repeating-linear-gradient(
+        135deg,
+        rgb(255 255 255 / 0.72) 0 14px,
+        rgb(23 107 58 / 0.07) 14px 28px
+      ),
+      var(--color-primary-soft);
+    background-position: center;
+    background-size: cover;
+    box-shadow: var(--shadow-soft);
+    padding: var(--space-4);
+  }
+
+  .split-feature__media span {
+    display: inline-flex;
+    border-radius: var(--radius);
+    background: rgb(255 255 255 / 0.9);
+    color: var(--color-primary-dark);
+    padding: 0.65rem 0.85rem;
+    font-weight: 900;
+  }
+
+  .split-feature__eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .split-feature__content > p {
+    color: var(--color-muted);
+    font-size: 1.04rem;
+  }
+
+  .split-feature ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: var(--space-5) 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .split-feature li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-weight: 800;
+  }
+
+  .split-feature li::before {
+    position: absolute;
+    top: 0.65rem;
+    left: 0;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    content: "";
+  }
+
+  .split-feature__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .split-feature__grid {
+      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    .split-feature--reverse .split-feature__media {
+      order: 2;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .split-feature__actions :global(.button) {
+      width: 100%;
+    }
+  }
+</style>

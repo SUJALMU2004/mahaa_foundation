@@ -1,0 +1,36 @@
+---
+import Container from '../../common/Container.astro';
+---
+
+<section class="activities-hero" aria-labelledby="activities-page-title">
+  <Container>
+    <div class="activities-hero__content">
+      <p class="eyebrow">Activities and Events</p>
+      <h1 id="activities-page-title">NGO Activities and Events</h1>
+      <p>
+        Stay connected with our NGO activities, including tree plantation drives, ration
+        distribution programs, student support, health support, cleanliness awareness,
+        plastic-free awareness, social service work, and volunteer-led community initiatives.
+      </p>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .activities-hero {
+    padding: var(--space-6) 0 var(--space-7);
+    background:
+      radial-gradient(circle at 0 0, rgb(232 243 235 / 0.9), transparent 30rem),
+      #ffffff;
+  }
+
+  .activities-hero__content {
+    max-width: 840px;
+  }
+
+  .activities-hero p:not(.eyebrow) {
+    color: var(--color-muted);
+    font-size: 1.12rem;
+  }
+
+</style>

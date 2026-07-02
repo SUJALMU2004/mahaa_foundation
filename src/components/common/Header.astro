@@ -1,0 +1,147 @@
+---
+import Container from './Container.astro';
+import Button from './Button.astro';
+import {
+  actionNavigation,
+  primaryNavigation,
+  workNavigation,
+} from '../../data/navigation';
+import { site } from '../../data/site';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+function isActive(href: string) {
+  const normalizedHref = href.replace(/\/$/, '') || '/';
+  return normalizedHref === currentPath;
+}
+
+const isWorkActive = workNavigation.some((item) => isActive(item.href));
+---
+
+<header class="site-header">
+  <Container class="site-header__inner">
+    <a class="site-header__brand" href="/" aria-label={`${site.siteName} home`}>
+      <img
+        class="site-header__logo"
+        src={site.logo}
+        alt=""
+        width="681"
+        height="366"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </a>
+
+    <nav class="site-header__desktop-nav" aria-label="Primary navigation">
+      {
+        primaryNavigation.slice(0, 1).map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={['site-header__nav-link', isActive(item.href) && 'is-active']}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+
+      <details class:list={['site-header__work-menu', isWorkActive && 'is-active']}>
+        <summary
+          class:list={['site-header__nav-link', 'site-header__summary', isWorkActive && 'is-active']}
+        >
+          <span>Our Work</span>
+          <span class="site-header__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="site-header__dropdown" id="work-menu-panel">
+          <p class="site-header__dropdown-label">Work Areas</p>
+          {
+            workNavigation.map((item) => (
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={['site-header__dropdown-link', isActive(item.href) && 'is-active']}
+              >
+                <span>{item.label}</span>
+                {item.description && <small>{item.description}</small>}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+
+      {
+        primaryNavigation.slice(1).map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={['site-header__nav-link', isActive(item.href) && 'is-active']}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="site-header__actions">
+      <Button href={actionNavigation[0].href} variant="outline" class="site-header__volunteer">
+        {actionNavigation[0].label}
+      </Button>
+      <Button href={actionNavigation[1].href} variant="primary">
+        {actionNavigation[1].label}
+      </Button>
+    </div>
+
+    <details class="site-header__mobile-menu">
+      <summary class="site-header__mobile-toggle">
+        <span class="site-header__menu-icon" aria-hidden="true"></span>
+        <span>Menu</span>
+      </summary>
+
+      <div class="site-header__mobile-panel" id="mobile-menu-panel">
+        <Container>
+          <nav class="site-header__mobile-nav" aria-label="Mobile primary navigation">
+            <div class="site-header__mobile-group">
+              <p class="site-header__mobile-label">Main</p>
+              {
+                primaryNavigation.map((item) => (
+                  <a
+                    href={item.href}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    class:list={['site-header__mobile-link', isActive(item.href) && 'is-active']}
+                  >
+                    {item.label}
+                  </a>
+                ))
+              }
+            </div>
+
+            <div class="site-header__mobile-group">
+              <p class="site-header__mobile-label">Our Work</p>
+              {
+                workNavigation.map((item) => (
+                  <a
+                    href={item.href}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    class:list={['site-header__mobile-link', isActive(item.href) && 'is-active']}
+                  >
+                    <span>{item.label}</span>
+                    {item.description && <small>{item.description}</small>}
+                  </a>
+                ))
+              }
+            </div>
+
+            <div class="site-header__mobile-actions">
+              <Button href={actionNavigation[0].href} variant="outline">
+                {actionNavigation[0].label}
+              </Button>
+              <Button href={actionNavigation[1].href} variant="primary">
+                {actionNavigation[1].label}
+              </Button>
+            </div>
+          </nav>
+        </Container>
+      </div>
+    </details>
+  </Container>
+</header>

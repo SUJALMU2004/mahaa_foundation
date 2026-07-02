@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Container from '../../components/common/Container.astro';
+import Button from '../../components/common/Button.astro';
+import ActivitiesHeroSection from '../../components/sections/media/ActivitiesHeroSection.astro';
+import ActivitiesGridSection from '../../components/sections/media/ActivitiesGridSection.astro';
+import { activities } from '../../data/activities';
+import { seo } from '../../data/seo';
+import { absoluteUrl } from '../../utils/seo';
+import {
+  getFeaturedActivity,
+  getPublishedActivities,
+  sortActivitiesByDate,
+} from '../../utils/media';
+
+const publishedActivities = sortActivitiesByDate(getPublishedActivities(activities));
+const featuredActivity = getFeaturedActivity(activities);
+
+const page = {
+  ...seo.activities,
+  ogTitle: 'Mahaa Foundation Activities in Mahalingpur',
+  ogDescription:
+    'See Mahaa Foundation activities for tree plantation, ration support, student support, health support, cleanliness awareness, and social service in Mahalingpur.',
+  twitterImage: seo.activities.ogImage,
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Mahaa Foundation Activities',
+      description:
+        'Explore Mahaa Foundation activities including tree plantation, ration distribution, student support, health support, awareness, and social work.',
+      url: absoluteUrl('/activities'),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+        { '@type': 'ListItem', position: 2, name: 'Activities', item: absoluteUrl('/activities') },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout {...page}>
+  <ActivitiesHeroSection />
+  <ActivitiesGridSection activities={publishedActivities} featured={featuredActivity} />
+
+  <section class="join-steps" aria-labelledby="join-steps-title">
+    <Container>
+      <div class="join-steps__header">
+        <p class="eyebrow">Volunteer Path</p>
+        <h2 id="join-steps-title">How to Join Upcoming Activities</h2>
+      </div>
+      <div class="join-steps__grid">
+        <article>
+          <span>01</span>
+          <h3>Contact the NGO</h3>
+          <p>Reach out through WhatsApp, phone, email, or the contact page.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Choose Your Interest</h3>
+          <p>Tell us if you want to join tree plantation, ration distribution, student support, health support, awareness, or social service work.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Join Activity Updates</h3>
+          <p>Stay connected for upcoming activity information and volunteer coordination.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Participate Responsibly</h3>
+          <p>Join the activity on time and support the work with care, discipline, and community spirit.</p>
+        </article>
+      </div>
+      <div class="join-steps__actions">
+        <Button href="/volunteer" variant="primary">Become a Volunteer</Button>
+        <Button href="/donate" variant="secondary">Donate Now</Button>
+        <Button href="/contact" variant="outline">Contact Us</Button>
+        <Button href="/gallery" variant="outline">View Gallery</Button>
+        <Button href="/videos" variant="outline">Watch Videos</Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .join-steps {
+    padding: var(--space-7) 0 var(--space-8);
+    background:
+      linear-gradient(180deg, var(--color-bg-soft), #ffffff);
+  }
+
+  .join-steps__header {
+    max-width: 760px;
+    margin-bottom: var(--space-5);
+  }
+
+  .join-steps__grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .join-steps article {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-5);
+    box-shadow: 0 10px 28px rgb(23 35 29 / 0.04);
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .join-steps article:hover {
+    border-color: rgb(23 107 58 / 0.3);
+    box-shadow: 0 18px 44px rgb(23 35 29 / 0.09);
+    transform: translateY(-3px);
+  }
+
+  .join-steps article span {
+    display: inline-flex;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius);
+    background: var(--color-accent-soft);
+    color: var(--color-primary-dark);
+    padding: 0.35rem 0.55rem;
+    font-weight: 900;
+  }
+
+  .join-steps p {
+    color: var(--color-muted);
+  }
+
+  .join-steps__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  @media (min-width: 760px) {
+    .join-steps__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1040px) {
+    .join-steps__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .join-steps article {
+      transition: none;
+    }
+
+    .join-steps article:hover {
+      transform: none;
+    }
+  }
+</style>

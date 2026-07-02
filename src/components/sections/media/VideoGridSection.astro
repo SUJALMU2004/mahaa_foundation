@@ -1,0 +1,117 @@
+---
+import Container from '../../common/Container.astro';
+import MediaCategoryPills from '../../media/MediaCategoryPills.astro';
+import VideoCard from '../../media/VideoCard.astro';
+import type { MediaCategory, VideoItem } from '../../../data/media';
+
+export interface Props {
+  categories: MediaCategory[];
+  videos: VideoItem[];
+}
+
+const { categories, videos } = Astro.props;
+const featuredVideo = videos[0];
+---
+
+<section class="video-grid-section" aria-labelledby="video-grid-title">
+  <Container>
+    {
+      featuredVideo && (
+        <div class="video-grid-section__featured" aria-labelledby="featured-video-title">
+          <div>
+            <p class="eyebrow">Featured Video</p>
+            <h2 id="featured-video-title">{featuredVideo.title}</h2>
+            <p>{featuredVideo.description}</p>
+          </div>
+          <VideoCard
+            title={featuredVideo.title}
+            description={featuredVideo.description}
+            category={featuredVideo.category}
+            poster={featuredVideo.poster}
+            videoSrc={featuredVideo.videoSrc}
+            duration={featuredVideo.duration}
+            relatedHref={featuredVideo.relatedHref}
+            videoAltText={featuredVideo.videoAltText}
+          />
+        </div>
+      )
+    }
+
+    <div class="video-grid-section__header">
+      <div>
+        <p class="eyebrow">Video Library</p>
+        <h2 id="video-grid-title">Static Video Placeholders</h2>
+        <p>
+          These video cards are ready for local NGO videos. Category links remain static and do
+          not use JavaScript filtering.
+        </p>
+      </div>
+      <MediaCategoryPills categories={categories} ariaLabel="Video category links" />
+    </div>
+    <div class="video-grid-section__grid">
+      {
+        videos.map((video) => (
+          <VideoCard
+            title={video.title}
+            description={video.description}
+            category={video.category}
+            poster={video.poster}
+            videoSrc={video.videoSrc}
+            duration={video.duration}
+            relatedHref={video.relatedHref}
+            videoAltText={video.videoAltText}
+          />
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .video-grid-section {
+    padding: var(--space-7) 0;
+  }
+
+  .video-grid-section__featured {
+    display: grid;
+    gap: var(--space-5);
+    margin-bottom: var(--space-7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg-soft);
+    padding: var(--space-5);
+  }
+
+  .video-grid-section__featured p:not(.eyebrow),
+  .video-grid-section__header p:not(.eyebrow) {
+    color: var(--color-muted);
+  }
+
+  .video-grid-section__header {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .video-grid-section__grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 760px) {
+    .video-grid-section__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 960px) {
+    .video-grid-section__featured {
+      grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1.2fr);
+      align-items: center;
+    }
+
+    .video-grid-section__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

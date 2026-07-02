@@ -1,0 +1,48 @@
+---
+import Container from '../../common/Container.astro';
+import DonationEnquiryForm from '../../forms/DonationEnquiryForm.astro';
+import QuickContactCards from '../../cta/QuickContactCards.astro';
+import ContactCtaBand from '../../cta/ContactCtaBand.astro';
+---
+
+<section class="conversion-section" aria-labelledby="donate-conversion-title">
+  <Container>
+    <div class="conversion-section__header">
+      <p class="eyebrow">Donation Enquiry</p>
+      <h2 id="donate-conversion-title">Be the Reason a Family Eats and a Tree Grows</h2>
+      <p>
+        Donate through the verified UPI or bank details on this page, then send the screenshot on
+        WhatsApp. This website does not process payments directly.
+      </p>
+    </div>
+    <QuickContactCards />
+    <div class="conversion-section__form">
+      <DonationEnquiryForm />
+    </div>
+    <ContactCtaBand
+      title="Contact for Donation Support"
+      description="WhatsApp opens with a pre-filled donation enquiry. Please review it and manually tap Send in WhatsApp."
+      showLocation={false}
+    />
+  </Container>
+</section>
+
+<style>
+  .conversion-section {
+    padding: var(--space-7) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .conversion-section__header {
+    max-width: 800px;
+    margin-bottom: var(--space-5);
+  }
+
+  .conversion-section__header p:not(.eyebrow) {
+    color: var(--color-muted);
+  }
+
+  .conversion-section__form {
+    margin: var(--space-5) 0;
+  }
+</style>

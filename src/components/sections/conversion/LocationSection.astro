@@ -1,0 +1,54 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import { site } from '../../../data/site';
+---
+
+<section class="location-section" aria-labelledby="location-section-title">
+  <Container>
+    <div class="location-section__card">
+      <div>
+        <p class="eyebrow">Location</p>
+        <h2 id="location-section-title">Find Our Location</h2>
+        <p>
+          Open our shared Google location to reach Mahaa Foundation or connect with us before
+          visiting.
+        </p>
+        <p class="location-section__address">{site.address}</p>
+      </div>
+      <Button href={site.locationUrl} variant="primary" external>Open Google Location</Button>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .location-section {
+    padding: var(--space-7) 0;
+  }
+
+  .location-section__card {
+    display: grid;
+    gap: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
+    padding: var(--space-6);
+  }
+
+  .location-section p:not(.eyebrow) {
+    color: var(--color-muted);
+  }
+
+  .location-section__address {
+    margin-bottom: 0;
+    font-weight: 800;
+  }
+
+  @media (min-width: 820px) {
+    .location-section__card {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+</style>

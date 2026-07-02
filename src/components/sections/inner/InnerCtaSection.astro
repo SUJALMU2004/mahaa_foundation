@@ -1,0 +1,128 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+import type { CtaLink } from '../../../data/pages';
+import { whatsappUrl } from '../../../utils/seo';
+
+export interface Props {
+  title: string;
+  description: string;
+  primaryCta: CtaLink;
+  secondaryCta?: CtaLink;
+  whatsappCta?: boolean;
+  variant?: 'default' | 'solid';
+}
+
+const {
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+  whatsappCta = false,
+  variant = 'default',
+} = Astro.props;
+
+function resolveHref(cta: CtaLink) {
+  return cta.href === 'whatsapp' ? whatsappUrl() : cta.href;
+}
+---
+
+<section class:list={['inner-cta', `inner-cta--${variant}`]} aria-labelledby="inner-cta-title">
+  <Container>
+    <div class="inner-cta__band">
+      <div>
+        <h2 id="inner-cta-title">{title}</h2>
+        <p>{description}</p>
+      </div>
+      <div class="inner-cta__actions">
+        <Button
+          href={resolveHref(primaryCta)}
+          variant={primaryCta.variant ?? 'primary'}
+          external={primaryCta.external ?? primaryCta.href === 'whatsapp'}
+        >
+          {primaryCta.label}
+        </Button>
+        {
+          secondaryCta && (
+            <Button
+              href={resolveHref(secondaryCta)}
+              variant={secondaryCta.variant ?? 'outline'}
+              external={secondaryCta.external ?? secondaryCta.href === 'whatsapp'}
+            >
+              {secondaryCta.label}
+            </Button>
+          )
+        }
+        {
+          whatsappCta && primaryCta.href !== 'whatsapp' && (
+            <Button href={whatsappUrl()} variant="whatsapp" external>WhatsApp Us</Button>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .inner-cta {
+    padding: var(--space-7) 0;
+  }
+
+  .inner-cta__band {
+    display: grid;
+    gap: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgb(232 243 235 / 0.9), rgb(255 244 228 / 0.86)),
+      #ffffff;
+    padding: var(--space-6);
+  }
+
+  .inner-cta--solid .inner-cta__band {
+    border-color: rgb(23 107 58 / 0.38);
+    background:
+      linear-gradient(135deg, rgb(15 79 42 / 0.96), rgb(43 111 80 / 0.96)),
+      var(--color-primary-dark);
+    color: #ffffff;
+    box-shadow: 0 18px 44px rgb(23 35 29 / 0.12);
+  }
+
+  .inner-cta p {
+    max-width: 720px;
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+
+  .inner-cta--solid p {
+    color: rgb(255 255 255 / 0.84);
+  }
+
+  .inner-cta--solid :global(.button--outline) {
+    border-color: rgb(255 255 255 / 0.72);
+    color: #ffffff;
+  }
+
+  .inner-cta--solid :global(.button--outline:hover) {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .inner-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 900px) {
+    .inner-cta__band {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .inner-cta__actions :global(.button) {
+      width: 100%;
+    }
+  }
+</style>

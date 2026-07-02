@@ -1,0 +1,76 @@
+---
+import Container from '../../common/Container.astro';
+import SectionHeader from '../../common/SectionHeader.astro';
+import { home } from '../../../data/home';
+---
+
+<section class="impact-section" aria-labelledby="impact-title">
+  <Container>
+    <SectionHeader
+      headingId="impact-title"
+      eyebrow="Impact"
+      title="Our Growing Impact"
+      description="Every tree planted, every ration kit shared, and every volunteer hour brings us closer to a cleaner, kinder, and stronger community."
+    />
+
+    <div class="impact-grid">
+      {
+        home.impactStats.map((stat) => (
+          <article class="impact-card">
+            <strong>{stat.value}</strong>
+            <h3>{stat.label}</h3>
+            <p>{stat.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .impact-section {
+    padding: var(--space-7) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .impact-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .impact-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-5);
+  }
+
+  .impact-card strong {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+
+  .impact-card h3 {
+    margin-bottom: var(--space-2);
+  }
+
+  .impact-card p {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 640px) {
+    .impact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .impact-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import BaseContactForm from './BaseContactForm.astro';
+import FormField from './FormField.astro';
+import FormSelect from './FormSelect.astro';
+import FormTextarea from './FormTextarea.astro';
+import { donationInterestOptions, donationTypeOptions } from '../../data/contact';
+---
+
+<BaseContactForm
+  title="Send Donation Enquiry"
+  description="Online payment is not enabled on this website yet. Send a WhatsApp enquiry to ask Mahaa Foundation for support details."
+  type="donation"
+  submitLabel="Send Donation Enquiry on WhatsApp"
+>
+  <FormField id="donation-name" name="name" label="Full Name" required autocomplete="name" />
+  <FormField
+    id="donation-phone"
+    name="phone"
+    label="Phone Number"
+    required
+    inputmode="tel"
+    autocomplete="tel"
+    pattern="[0-9+\-\s]{10,15}"
+    placeholder="Enter your phone number"
+  />
+  <FormField id="donation-email" name="email" label="Email Address" type="email" autocomplete="email" />
+  <FormSelect
+    id="donation-support-area"
+    name="supportArea"
+    label="Support Area"
+    options={donationInterestOptions}
+    required
+  />
+  <FormSelect
+    id="donation-type"
+    name="donationType"
+    label="Donation Type"
+    options={donationTypeOptions}
+    required
+  />
+  <FormTextarea
+    id="donation-message"
+    name="message"
+    label="Message"
+    placeholder="Tell us how you would like to support the NGO"
+  />
+</BaseContactForm>

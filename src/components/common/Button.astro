@@ -1,0 +1,31 @@
+---
+type Variant = 'primary' | 'secondary' | 'outline' | 'link' | 'whatsapp';
+
+export interface Props {
+  href: string;
+  variant?: Variant;
+  external?: boolean;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  external = false,
+  ariaLabel,
+  class: className = '',
+  ...attrs
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['button', `button--${variant}`, className]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  aria-label={ariaLabel}
+  {...attrs}
+>
+  <slot />
+</a>

@@ -1,0 +1,64 @@
+---
+import Container from '../../common/Container.astro';
+import Button from '../../common/Button.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  tertiaryCta?: { label: string; href: string };
+}
+
+const { title, description, primaryCta, secondaryCta, tertiaryCta } = Astro.props;
+---
+
+<section class="media-cta" aria-labelledby="media-cta-title">
+  <Container>
+    <div class="media-cta__band">
+      <div>
+        <h2 id="media-cta-title">{title}</h2>
+        <p>{description}</p>
+      </div>
+      <div class="media-cta__actions">
+        <Button href={primaryCta.href} variant="primary">{primaryCta.label}</Button>
+        {secondaryCta && <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>}
+        {tertiaryCta && <Button href={tertiaryCta.href} variant="secondary">{tertiaryCta.label}</Button>}
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .media-cta {
+    padding: var(--space-7) 0;
+  }
+
+  .media-cta__band {
+    display: grid;
+    gap: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgb(232 243 235 / 0.92), rgb(255 244 228 / 0.86)),
+      #ffffff;
+    padding: var(--space-6);
+  }
+
+  .media-cta p {
+    color: var(--color-muted);
+  }
+
+  .media-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 920px) {
+    .media-cta__band {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+  }
+</style>

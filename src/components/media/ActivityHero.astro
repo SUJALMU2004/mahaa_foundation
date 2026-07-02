@@ -1,0 +1,101 @@
+---
+import Button from '../common/Button.astro';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+import ActivityMeta from './ActivityMeta.astro';
+
+export interface Props {
+  title: string;
+  kannadaTitle?: string;
+  description: string;
+  category: string;
+  date?: string;
+  dateLabel: string;
+  time?: string;
+  location: string;
+  image: string;
+  imageAlt: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+}
+
+const {
+  title,
+  kannadaTitle,
+  description,
+  category,
+  date,
+  dateLabel,
+  time,
+  location,
+  image,
+  imageAlt,
+  primaryCta,
+  secondaryCta,
+} = Astro.props;
+---
+
+<section class="activity-hero">
+  <div class="activity-hero__content">
+    <p class="activity-hero__eyebrow">{category}</p>
+    <h1>{title}</h1>
+    {kannadaTitle && <p class="activity-hero__kannada">{kannadaTitle}</p>}
+    <p class="activity-hero__description">{description}</p>
+    <ActivityMeta date={date} dateLabel={dateLabel} time={time} location={location} category={category} />
+    <div class="activity-hero__actions">
+      <Button href={primaryCta.href} variant="primary">{primaryCta.label}</Button>
+      <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>
+    </div>
+  </div>
+  <MediaPlaceholder type="image" label={imageAlt} image={image} aspectRatio="16 / 10" />
+</section>
+
+<style>
+  .activity-hero {
+    display: grid;
+    gap: var(--space-6);
+    width: min(100% - 2rem, var(--container));
+    margin: 0 auto;
+    padding: var(--space-7) 0;
+    align-items: center;
+  }
+
+  .activity-hero__eyebrow {
+    margin-bottom: var(--space-3);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .activity-hero h1 {
+    max-width: 14ch;
+  }
+
+  .activity-hero__description {
+    max-width: 760px;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+  }
+
+  .activity-hero__kannada {
+    max-width: 760px;
+    margin-top: var(--space-3);
+    color: var(--color-primary-dark);
+    font-size: 1.08rem;
+    font-weight: 900;
+  }
+
+  .activity-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  @media (min-width: 900px) {
+    .activity-hero {
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+    }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import InnerPageSections from '../components/sections/inner/InnerPageSections.astro';
+import { innerPages, getPageSchemas } from '../data/pages';
+import { seo } from '../data/seo';
+
+const page = innerPages.donate;
+const meta = {
+  ...seo.donate,
+  ogTitle: page.seo.ogTitle,
+  ogDescription: page.seo.ogDescription,
+  ogImage: page.seo.ogImage,
+  twitterImage: page.seo.ogImage,
+  schema: getPageSchemas('donate'),
+};
+---
+
+<BaseLayout {...meta}>
+  <InnerPageSections page={page} donateInfo hideProcess />
+</BaseLayout>

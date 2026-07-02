@@ -1,0 +1,65 @@
+---
+import GalleryCard from './GalleryCard.astro';
+import type { GalleryItem } from '../../data/media';
+
+export interface Props {
+  items: GalleryItem[];
+  title?: string;
+  description?: string;
+}
+
+const { items, title, description } = Astro.props;
+---
+
+<div class="media-grid-wrap">
+  {
+    (title || description) && (
+      <div class="media-grid-wrap__header">
+        {title && <h2>{title}</h2>}
+        {description && <p>{description}</p>}
+      </div>
+    )
+  }
+  <div class="media-grid">
+    {
+      items.map((item) => (
+        <GalleryCard
+          title={item.title}
+          description={item.description}
+          category={item.category}
+          image={item.image}
+          imageAlt={item.imageAlt}
+          caption={item.caption}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .media-grid-wrap__header {
+    max-width: 760px;
+    margin-bottom: var(--space-5);
+  }
+
+  .media-grid-wrap__header p {
+    color: var(--color-muted);
+  }
+
+  .media-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 700px) {
+    .media-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1020px) {
+    .media-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

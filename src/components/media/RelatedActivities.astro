@@ -1,0 +1,74 @@
+---
+import ActivityCard from './ActivityCard.astro';
+import type { ActivityItem } from '../../data/activities';
+
+export interface Props {
+  activities: ActivityItem[];
+  title?: string;
+  description?: string;
+}
+
+const {
+  activities,
+  title = 'Related Activities',
+  description = 'Explore more activity updates connected to this work.',
+} = Astro.props;
+---
+
+<section class="related-activities" aria-labelledby="related-activities-title">
+  <div class="related-activities__inner">
+    <div class="related-activities__header">
+      <h2 id="related-activities-title">{title}</h2>
+      <p>{description}</p>
+    </div>
+    <div class="related-activities__grid">
+      {
+        activities.map((activity) => (
+          <ActivityCard
+            title={activity.title}
+            description={activity.description}
+            href={`/activities/${activity.slug}`}
+            category={activity.category}
+            date={activity.date}
+            dateLabel={activity.dateLabel}
+            location={activity.location}
+            image={activity.image}
+            imageAlt={activity.imageAlt}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .related-activities {
+    padding: var(--space-7) 1rem;
+    background: var(--color-bg-soft);
+  }
+
+  .related-activities__inner {
+    width: min(100%, var(--container));
+    margin-inline: auto;
+  }
+
+  .related-activities__header {
+    max-width: 760px;
+    margin-bottom: var(--space-5);
+  }
+
+  .related-activities__header p {
+    color: var(--color-muted);
+  }
+
+  .related-activities__grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 760px) {
+    .related-activities__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
