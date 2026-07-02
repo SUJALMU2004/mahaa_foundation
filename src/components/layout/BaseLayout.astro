@@ -8,6 +8,7 @@ import Seo from '../common/Seo.astro';
 import JsonLd from '../common/JsonLd.astro';
 import { site } from '../../data/site';
 import { absoluteUrl } from '../../utils/seo';
+import Analytics from '@vercel/analytics/astro';
 
 export interface Props {
   title: string;
@@ -94,6 +95,7 @@ const structuredData = schema
     <link rel="manifest" href="/images/favicon/site.webmanifest" />
     <Seo {...seoProps} />
     <JsonLd data={structuredData} />
+    <Analytics />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
