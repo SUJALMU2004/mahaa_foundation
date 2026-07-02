@@ -30,24 +30,26 @@ const hasLocalVideo = Boolean(videoSrc && existsSync(videoFilePath));
 ---
 
 <article class="video-card">
-  <div class="video-card__media">
-    {
-      hasLocalVideo && videoSrc ? (
-        <video controls preload="metadata" poster={poster} aria-label={videoAltText}>
-          <source src={videoSrc} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      ) : (
-        <MediaPlaceholder type="video" label={videoAltText} image={poster} aspectRatio="16 / 9" />
-      )
-    }
+  <div class="video-card__media-wrapper">
+    <div class="video-card__media">
+      {
+        hasLocalVideo && videoSrc ? (
+          <video controls preload="metadata" poster={poster} aria-label={videoAltText}>
+            <source src={videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <MediaPlaceholder type="video" label={videoAltText} image={poster} aspectRatio="16 / 9" />
+        )
+      }
+    </div>
   </div>
   <div class="video-card__content">
     <p class="video-card__category">{category}</p>
     <h3>{title}</h3>
     <p>{description}</p>
     {
-      duration && <p class="video-card__duration">Duration placeholder: {duration}</p>
+      duration && <p class="video-card__duration">Duration: {duration}</p>
     }
     {
       !hasLocalVideo && (
@@ -66,11 +68,21 @@ const hasLocalVideo = Boolean(videoSrc && existsSync(videoFilePath));
 
 <style>
   .video-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: transparent;
+    transition: transform var(--transition);
+  }
+
+  .video-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .video-card__media-wrapper {
     overflow: hidden;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: #ffffff;
-    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
   }
 
   .video-card__media video {
@@ -82,29 +94,69 @@ const hasLocalVideo = Boolean(videoSrc && existsSync(videoFilePath));
   }
 
   .video-card__content {
-    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--space-4) 0 0 0;
   }
 
   .video-card__category {
     margin-bottom: var(--space-2);
-    color: var(--color-primary-dark);
-    font-size: 0.76rem;
-    font-weight: 900;
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .video-card p {
-    color: var(--color-muted);
+  .video-card h3 {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
   }
 
-  .video-card__duration,
+  .video-card p {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+  }
+
+  .video-card__duration {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: auto;
+    color: var(--color-primary) !important;
+  }
+
   .video-card__notice {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    margin-top: auto;
+    opacity: 0.8;
   }
 
   .video-card__link {
-    color: var(--color-primary-dark);
-    font-weight: 900;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: var(--space-3);
+    transition: color var(--transition);
+  }
+
+  .video-card__link:hover {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-card {
+      transition: none;
+    }
+    .video-card:hover {
+      transform: none;
+    }
   }
 </style>

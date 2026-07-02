@@ -46,16 +46,18 @@ const {
     display: grid;
     gap: var(--space-5);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background:
-      linear-gradient(135deg, rgb(232 243 235 / 0.92), rgb(255 244 228 / 0.86)),
+      linear-gradient(135deg, rgba(230, 244, 236, 0.7), rgba(255, 248, 234, 0.6)),
       #ffffff;
     padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
   }
 
   .contact-cta-band p {
     max-width: 720px;
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   .contact-cta-band__actions {

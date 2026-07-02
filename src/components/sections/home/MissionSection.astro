@@ -7,7 +7,7 @@ import { home } from '../../../data/home';
 <section class="mission-section" aria-labelledby="mission-title">
   <Container>
     <div class="mission-section__intro">
-      <p class="home-eyebrow">Mission</p>
+      <p class="mission-section__eyebrow">Mission</p>
       <h2 id="mission-title">Serving People. Supporting Education. Growing Greener Communities.</h2>
       <p>
         Our mission is to serve communities in need through ration support, student assistance,
@@ -21,7 +21,7 @@ import { home } from '../../../data/home';
       {
         home.missionCards.map((card) => (
           <article class="mission-card">
-            <span aria-hidden="true"></span>
+            <span class="mission-card__icon" aria-hidden="true"></span>
             <h3>{card.title}</h3>
             <p>{card.description}</p>
           </article>
@@ -33,26 +33,39 @@ import { home } from '../../../data/home';
 
 <style>
   .mission-section {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
   }
 
   .mission-section__intro {
     max-width: 760px;
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
   }
 
-  .mission-section__intro p:not(.home-eyebrow) {
+  .mission-section__intro p:not(.mission-section__eyebrow) {
     color: var(--color-muted);
     font-size: 1.05rem;
+    line-height: 1.7;
   }
 
-  .home-eyebrow {
-    margin-bottom: var(--space-2);
-    color: var(--color-primary-dark);
+  .mission-section__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    color: var(--color-primary);
     font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  .mission-section__eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: 999px;
   }
 
   .mission-grid {
@@ -62,29 +75,46 @@ import { home } from '../../../data/home';
 
   .mission-card {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: #ffffff;
     padding: var(--space-5);
-    box-shadow: 0 12px 32px rgb(23 35 29 / 0.06);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
   }
 
-  .mission-card span {
+  .mission-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .mission-card__icon {
     display: block;
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     margin-bottom: var(--space-4);
     border-radius: var(--radius);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    background: var(--gradient-primary);
+    opacity: 0.9;
   }
 
   .mission-card p {
     margin-bottom: 0;
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   @media (min-width: 768px) {
     .mission-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mission-card {
+      transition: none;
+    }
+    .mission-card:hover {
+      transform: none;
     }
   }
 </style>

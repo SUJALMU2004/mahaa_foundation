@@ -1,85 +1,264 @@
 ---
 import Container from './Container.astro';
-import Button from './Button.astro';
-import { mainNavigation, workNavigation } from '../../data/navigation';
+import { mainNavigation } from '../../data/navigation';
 import { site } from '../../data/site';
 import { whatsappUrl } from '../../utils/seo';
 
-const quickLinks = mainNavigation.filter((item) =>
-  [
-    '/',
-    '/about',
-    '/our-work',
-    '/volunteer',
-    '/donate',
-    '/gallery',
-    '/activities',
-    '/videos',
-    '/blog',
-    '/contact',
-  ].includes(item.href),
-);
-
-const verifiedSocialLinks = site.socialLinks.filter(
-  (link) => link.url && !link.url.includes('example.org/social/'),
-);
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <Container>
     <div class="site-footer__grid">
-      <section class="site-footer__about" aria-labelledby="footer-about">
-        <h2 id="footer-about">{site.siteName}</h2>
-        <p>
-          {site.tagline} We work for ration support, student support, health support,
-          tree plantation, awareness, and community welfare in {site.city}.
+      <section class="site-footer__brand-section" aria-labelledby="footer-about">
+        <h2 id="footer-about" class="site-footer__logo-text">{site.siteName}</h2>
+        <p class="site-footer__tagline">{site.tagline}</p>
+        <p class="site-footer__mission">
+          Dedicated to supporting gobierno school students, planting trees, and distributing monthly ration kits to families in need across {site.city}.
         </p>
-        <Button href={whatsappUrl()} variant="whatsapp" external ariaLabel="Contact Mahaa Foundation on WhatsApp">
-          WhatsApp Us
-        </Button>
+        <div class="site-footer__socials">
+          <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+            WhatsApp
+          </a>
+          <span class="social-sep">·</span>
+          <a href={site.locationUrl} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Maps Location">
+            Location
+          </a>
+          <span class="social-sep">·</span>
+          <a href={site.emailHref} class="social-link" aria-label="Email">
+            Email
+          </a>
+        </div>
       </section>
 
-      <nav aria-labelledby="footer-quick-links">
-        <h2 id="footer-quick-links">Quick Links</h2>
+      <nav aria-labelledby="footer-quick-links" class="site-footer__nav">
+        <h3 id="footer-quick-links" class="footer-heading">Directory</h3>
         <ul class="site-footer__links">
-          {quickLinks.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          {mainNavigation.map((item) => (
+            <li>
+              <a href={item.href} class="site-footer__link">
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
 
-      <nav aria-labelledby="footer-work-links">
-        <h2 id="footer-work-links">Our Work</h2>
-        <ul class="site-footer__links">
-          {workNavigation.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
-        </ul>
-      </nav>
-
-      <section aria-labelledby="footer-contact">
-        <h2 id="footer-contact">Contact</h2>
-        <address class="site-footer__contact">
-          <span>{site.address}</span>
-          <a href={site.phoneHref}>{site.phoneDisplay}</a>
-          <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
-            WhatsApp {site.whatsappDisplay}
-          </a>
-          <a href={site.emailHref}>{site.email}</a>
-          <a href={site.locationUrl} target="_blank" rel="noopener noreferrer">Open Location</a>
+      <section aria-labelledby="footer-contact" class="site-footer__contact-section">
+        <h3 id="footer-contact" class="footer-heading">Contact Office</h3>
+        <address class="site-footer__address">
+          <span class="address-line">{site.address}</span>
+          <span class="contact-divider"></span>
+          <a href={site.phoneHref} class="contact-link">{site.phoneDisplay}</a>
+          <a href={site.emailHref} class="contact-link">{site.email}</a>
         </address>
-        {
-          verifiedSocialLinks.length > 0 && (
-            <div class="site-footer__social" aria-label="Social links">
-              {verifiedSocialLinks.map((link) => (
-                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>
-              ))}
-            </div>
-          )
-        }
+        <div class="site-footer__cta-box">
+          <p class="cta-note">Want to support our community work?</p>
+          <a href="/donate" class="footer-cta-link">Support Our Mission →</a>
+        </div>
       </section>
     </div>
 
     <div class="site-footer__bottom">
-      <p>&copy; {currentYear} {site.siteName}. All rights reserved.</p>
-      <p>{site.foundedDisplay}. Built as a fast static website for community service.</p>
+      <div class="site-footer__copyright">
+        <p>&copy; {currentYear} {site.siteName}. All rights reserved.</p>
+      </div>
+      <div class="site-footer__meta">
+        <p>{site.foundedDisplay} · Fast Static Platform</p>
+      </div>
     </div>
   </Container>
 </footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: #050C09; /* Deep off-black green */
+    color: #DFE5E2; /* Clean off-white */
+    padding: var(--space-9) 0 var(--space-7);
+    font-family: var(--font-sans);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .site-footer__brand-section {
+    max-width: 32rem;
+  }
+
+  .site-footer__logo-text {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: var(--space-2);
+    font-weight: 400;
+  }
+
+  .site-footer__tagline {
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: var(--space-4);
+  }
+
+  .site-footer__mission {
+    color: #9BB0A6; /* Clean muted light sage green */
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: var(--space-5);
+  }
+
+  .site-footer__socials {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .social-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .social-link:hover {
+    color: var(--color-accent);
+  }
+
+  .social-sep {
+    color: #3E5A4E;
+  }
+
+  .footer-heading {
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-5);
+    font-family: var(--font-sans);
+  }
+
+  .site-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-4);
+  }
+
+  .site-footer__link {
+    display: inline-block;
+    color: #9BB0A6;
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color var(--transition), transform var(--transition);
+  }
+
+  .site-footer__link:hover {
+    color: #ffffff;
+    transform: translateX(2px);
+  }
+
+  .site-footer__address {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-style: normal;
+    color: #9BB0A6;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .address-line {
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .contact-divider {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #3E5A4E;
+    margin: var(--space-2) 0;
+  }
+
+  .contact-link {
+    color: #9BB0A6;
+    text-decoration: none;
+    transition: color var(--transition);
+    width: fit-content;
+  }
+
+  .contact-link:hover {
+    color: #ffffff;
+  }
+
+  .site-footer__cta-box {
+    margin-top: var(--space-5);
+    border-top: 1px solid #142820;
+    padding-top: var(--space-4);
+  }
+
+  .cta-note {
+    color: #9BB0A6;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .footer-cta-link {
+    display: inline-block;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color var(--transition), transform var(--transition);
+  }
+
+  .footer-cta-link:hover {
+    color: #ffffff;
+    transform: translateX(3px);
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-9);
+    border-top: 1px solid #142820;
+    padding-top: var(--space-5);
+    color: #698377;
+    font-size: 0.82rem;
+  }
+
+  .site-footer__bottom p {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 760px) {
+    .site-footer__grid {
+      grid-template-columns: 1.5fr 1fr 1.2fr;
+      gap: var(--space-8);
+    }
+
+    .site-footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer__link:hover,
+    .footer-cta-link:hover {
+      transform: none;
+    }
+  }
+</style>

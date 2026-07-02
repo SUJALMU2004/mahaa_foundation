@@ -44,14 +44,14 @@ const workCardColumns = home.workHighlights.length === 5 ? 'work-grid--five' : '
 
 <style>
   .work-section {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
     background: var(--color-bg-soft);
   }
 
   .work-section__heading {
     display: grid;
     gap: var(--space-4);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
   }
 
   .work-grid {
@@ -65,17 +65,18 @@ const workCardColumns = home.workHighlights.length === 5 ? 'work-grid--five' : '
     flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: #ffffff;
+    box-shadow: var(--shadow-card);
     transition:
-      border-color 160ms ease,
-      box-shadow 160ms ease,
-      transform 160ms ease;
+      border-color var(--transition),
+      box-shadow var(--transition),
+      transform var(--transition);
   }
 
   .work-card:hover {
-    border-color: rgb(23 107 58 / 0.28);
-    box-shadow: 0 16px 36px rgb(23 35 29 / 0.09);
+    border-color: rgba(15, 107, 69, 0.2);
+    box-shadow: var(--shadow-card-hover);
     transform: translateY(-3px);
   }
 
@@ -84,20 +85,20 @@ const workCardColumns = home.workHighlights.length === 5 ? 'work-grid--five' : '
     aspect-ratio: 16 / 10;
     overflow: hidden;
     border-bottom: 1px solid var(--color-border);
-    background-color: #eef4ee;
+    background-color: var(--color-bg-soft);
     background-image: var(--media-image);
     background-position: center;
     background-size: cover;
-    transition: transform 180ms ease;
+    transition: transform 300ms ease;
   }
 
   .work-card__media-link:focus-visible {
-    outline: 3px solid var(--color-focus);
-    outline-offset: -3px;
+    outline: 2px solid var(--color-focus);
+    outline-offset: -2px;
   }
 
   .work-card:hover .work-card__media-link {
-    transform: scale(1.035);
+    transform: scale(1.03);
   }
 
   .work-card__body {
@@ -114,20 +115,24 @@ const workCardColumns = home.workHighlights.length === 5 ? 'work-grid--five' : '
   .work-card p {
     flex: 1;
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
-  .work-card a {
-    color: var(--color-primary-dark);
-    font-weight: 900;
+  .work-card a:not(.work-card__media-link) {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.94rem;
     text-decoration: none;
+    transition: color var(--transition);
   }
 
-  .work-card a:hover {
+  .work-card a:not(.work-card__media-link):hover {
+    color: var(--color-primary-dark);
     text-decoration: underline;
   }
 
-  .work-card a:focus-visible {
-    outline: 3px solid var(--color-focus);
+  .work-card a:not(.work-card__media-link):focus-visible {
+    outline: 2px solid var(--color-focus);
     outline-offset: 3px;
   }
 

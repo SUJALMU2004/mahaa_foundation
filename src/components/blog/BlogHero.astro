@@ -12,10 +12,10 @@ const { eyebrow, title, description } = Astro.props;
 
 <section class="blog-hero" aria-labelledby="blog-hero-title">
   <Container>
-    <p>{eyebrow}</p>
+    <p class="blog-hero__eyebrow">{eyebrow}</p>
     <h1 id="blog-hero-title">{title}</h1>
-    <div>
-      <span aria-hidden="true"></span>
+    <div class="blog-hero__content">
+      <span class="blog-hero__line" aria-hidden="true"></span>
       <p>{description}</p>
     </div>
   </Container>
@@ -23,9 +23,9 @@ const { eyebrow, title, description } = Astro.props;
 
 <style>
   .blog-hero {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
     background:
-      radial-gradient(circle at top left, rgb(232 243 235 / 0.9), transparent 30rem),
+      radial-gradient(ellipse at 15% 0%, rgba(15, 107, 69, 0.05), transparent 50%),
       #ffffff;
   }
 
@@ -33,37 +33,52 @@ const { eyebrow, title, description } = Astro.props;
     max-width: 900px;
   }
 
-  .blog-hero > :global(.container) > p {
+  .blog-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
     margin-bottom: var(--space-3);
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
     font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  .blog-hero div {
+  .blog-hero__eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: 999px;
+  }
+
+  .blog-hero__content {
     display: grid;
     gap: var(--space-4);
     align-items: start;
+    margin-top: var(--space-4);
   }
 
-  .blog-hero span {
+  .blog-hero__line {
     display: block;
-    width: 72px;
-    height: 4px;
+    width: 56px;
+    height: 3px;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    background: var(--gradient-primary);
   }
 
-  .blog-hero div p {
+  .blog-hero__content p {
     color: var(--color-muted);
     font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0;
   }
 
   @media (min-width: 720px) {
-    .blog-hero div {
-      grid-template-columns: 90px 1fr;
+    .blog-hero__content {
+      grid-template-columns: 80px 1fr;
     }
   }
 </style>

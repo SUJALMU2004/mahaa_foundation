@@ -54,48 +54,53 @@ const {
 
 <style>
   .article-header {
-    max-width: 920px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: var(--space-7) 1rem var(--space-5);
+    padding: var(--space-8) 1rem var(--space-5);
   }
 
   .article-header__category {
     display: inline-flex;
     margin-bottom: var(--space-3);
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     background: var(--color-accent-soft);
-    color: var(--color-text);
-    padding: 0.4rem 0.6rem;
-    font-weight: 900;
+    color: var(--color-accent-dark);
+    padding: 0.35rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
   }
 
   .article-header h1 {
-    max-width: 14ch;
+    max-width: 15ch;
+    margin-bottom: var(--space-3);
   }
 
   .article-header__description {
     max-width: 760px;
     color: var(--color-muted);
     font-size: 1.1rem;
+    line-height: 1.65;
+    margin-bottom: var(--space-4);
   }
 
   .article-header__tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
-    margin: var(--space-4) 0;
+    margin: var(--space-5) 0;
     padding: 0;
     list-style: none;
   }
 
   .article-header__tags li {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: #ffffff;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-soft);
     color: var(--color-muted);
-    padding: 0.3rem 0.5rem;
-    font-size: 0.84rem;
-    font-weight: 800;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
   }
 
   .article-header__media {
@@ -103,22 +108,26 @@ const {
     aspect-ratio: 16 / 9;
     place-items: end start;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background-image:
-      linear-gradient(135deg, rgb(23 107 58 / 0.18), rgb(217 140 36 / 0.12)),
+      linear-gradient(160deg, rgba(15, 107, 69, 0.12), rgba(214, 166, 74, 0.08)),
       var(--article-image),
       var(--color-primary-soft);
     background-position: center;
     background-size: cover;
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-md);
     padding: var(--space-4);
+    margin-top: var(--space-5);
   }
 
   .article-header__media span {
-    border-radius: var(--radius);
-    background: rgb(255 255 255 / 0.92);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
     color: var(--color-primary-dark);
-    padding: 0.55rem 0.75rem;
-    font-weight: 900;
+    padding: 0.5rem 0.75rem;
+    font-weight: 700;
+    font-size: 0.88rem;
+    box-shadow: var(--shadow-sm);
   }
 </style>

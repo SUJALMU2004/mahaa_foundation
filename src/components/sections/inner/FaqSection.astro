@@ -32,38 +32,80 @@ const { title, description, faqs } = Astro.props;
 
 <style>
   .faq-section {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
   }
 
   .faq-section__intro {
     max-width: 720px;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
   }
 
   .faq-section__intro p {
     color: var(--color-muted);
+    line-height: 1.7;
   }
 
   .faq-list {
     display: grid;
     gap: var(--space-3);
+    max-width: 860px;
   }
 
   .faq-item {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: #ffffff;
-    padding: var(--space-4);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-xs);
+    transition: box-shadow var(--transition), border-color var(--transition);
+  }
+
+  .faq-item[open] {
+    border-color: rgba(15, 107, 69, 0.2);
+    box-shadow: var(--shadow-sm);
   }
 
   .faq-item summary {
     cursor: pointer;
     color: var(--color-text);
-    font-weight: 900;
+    font-weight: 700;
+    line-height: 1.4;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    flex-shrink: 0;
+    display: grid;
+    width: 1.75rem;
+    height: 1.75rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-bg-soft);
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: transform var(--transition), background-color var(--transition);
+  }
+
+  .faq-item[open] summary::after {
+    content: "−";
+    background: var(--color-primary-soft);
+    transform: rotate(180deg);
   }
 
   .faq-item p {
-    margin: var(--space-3) 0 0;
+    margin: var(--space-4) 0 0;
     color: var(--color-muted);
+    line-height: 1.7;
+    padding-right: var(--space-8);
   }
 </style>

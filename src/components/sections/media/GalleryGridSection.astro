@@ -28,19 +28,20 @@ const { items } = Astro.props;
 
 <style>
   .gallery-grid-section {
-    padding: var(--space-7) 0 var(--space-8);
+    padding: var(--space-8) 0 var(--space-9);
     background: #ffffff;
   }
 
   .gallery-grid-section__header {
     display: grid;
     gap: var(--space-3);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
     max-width: 820px;
   }
 
   .gallery-grid-section__header p:not(.eyebrow) {
     max-width: 760px;
     color: var(--color-muted);
+    line-height: 1.65;
   }
 </style>

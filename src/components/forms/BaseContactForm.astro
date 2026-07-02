@@ -54,9 +54,9 @@ const { title, description, type, submitLabel } = Astro.props;
 
   .form-card {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: #ffffff;
-    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
+    box-shadow: var(--shadow-md);
     padding: var(--space-5);
   }
 
@@ -67,12 +67,13 @@ const { title, description, type, submitLabel } = Astro.props;
 
   .form-card__header p:not(.eyebrow) {
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   .form-card__required-note {
     margin-bottom: 0;
-    font-size: 0.9rem;
-    font-weight: 800;
+    font-size: 0.88rem;
+    font-weight: 700;
   }
 
   .form-card__form {
@@ -97,8 +98,14 @@ const { title, description, type, submitLabel } = Astro.props;
   }
 
   .form-card__fallback {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.94rem;
+    transition: color var(--transition);
+  }
+
+  .form-card__fallback:hover {
     color: var(--color-primary-dark);
-    font-weight: 900;
   }
 
   @media (min-width: 720px) {

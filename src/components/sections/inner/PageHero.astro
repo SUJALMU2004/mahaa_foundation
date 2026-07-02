@@ -73,7 +73,6 @@ function resolveHref(cta: CtaLink) {
             data-image={image}
             style={`--hero-image: url("${image}")`}
           >
-            <span>Future image area</span>
           </div>
         )
       }
@@ -83,24 +82,22 @@ function resolveHref(cta: CtaLink) {
 
 <style>
   .page-hero {
-    padding: var(--space-7) 0;
-    background:
-      radial-gradient(circle at top left, rgb(232 243 235 / 0.9), transparent 30rem),
-      #ffffff;
+    padding: var(--space-8) 0;
+    background: var(--color-bg);
   }
 
   .page-hero__grid {
     display: grid;
-    gap: var(--space-6);
+    gap: var(--space-7);
     align-items: center;
   }
 
   .page-hero__eyebrow {
     margin-bottom: var(--space-3);
-    color: var(--color-primary-dark);
-    font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
@@ -108,6 +105,7 @@ function resolveHref(cta: CtaLink) {
     max-width: 48rem;
     color: var(--color-muted);
     font-size: 1.08rem;
+    line-height: 1.7;
   }
 
   .page-hero__actions {
@@ -118,73 +116,45 @@ function resolveHref(cta: CtaLink) {
   }
 
   .page-hero__media {
-    display: grid;
-    min-height: 280px;
+    display: block;
     aspect-ratio: 4 / 3;
-    place-items: end start;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background:
-      linear-gradient(135deg, rgb(23 107 58 / 0.15), rgb(217 140 36 / 0.12)),
-      repeating-linear-gradient(
-        135deg,
-        rgb(255 255 255 / 0.72) 0 14px,
-        rgb(23 107 58 / 0.07) 14px 28px
-      ),
-      var(--color-primary-soft);
-    box-shadow: var(--shadow-soft);
-    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background-image:
+      var(--hero-image),
+      linear-gradient(135deg, var(--color-primary-soft), var(--color-accent-soft));
+    background-position: center;
+    background-size: cover;
   }
 
+  /* Modern variant (consistent visual rhythm without boxed layouts) */
   .page-hero--modern {
-    background:
-      linear-gradient(180deg, #ffffff 0%, var(--color-bg-soft) 100%);
-  }
-
-  .page-hero--modern .page-hero__grid {
-    align-items: stretch;
+    background: var(--color-bg-soft);
   }
 
   .page-hero--modern .page-hero__content {
     display: grid;
     align-content: center;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: #ffffff;
-    padding: var(--space-6);
-    box-shadow: 0 18px 44px rgb(23 35 29 / 0.07);
+    padding: 0;
   }
 
   .page-hero--modern .page-hero__description {
     max-width: 44rem;
   }
 
-  .page-hero--modern .page-hero__grid:has(.page-hero__content:only-child) {
-    max-width: 920px;
-  }
-
   .page-hero--modern .page-hero__media {
     min-height: 340px;
-    background:
-      linear-gradient(135deg, rgb(23 107 58 / 0.18), rgb(217 140 36 / 0.1)),
+    background-image:
       var(--hero-image),
-      var(--color-bg-soft);
+      linear-gradient(135deg, var(--color-primary-soft), var(--color-accent-soft));
     background-position: center;
     background-size: cover;
   }
 
-  .page-hero__media span {
-    border-radius: var(--radius);
-    background: rgb(255 255 255 / 0.9);
-    color: var(--color-primary-dark);
-    padding: 0.65rem 0.85rem;
-    font-weight: 900;
-  }
-
   @media (min-width: 768px) {
     .page-hero {
-      padding: var(--space-8) 0;
+      padding: var(--space-9) 0;
     }
 
     .page-hero__grid {

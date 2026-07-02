@@ -30,13 +30,15 @@ const {
 const mediaVariant = variant === 'modern' ? 'clean' : 'default';
 ---
 
-<article class:list={['activity-card', `activity-card--${variant}`]}>
-  <MediaPlaceholder type="image" label={imageAlt} image={image} variant={mediaVariant} />
+<article class="activity-card">
+  <div class="activity-card__media-wrapper">
+    <MediaPlaceholder type="image" label={imageAlt} image={image} variant={mediaVariant} />
+  </div>
   <div class="activity-card__content">
     <p class="activity-card__category">{category}</p>
     <p class="activity-card__meta">
       {date ? <time datetime={date}>{formatActivityDate(date, dateLabel)}</time> : <span>{dateLabel}</span>}
-      <span aria-hidden="true">|</span>
+      <span aria-hidden="true" class="activity-card__meta-sep">|</span>
       <span>{location}</span>
     </p>
     <h3><a href={href}>{title}</a></h3>
@@ -47,47 +49,35 @@ const mediaVariant = variant === 'modern' ? 'clean' : 'default';
 
 <style>
   .activity-card {
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: #ffffff;
-    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
-  }
-
-  .activity-card--modern {
     display: flex;
-    height: 100%;
     flex-direction: column;
-    box-shadow: 0 10px 28px rgb(23 35 29 / 0.05);
-    transition:
-      border-color 180ms ease,
-      box-shadow 180ms ease,
-      transform 180ms ease;
+    height: 100%;
+    background: transparent;
+    transition: transform var(--transition);
   }
 
-  .activity-card--modern:hover,
-  .activity-card--modern:focus-within {
-    border-color: rgb(23 107 58 / 0.3);
-    box-shadow: 0 18px 44px rgb(23 35 29 / 0.1);
-    transform: translateY(-3px);
+  .activity-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .activity-card__media-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
   }
 
   .activity-card__content {
-    padding: var(--space-4);
-  }
-
-  .activity-card--modern .activity-card__content {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: var(--space-5);
+    padding: var(--space-4) 0 0 0;
   }
 
   .activity-card__category {
     margin-bottom: var(--space-2);
-    color: var(--color-primary-dark);
-    font-size: 0.76rem;
-    font-weight: 900;
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -95,10 +85,23 @@ const mediaVariant = variant === 'modern' ? 'clean' : 'default';
   .activity-card__meta {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-2);
     color: var(--color-muted);
-    font-size: 0.9rem;
-    font-weight: 800;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .activity-card__meta-sep {
+    color: var(--color-border);
+  }
+
+  .activity-card h3 {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.35;
   }
 
   .activity-card h3 a {
@@ -107,41 +110,38 @@ const mediaVariant = variant === 'modern' ? 'clean' : 'default';
   }
 
   .activity-card h3 a:hover {
-    color: var(--color-primary-dark);
-    text-decoration: underline;
-  }
-
-  .activity-card h3 a:focus-visible,
-  .activity-card__link:focus-visible {
-    outline: 3px solid var(--color-focus);
-    outline-offset: 3px;
+    color: var(--color-primary);
   }
 
   .activity-card p {
     color: var(--color-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
   }
 
   .activity-card__link {
-    margin-top: auto;
-    color: var(--color-primary-dark);
-    font-weight: 900;
-  }
-
-  .activity-card--modern .activity-card__link {
     display: inline-flex;
     width: fit-content;
-    border-radius: var(--radius);
-    padding-top: var(--space-2);
-    text-underline-offset: 0.18em;
+    margin-top: auto;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    text-underline-offset: 0.22em;
+    transition: color var(--transition);
+  }
+
+  .activity-card__link:hover {
+    color: var(--color-primary-light);
+    text-decoration: underline;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .activity-card--modern {
+    .activity-card {
       transition: none;
     }
-
-    .activity-card--modern:hover,
-    .activity-card--modern:focus-within {
+    .activity-card:hover {
       transform: none;
     }
   }

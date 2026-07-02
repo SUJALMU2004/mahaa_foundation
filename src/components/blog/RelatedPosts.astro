@@ -35,19 +35,23 @@ const { posts } = Astro.props;
 
 <style>
   .related-posts {
-    padding: var(--space-7) 1rem;
+    padding: var(--space-8) 0;
     background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border);
   }
 
   .related-posts__inner {
-    width: min(100%, var(--container));
+    width: min(100% - 2.5rem, var(--container));
     margin-inline: auto;
+  }
+
+  .related-posts__inner h2 {
+    margin-bottom: var(--space-6);
   }
 
   .related-posts__grid {
     display: grid;
-    gap: var(--space-4);
-    margin-top: var(--space-5);
+    gap: var(--space-5);
   }
 
   @media (min-width: 760px) {

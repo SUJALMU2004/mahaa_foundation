@@ -34,14 +34,15 @@ import { home } from '../../../data/home';
 
 <style>
   .blog-section {
-    padding: var(--space-7) 0;
-    background: var(--color-bg-soft);
+    padding: var(--space-8) 0;
+    background:
+      linear-gradient(180deg, var(--color-bg-soft), #ffffff);
   }
 
   .blog-section__heading {
     display: grid;
     gap: var(--space-4);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
   }
 
   .blog-grid {
@@ -51,33 +52,45 @@ import { home } from '../../../data/home';
 
   .blog-card {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: #ffffff;
     padding: var(--space-5);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .blog-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
   }
 
   .blog-card__category {
     display: inline-flex;
     margin-bottom: var(--space-3);
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     background: var(--color-accent-soft);
-    color: var(--color-text);
-    padding: 0.35rem 0.55rem;
-    font-size: 0.82rem;
-    font-weight: 900;
+    color: var(--color-accent-dark);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
   }
 
   .blog-card p:not(.blog-card__category) {
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   .blog-card a {
-    color: var(--color-primary-dark);
-    font-weight: 900;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.94rem;
     text-decoration: none;
+    transition: color var(--transition);
   }
 
   .blog-card a:hover {
+    color: var(--color-primary-dark);
     text-decoration: underline;
   }
 
@@ -89,6 +102,15 @@ import { home } from '../../../data/home';
 
     .blog-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-card {
+      transition: none;
+    }
+    .blog-card:hover {
+      transform: none;
     }
   }
 </style>

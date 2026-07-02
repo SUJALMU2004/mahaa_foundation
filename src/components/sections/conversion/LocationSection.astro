@@ -23,26 +23,31 @@ import { site } from '../../../data/site';
 
 <style>
   .location-section {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
+    background: #ffffff;
   }
 
   .location-section__card {
     display: grid;
     gap: var(--space-5);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: #ffffff;
-    box-shadow: 0 12px 34px rgb(23 35 29 / 0.06);
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(135deg, rgba(230, 244, 236, 0.7), rgba(255, 248, 234, 0.6)),
+      #ffffff;
     padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
   }
 
   .location-section p:not(.eyebrow) {
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   .location-section__address {
     margin-bottom: 0;
-    font-weight: 800;
+    font-weight: 700;
+    color: var(--color-text) !important;
   }
 
   @media (min-width: 820px) {

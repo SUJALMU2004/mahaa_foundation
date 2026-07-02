@@ -31,7 +31,6 @@ import { home } from '../../../data/home';
               data-image={item.image}
               style={`--media-image: url("${item.image}")`}
             >
-              <span aria-hidden="true"></span>
             </div>
             <figcaption>{item.caption}</figcaption>
           </figure>
@@ -43,14 +42,14 @@ import { home } from '../../../data/home';
 
 <style>
   .gallery-section {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
     background: var(--color-bg-soft);
   }
 
   .gallery-section__heading {
     display: grid;
     gap: var(--space-4);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
   }
 
   .gallery-section__actions {
@@ -68,35 +67,35 @@ import { home } from '../../../data/home';
     margin: 0;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: #ffffff;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .gallery-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
   }
 
   .gallery-card__media {
     display: grid;
     aspect-ratio: 4 / 3;
     place-items: center;
+    overflow: hidden;
     background-image:
-      linear-gradient(135deg, rgb(23 107 58 / 0.15), rgb(217 140 36 / 0.12)),
+      linear-gradient(160deg, rgba(15, 107, 69, 0.1), rgba(214, 166, 74, 0.08)),
       var(--media-image),
       var(--color-primary-soft);
     background-position: center;
     background-size: cover;
   }
 
-  .gallery-card__media span {
-    width: 42px;
-    height: 42px;
-    border: 8px solid rgb(255 255 255 / 0.78);
-    border-radius: var(--radius);
-    background: var(--color-primary);
-    transform: rotate(8deg);
-  }
-
   .gallery-card figcaption {
     padding: var(--space-3) var(--space-4);
     color: var(--color-text);
-    font-weight: 800;
+    font-weight: 700;
+    font-size: 0.94rem;
   }
 
   @media (min-width: 760px) {
@@ -107,6 +106,15 @@ import { home } from '../../../data/home';
 
     .gallery-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-card {
+      transition: none;
+    }
+    .gallery-card:hover {
+      transform: none;
     }
   }
 </style>

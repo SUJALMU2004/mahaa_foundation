@@ -43,27 +43,29 @@ const {
 
 <style>
   .related-activities {
-    padding: var(--space-7) 1rem;
+    padding: var(--space-8) 0;
     background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border);
   }
 
   .related-activities__inner {
-    width: min(100%, var(--container));
+    width: min(100% - 2.5rem, var(--container));
     margin-inline: auto;
   }
 
   .related-activities__header {
     max-width: 760px;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
   }
 
   .related-activities__header p {
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   .related-activities__grid {
     display: grid;
-    gap: var(--space-4);
+    gap: var(--space-5);
   }
 
   @media (min-width: 760px) {

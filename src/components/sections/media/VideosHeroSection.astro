@@ -14,7 +14,7 @@ import { site } from '../../../data/site';
         activities, student support, health support, awareness programs, volunteer work, and
         community welfare.
       </p>
-      <div>
+      <div class="videos-hero__actions">
         <Button href="/gallery" variant="primary">View Gallery</Button>
         <Button href="/activities" variant="outline">View Activities</Button>
       </div>
@@ -24,9 +24,9 @@ import { site } from '../../../data/site';
 
 <style>
   .videos-hero {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
     background:
-      radial-gradient(circle at 0 0, rgb(232 243 235 / 0.9), transparent 30rem),
+      radial-gradient(ellipse at 15% 0%, rgba(15, 107, 69, 0.05), transparent 50%),
       #ffffff;
   }
 
@@ -37,12 +37,13 @@ import { site } from '../../../data/site';
   .videos-hero p:not(.eyebrow) {
     color: var(--color-muted);
     font-size: 1.12rem;
+    line-height: 1.7;
   }
 
-  .videos-hero__content > div {
+  .videos-hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
-    margin-top: var(--space-5);
+    margin-top: var(--space-6);
   }
 </style>

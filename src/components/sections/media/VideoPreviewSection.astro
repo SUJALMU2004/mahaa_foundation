@@ -45,24 +45,27 @@ const { videos } = Astro.props;
 
 <style>
   .video-preview {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
     background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .video-preview__header {
     display: grid;
     gap: var(--space-4);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
   }
 
   .video-preview__header p:not(.eyebrow) {
     max-width: 760px;
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   .video-preview__grid {
     display: grid;
-    gap: var(--space-4);
+    gap: var(--space-5);
   }
 
   @media (min-width: 760px) {

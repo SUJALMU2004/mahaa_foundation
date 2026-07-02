@@ -18,19 +18,26 @@ import { whatsappUrl } from '../../utils/seo';
     z-index: 36;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid rgb(255 255 255 / 0.24);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     background: #ffffff;
-    box-shadow: 0 -14px 34px rgb(23 35 29 / 0.14);
+    box-shadow: 0 -8px 28px rgba(7, 59, 42, 0.12);
   }
 
   .sticky-mobile-cta a {
     display: inline-flex;
-    min-height: 54px;
+    min-height: 52px;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-weight: 900;
+    font-weight: 700;
+    font-size: 0.94rem;
     text-decoration: none;
+    transition: opacity var(--transition);
+  }
+
+  .sticky-mobile-cta a:hover {
+    opacity: 0.9;
+    color: #ffffff;
   }
 
   .sticky-mobile-cta a:first-child {
@@ -38,7 +45,7 @@ import { whatsappUrl } from '../../utils/seo';
   }
 
   .sticky-mobile-cta a:last-child {
-    background: #128c4a;
+    background: var(--color-whatsapp);
   }
 
   @media (min-width: 760px) {
@@ -49,7 +56,7 @@ import { whatsappUrl } from '../../utils/seo';
 
   @media (max-width: 759px) {
     :global(body) {
-      padding-bottom: 54px;
+      padding-bottom: 52px;
     }
   }
 </style>

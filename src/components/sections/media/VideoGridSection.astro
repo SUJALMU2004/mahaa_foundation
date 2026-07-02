@@ -18,21 +18,23 @@ const featuredVideo = videos[0];
     {
       featuredVideo && (
         <div class="video-grid-section__featured" aria-labelledby="featured-video-title">
-          <div>
+          <div class="video-grid-section__featured-content">
             <p class="eyebrow">Featured Video</p>
             <h2 id="featured-video-title">{featuredVideo.title}</h2>
             <p>{featuredVideo.description}</p>
           </div>
-          <VideoCard
-            title={featuredVideo.title}
-            description={featuredVideo.description}
-            category={featuredVideo.category}
-            poster={featuredVideo.poster}
-            videoSrc={featuredVideo.videoSrc}
-            duration={featuredVideo.duration}
-            relatedHref={featuredVideo.relatedHref}
-            videoAltText={featuredVideo.videoAltText}
-          />
+          <div class="video-grid-section__featured-card">
+            <VideoCard
+              title={featuredVideo.title}
+              description={featuredVideo.description}
+              category={featuredVideo.category}
+              poster={featuredVideo.poster}
+              videoSrc={featuredVideo.videoSrc}
+              duration={featuredVideo.duration}
+              relatedHref={featuredVideo.relatedHref}
+              videoAltText={featuredVideo.videoAltText}
+            />
+          </div>
         </div>
       )
     }
@@ -69,33 +71,41 @@ const featuredVideo = videos[0];
 
 <style>
   .video-grid-section {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
   }
 
   .video-grid-section__featured {
     display: grid;
-    gap: var(--space-5);
-    margin-bottom: var(--space-7);
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: var(--color-bg-soft);
-    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(135deg, rgba(230, 244, 236, 0.7), rgba(255, 248, 234, 0.6)),
+      #ffffff;
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
   }
 
-  .video-grid-section__featured p:not(.eyebrow),
+  .video-grid-section__featured-content p:not(.eyebrow) {
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
   .video-grid-section__header p:not(.eyebrow) {
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   .video-grid-section__header {
     display: grid;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
+    gap: var(--space-5);
+    margin-bottom: var(--space-7);
   }
 
   .video-grid-section__grid {
     display: grid;
-    gap: var(--space-4);
+    gap: var(--space-5);
   }
 
   @media (min-width: 760px) {
@@ -106,7 +116,7 @@ const featuredVideo = videos[0];
 
   @media (min-width: 960px) {
     .video-grid-section__featured {
-      grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1.2fr);
+      grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1.15fr);
       align-items: center;
     }
 

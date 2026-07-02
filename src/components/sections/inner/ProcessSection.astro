@@ -20,7 +20,7 @@ const headingId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-
       {
         steps.map((step, index) => (
           <article class="process-step">
-            <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <span class="process-step__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <h3>{step.title}</h3>
             <p>{step.description}</p>
           </article>
@@ -32,7 +32,8 @@ const headingId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-
 
 <style>
   .process-section {
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
+    background: var(--color-bg-soft);
   }
 
   .process-grid {
@@ -42,22 +43,32 @@ const headingId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-
 
   .process-step {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: #ffffff;
     padding: var(--space-5);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
   }
 
-  .process-step span {
+  .process-step:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .process-step__number {
     display: inline-flex;
     margin-bottom: var(--space-4);
     color: var(--color-accent);
-    font-size: 1.5rem;
-    font-weight: 900;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
 
   .process-step p {
     margin-bottom: 0;
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   @media (min-width: 760px) {
@@ -69,6 +80,15 @@ const headingId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-
   @media (min-width: 1040px) {
     .process-grid {
       grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-step {
+      transition: none;
+    }
+    .process-step:hover {
+      transform: none;
     }
   }
 </style>

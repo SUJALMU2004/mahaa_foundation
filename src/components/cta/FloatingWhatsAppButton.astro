@@ -21,23 +21,36 @@ import { whatsappUrl } from '../../utils/seo';
     display: none;
     min-height: 46px;
     align-items: center;
-    border-radius: var(--radius);
-    background: #128c4a;
+    border-radius: var(--radius-lg);
+    background: var(--color-whatsapp);
     color: #ffffff;
-    box-shadow: 0 16px 40px rgb(18 140 74 / 0.28);
-    padding: 0.72rem 1rem;
-    font-weight: 900;
+    box-shadow: 0 8px 28px rgba(18, 140, 74, 0.30);
+    padding: 0.7rem 1.1rem;
+    font-weight: 700;
+    font-size: 0.94rem;
     text-decoration: none;
+    transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition);
   }
 
   .floating-whatsapp:hover {
-    background: #0f6f3c;
+    background: var(--color-whatsapp-dark);
     color: #ffffff;
+    box-shadow: 0 12px 36px rgba(13, 107, 56, 0.38);
+    transform: translateY(-2px);
   }
 
   @media (min-width: 760px) {
     .floating-whatsapp {
       display: inline-flex;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-whatsapp {
+      transition: none;
+    }
+    .floating-whatsapp:hover {
+      transform: none;
     }
   }
 </style>

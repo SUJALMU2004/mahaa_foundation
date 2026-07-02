@@ -28,8 +28,9 @@ import { home } from '../../../data/home';
 
 <style>
   .trust-section {
-    padding: var(--space-7) 0;
-    background: #ffffff;
+    padding: var(--space-8) 0;
+    background:
+      linear-gradient(180deg, #ffffff 0%, var(--color-bg-soft) 100%);
   }
 
   .trust-grid {
@@ -39,9 +40,16 @@ import { home } from '../../../data/home';
 
   .trust-card {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: linear-gradient(180deg, #ffffff, var(--color-bg-soft));
+    border-radius: var(--radius-lg);
+    background: #ffffff;
     padding: var(--space-5);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .trust-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
   }
 
   .trust-card h3 {
@@ -53,16 +61,17 @@ import { home } from '../../../data/home';
     position: absolute;
     top: 0;
     left: 0;
-    width: 36px;
-    height: 4px;
+    width: 32px;
+    height: 3px;
     border-radius: 999px;
-    background: var(--color-accent);
+    background: var(--gradient-accent);
     content: "";
   }
 
   .trust-card p {
     margin-bottom: 0;
     color: var(--color-muted);
+    line-height: 1.65;
   }
 
   @media (min-width: 760px) {
@@ -74,6 +83,15 @@ import { home } from '../../../data/home';
   @media (min-width: 1024px) {
     .trust-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trust-card {
+      transition: none;
+    }
+    .trust-card:hover {
+      transform: none;
     }
   }
 </style>

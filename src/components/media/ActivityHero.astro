@@ -46,36 +46,51 @@ const {
       <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>
     </div>
   </div>
-  <MediaPlaceholder type="image" label={imageAlt} image={image} aspectRatio="16 / 10" />
+  <div class="activity-hero__media-wrapper">
+    <MediaPlaceholder type="image" label={imageAlt} image={image} aspectRatio="16 / 10" />
+  </div>
 </section>
 
 <style>
   .activity-hero {
     display: grid;
-    gap: var(--space-6);
-    width: min(100% - 2rem, var(--container));
+    gap: var(--space-7);
+    width: min(100% - 2.5rem, var(--container));
     margin: 0 auto;
-    padding: var(--space-7) 0;
+    padding: var(--space-8) 0;
     align-items: center;
   }
 
   .activity-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
     margin-bottom: var(--space-3);
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
     font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
+  .activity-hero__eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: 999px;
+  }
+
   .activity-hero h1 {
-    max-width: 14ch;
+    max-width: 15ch;
   }
 
   .activity-hero__description {
     max-width: 760px;
     color: var(--color-muted);
-    font-size: 1.1rem;
+    font-size: 1.08rem;
+    line-height: 1.7;
   }
 
   .activity-hero__kannada {
@@ -83,7 +98,7 @@ const {
     margin-top: var(--space-3);
     color: var(--color-primary-dark);
     font-size: 1.08rem;
-    font-weight: 900;
+    font-weight: 700;
   }
 
   .activity-hero__actions {
@@ -91,6 +106,12 @@ const {
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-top: var(--space-5);
+  }
+
+  .activity-hero__media-wrapper {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
   }
 
   @media (min-width: 900px) {

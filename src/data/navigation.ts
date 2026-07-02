@@ -6,8 +6,8 @@ export type NavigationItem = {
 
 export const primaryNavigation: NavigationItem[] = [
   { label: 'About', href: '/about' },
+  { label: 'Our Work', href: '/our-work' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Activities', href: '/activities' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -16,14 +16,9 @@ export const mainNavigation: NavigationItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Our Work', href: '/our-work' },
-  { label: 'Tree Plantation', href: '/tree-plantation' },
-  { label: 'Ration Distribution', href: '/ration-distribution' },
-  { label: 'Social Service', href: '/social-service' },
   { label: 'Volunteer', href: '/volunteer' },
   { label: 'Donate', href: '/donate' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Activities', href: '/activities' },
-  { label: 'Videos', href: '/videos' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
