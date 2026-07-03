@@ -28,13 +28,8 @@ const {
 
 <article class:list={['blog-card', `blog-card--${variant}`]}>
   <div class="blog-card__media-wrapper">
-    <div
-      class="blog-card__media"
-      role="img"
-      aria-label={imageAlt}
-      data-image={image}
-      style={`--blog-image: url("${image}")`}
-    >
+    <div class="blog-card__media">
+      <img src={image} alt={imageAlt} width="720" height="450" loading="lazy" decoding="async" />
       <span>{category}</span>
     </div>
   </div>
@@ -59,34 +54,46 @@ const {
     height: 100%;
     flex-direction: column;
     overflow: hidden;
-    background: transparent;
-    transition: transform var(--transition);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition),
+      transform var(--transition);
   }
 
   .blog-card:hover {
+    border-color: rgba(15, 107, 69, 0.22);
+    box-shadow: var(--shadow-md);
     transform: translateY(-2px);
   }
 
   .blog-card__media-wrapper {
     overflow: hidden;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .blog-card__media {
-    display: grid;
+    position: relative;
+    display: block;
     aspect-ratio: 16 / 10;
-    place-items: end start;
-    background-image:
-      linear-gradient(160deg, rgba(10, 54, 37, 0.08), rgba(197, 154, 72, 0.04)),
-      var(--blog-image),
-      var(--color-primary-soft);
-    background-position: center;
-    background-size: cover;
-    padding: var(--space-4);
+    background: var(--color-bg-soft);
+  }
+
+  .blog-card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .blog-card__media span {
+    position: absolute;
+    left: var(--space-4);
+    bottom: var(--space-4);
     border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
@@ -102,7 +109,7 @@ const {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: var(--space-4) 0 0 0;
+    padding: var(--space-4);
   }
 
   .blog-card h3 {
@@ -113,10 +120,19 @@ const {
     line-height: 1.35;
   }
 
+  .blog-card--modern h3,
+  .blog-card--default h3 {
+    min-height: 3.1em;
+  }
+
   .blog-card h3 a {
+    display: -webkit-box;
+    overflow: hidden;
     color: var(--color-text);
     text-decoration: none;
     transition: color var(--transition);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   .blog-card h3 a:hover {
@@ -124,10 +140,14 @@ const {
   }
 
   .blog-card p {
+    display: -webkit-box;
+    overflow: hidden;
     color: var(--color-muted);
     font-size: 0.92rem;
     line-height: 1.6;
     margin-bottom: var(--space-3);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 
   .blog-card ul {
@@ -168,11 +188,12 @@ const {
       display: grid;
       grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
       align-items: stretch;
-      gap: var(--space-6);
     }
 
     .blog-card--featured .blog-card__media-wrapper {
       height: 100%;
+      border-right: 1px solid var(--color-border);
+      border-bottom: 0;
     }
 
     .blog-card--featured .blog-card__media {
@@ -181,7 +202,7 @@ const {
     }
 
     .blog-card--featured .blog-card__body {
-      padding: 0;
+      padding: var(--space-5);
     }
   }
 

@@ -13,6 +13,8 @@ image: "/images/blog/cleanliness-and-plastic-free-awareness.jpg"
 imageAlt: "Cleanliness and plastic-free awareness program in Mahalingpur"
 seoTitle: "Importance of Cleanliness and Plastic-Free Awareness"
 seoDescription: "Read why cleanliness awareness and plastic-free habits are important for public responsibility, health, and greener local communities."
+videoIds:
+  - "awareness-programs"
 ---
 
 Cleanliness and plastic-free awareness are simple but powerful parts of community welfare. A clean street, school area, market area, or public space can improve health, dignity, and local pride. Reducing plastic waste also helps keep drains, roads, and shared spaces safer and easier to maintain.

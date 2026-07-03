@@ -3,6 +3,8 @@ import Container from '../../common/Container.astro';
 import Button from '../../common/Button.astro';
 import type { CtaLink } from '../../../data/pages';
 import { whatsappUrl } from '../../../utils/seo';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 export interface Props {
   eyebrow: string;
@@ -10,7 +12,7 @@ export interface Props {
   description: string;
   primaryCta: CtaLink;
   secondaryCta: CtaLink;
-  image: string;
+  image: string | ImageMetadata;
   imageAlt: string;
   hideActions?: boolean;
   hideMedia?: boolean;
@@ -29,6 +31,8 @@ const {
   hideMedia = false,
   variant = 'default',
 } = Astro.props;
+
+const hasOptimizedImage = typeof image !== 'string';
 
 function resolveHref(cta: CtaLink) {
   return cta.href === 'whatsapp' ? whatsappUrl() : cta.href;
@@ -65,7 +69,24 @@ function resolveHref(cta: CtaLink) {
       </div>
 
       {
-        !hideMedia && (
+        !hideMedia && hasOptimizedImage && (
+          <div class="page-hero__media">
+            <Image
+              src={image}
+              alt={imageAlt}
+              width={900}
+              format="webp"
+              quality={82}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
+        )
+      }
+
+      {
+        !hideMedia && !hasOptimizedImage && (
           <div
             class="page-hero__media"
             role="img"
@@ -126,6 +147,13 @@ function resolveHref(cta: CtaLink) {
       linear-gradient(135deg, var(--color-primary-soft), var(--color-accent-soft));
     background-position: center;
     background-size: cover;
+  }
+
+  .page-hero__media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* Modern variant (consistent visual rhythm without boxed layouts) */

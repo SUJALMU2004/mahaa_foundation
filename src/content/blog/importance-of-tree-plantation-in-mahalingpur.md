@@ -14,6 +14,8 @@ imageAlt: "Mahaa Foundation volunteers planting trees on Double Road Mahalingpur
 seoTitle: "Importance of Tree Plantation in Mahalingpur | Mahaa Foundation"
 seoDescription: "Understand why tree plantation in Mahalingpur supports public spaces, shade, cleaner surroundings, and community responsibility."
 featured: true
+videoIds:
+  - "tree-plantation-drive-highlights"
 ---
 
 Tree plantation is one of the most practical ways a community can care for its future. A sapling may look small on the day it is planted, but with care it can become shade, cleaner air, soil support, and a visible sign of public responsibility. For Mahaa Foundation Mahalingpur, tree plantation is not only about planting trees. It is about encouraging people to care for public spaces after the activity is over.

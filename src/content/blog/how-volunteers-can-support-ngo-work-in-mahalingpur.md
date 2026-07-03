@@ -13,6 +13,8 @@ image: "/images/blog/how-volunteers-can-support-ngo-work-in-mahalingpur.jpg"
 imageAlt: "Volunteers planning Mahaa Foundation NGO work in Mahalingpur"
 seoTitle: "How Volunteers Can Support NGO Work in Mahalingpur"
 seoDescription: "Learn how volunteers can support Mahaa Foundation activities in Mahalingpur with discipline, care, and practical service."
+videoIds:
+  - "social-service-drive"
 ---
 
 Volunteers are the strength of local social service. A foundation can plan activities, but people are needed to carry the work forward. Mahaa Foundation Mahalingpur welcomes volunteers who want to support practical work such as ration distribution, student support, tree plantation, health support, cleanliness awareness, plastic-free awareness, and community welfare.

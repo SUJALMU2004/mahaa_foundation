@@ -13,6 +13,8 @@ image: "/images/blog/why-student-support-matters-government-school-children.jpg"
 imageAlt: "Students receiving notebooks and pens from Mahaa Foundation"
 seoTitle: "Why Student Support Matters for Government School Children"
 seoDescription: "Understand how stationery support and encouragement can help government school children continue learning with confidence."
+videoIds:
+  - "student-aid-activity"
 ---
 
 Student support is one of the most meaningful forms of social service because education affects a child's confidence, future opportunities, and daily motivation. For many government school children, small learning essentials like notebooks, pens, and basic stationery can make a real difference.

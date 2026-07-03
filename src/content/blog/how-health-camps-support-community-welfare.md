@@ -13,6 +13,9 @@ image: "/images/blog/how-health-camps-support-community-welfare.jpg"
 imageAlt: "Health camp support activity in Mahalingpur"
 seoTitle: "How Health Camps Support Community Welfare"
 seoDescription: "Understand how health camp support and public health coordination can help families, children, and local communities."
+videoIds:
+  - "polio-vaccination-camp-support"
+  - "health-camp-support"
 ---
 
 Health support is an important part of community welfare. Many people may not know where to go for basic health guidance, vaccination support, or public health information. When local teams help coordinate health-related activities, communities can access support more easily.

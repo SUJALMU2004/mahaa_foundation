@@ -2,6 +2,8 @@
 import Container from '../../common/Container.astro';
 import Button from '../../common/Button.astro';
 import { site } from '../../../data/site';
+import galleryHeroImage from '../../../assets/inner/gallery-hero.png';
+import { Image } from 'astro:assets';
 ---
 
 <section class="media-hero" aria-labelledby="gallery-page-title">
@@ -20,10 +22,17 @@ import { site } from '../../../data/site';
           <Button href="/activities" variant="outline">View Activities</Button>
         </div>
       </div>
-      <div class="media-hero__panel" aria-label="Gallery media proof placeholder">
-        <span>Photos</span>
-        <span>Videos</span>
-        <span>Activities</span>
+      <div class="media-hero__panel">
+        <Image
+          src={galleryHeroImage}
+          alt="Mahaa Foundation Mahalingpur gallery activity moment"
+          width={900}
+          format="webp"
+          quality={82}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
       </div>
     </div>
   </Container>
@@ -58,29 +67,22 @@ import { site } from '../../../data/site';
   }
 
   .media-hero__panel {
-    display: grid;
+    display: block;
     min-height: 320px;
-    align-content: end;
-    gap: var(--space-3);
+    overflow: hidden;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    background:
-      linear-gradient(135deg, rgba(15, 107, 69, 0.12), rgba(214, 166, 74, 0.08)),
-      var(--color-bg-soft);
+    background: var(--color-bg-soft);
     box-shadow: var(--shadow-md);
-    padding: var(--space-5);
   }
 
-  .media-hero__panel span {
-    width: fit-content;
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    color: var(--color-primary-dark);
-    padding: 0.55rem 0.85rem;
-    font-weight: 700;
-    font-size: 0.9rem;
-    box-shadow: var(--shadow-xs);
+  .media-hero__panel :global(img) {
+    display: block;
+    width: 100%;
+    min-height: 320px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   @media (min-width: 900px) {

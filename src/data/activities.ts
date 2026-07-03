@@ -97,6 +97,7 @@ export const activities: ActivityItem[] = [
         caption: 'Founding team service support placeholder.',
       },
     ],
+    videos: ['koppal-pravachana-parking-service'],
     relatedLinks: [
       { label: 'Social Service', href: '/social-service' },
       { label: 'Volunteer', href: '/volunteer' },
@@ -203,7 +204,7 @@ export const activities: ActivityItem[] = [
         caption: 'Child health support with health department guidance.',
       },
     ],
-    videos: ['health-camp-support'],
+    videos: ['polio-vaccination-camp-support', 'health-camp-support'],
     relatedLinks: [
       { label: 'Social Service', href: '/social-service' },
       { label: 'Volunteer', href: '/volunteer' },

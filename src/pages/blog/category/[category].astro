@@ -111,6 +111,7 @@ const page = {
               category={post.data.category}
               publishDate={post.data.publishDate}
               tags={post.data.tags}
+              variant="modern"
             />
           ))
         }
@@ -155,7 +156,7 @@ const page = {
 
   .blog-grid {
     display: grid;
-    gap: var(--space-4);
+    gap: var(--space-5);
   }
 
   .category-cta {
@@ -181,7 +182,13 @@ const page = {
     gap: var(--space-3);
   }
 
-  @media (min-width: 760px) {
+  @media (min-width: 680px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1080px) {
     .blog-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }

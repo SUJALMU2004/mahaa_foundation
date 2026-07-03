@@ -18,6 +18,7 @@ const blog = defineCollection({
     ogTitle: z.string().optional(),
     ogDescription: z.string().optional(),
     ogImage: z.string().optional(),
+    videoIds: z.array(z.string()).optional(),
     featured: z.boolean().optional(),
     draft: z.boolean().optional(),
   }),

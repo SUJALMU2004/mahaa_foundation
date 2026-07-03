@@ -13,6 +13,8 @@ image: "/images/blog/role-of-youth-in-social-service.jpg"
 imageAlt: "Youth volunteers supporting social service activities"
 seoTitle: "Role of Youth in Social Service | Mahaa Foundation"
 seoDescription: "Understand how youth participation can strengthen social service, student support, tree plantation, awareness, and community welfare."
+videoIds:
+  - "social-service-drive"
 ---
 
 Youth can bring energy, discipline, creativity, and courage to social service. When young people participate in meaningful work, they learn responsibility and also help the community. Mahaa Foundation Mahalingpur encourages youth to support practical service activities in Mahalingpur and nearby areas.

@@ -1,5 +1,11 @@
 import { site } from './site';
 import { absoluteUrl } from '../utils/seo';
+import type { ImageMetadata } from 'astro';
+import aboutHeroImage from '../assets/inner/gallery-hero.png';
+import ourWorkHeroImage from '../assets/inner/our-work-hero.png';
+import treePlantationHeroImage from '../assets/inner/tree-plantation-hero.png';
+import rationDistributionHeroImage from '../assets/inner/ration-distribution-hero.png';
+import socialServiceStudentSupportHeroImage from '../assets/inner/social-service-student-support-hero.png';
 
 export type CtaLink = {
   label: string;
@@ -34,7 +40,7 @@ export type InnerPage = {
     description: string;
     primaryCta: CtaLink;
     secondaryCta: CtaLink;
-    image: string;
+    image: string | ImageMetadata;
     imageAlt: string;
   };
   intro: {
@@ -83,11 +89,11 @@ export type InnerPage = {
 };
 
 const imagePaths = {
-  about: '/images/work/about-ngo-team.jpg',
-  ourWork: '/images/work/our-work-community.jpg',
-  treePlantation: '/images/work/tree-plantation-page.jpg',
-  rationDistribution: '/images/work/ration-distribution-page.jpg',
-  socialService: '/images/work/social-service-page.jpg',
+  about: aboutHeroImage,
+  ourWork: ourWorkHeroImage,
+  treePlantation: treePlantationHeroImage,
+  rationDistribution: rationDistributionHeroImage,
+  socialService: socialServiceStudentSupportHeroImage,
   volunteer: '/images/work/volunteer-page.jpg',
   donate: '/images/work/donate-page.jpg',
   contact: '/images/work/contact-page.jpg',
@@ -111,7 +117,7 @@ export const innerPages = {
       primaryCta: { label: 'Join Our Mission', href: '/volunteer' },
       secondaryCta: { label: 'Explore Our Work', href: '/our-work' },
       image: imagePaths.about,
-      imageAlt: 'Mahaa Foundation team and community service placeholder',
+      imageAlt: 'Mahaa Foundation Mahalingpur team members supporting community service work',
     },
     intro: {
       eyebrow: 'Foundation Story',
@@ -198,7 +204,7 @@ export const innerPages = {
       primaryCta: { label: 'Become a Volunteer', href: '/volunteer' },
       secondaryCta: { label: 'Donate to Support Work', href: '/donate' },
       image: imagePaths.ourWork,
-      imageAlt: 'Mahaa Foundation community welfare activity placeholder',
+      imageAlt: 'Mahaa Foundation Mahalingpur team supporting community welfare work',
     },
     intro: {
       eyebrow: 'Overview',
@@ -263,7 +269,7 @@ export const innerPages = {
       primaryCta: { label: 'Volunteer for Plantation', href: '/volunteer' },
       secondaryCta: { label: 'Support Tree Plantation', href: '/donate' },
       image: imagePaths.treePlantation,
-      imageAlt: 'Tree plantation on Double Road Mahalingpur placeholder',
+      imageAlt: 'Mahaa Foundation team supporting tree plantation work in Mahalingpur',
     },
     intro: {
       eyebrow: 'Verified Plantation Work',
@@ -317,7 +323,7 @@ export const innerPages = {
       primaryCta: { label: 'Donate for Ration Kits', href: '/donate' },
       secondaryCta: { label: 'Volunteer for Distribution', href: '/volunteer' },
       image: imagePaths.rationDistribution,
-      imageAlt: 'Ration distribution support in Mahalingpur placeholder',
+      imageAlt: 'Ration support activity for families in need by Mahaa Foundation Mahalingpur',
     },
     intro: {
       eyebrow: 'Food Support',
@@ -380,7 +386,7 @@ export const innerPages = {
       primaryCta: { label: 'Volunteer for Social Work', href: '/volunteer' },
       secondaryCta: { label: 'Contact Mahaa Foundation', href: '/contact' },
       image: imagePaths.socialService,
-      imageAlt: 'Social service and student support placeholder',
+      imageAlt: 'Student support activity by Mahaa Foundation Mahalingpur',
     },
     intro: {
       eyebrow: 'Community Welfare',
