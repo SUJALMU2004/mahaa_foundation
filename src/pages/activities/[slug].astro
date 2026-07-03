@@ -27,6 +27,7 @@ const { activity } = Astro.props;
 const relatedActivities = getRelatedActivities(activities, activity.slug, activity.category);
 const activityVideos = videoItems.filter((video) => activity.videos?.includes(video.id));
 const activityDate = activity.date ? new Date(activity.date).toISOString() : undefined;
+const activityOgImage = `/images/og/activities/${activity.slug}-og.jpg`;
 
 const page = {
   title: `${activity.title} | NGO Activity in Mahalingpur`,
@@ -35,15 +36,19 @@ const page = {
   ogType: 'article',
   ogTitle: activity.title,
   ogDescription: activity.description,
-  ogImage: activity.image,
+  ogImage: activityOgImage,
+  ogImageAlt: activity.imageAlt,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   twitterTitle: activity.title,
   twitterDescription: activity.description,
-  twitterImage: activity.image,
+  twitterImage: activityOgImage,
+  twitterImageAlt: activity.imageAlt,
   ...(activityDate ? { publishedDate: activityDate, modifiedDate: activityDate } : {}),
   articleAuthor: site.siteName,
   articleSection: activity.category,
   articleTags: activity.tags,
-  schema: getActivitySchemas(activity),
+  schema: getActivitySchemas(activity, activityOgImage),
 };
 
 const allPublishedActivities = sortActivitiesByDate(getPublishedActivities(activities));

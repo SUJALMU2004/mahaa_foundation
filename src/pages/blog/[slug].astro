@@ -34,7 +34,7 @@ const seoTitle = post.data.seoTitle ?? post.data.title;
 const seoDescription = post.data.seoDescription ?? post.data.description;
 const ogTitle = post.data.ogTitle ?? seoTitle;
 const ogDescription = post.data.ogDescription ?? seoDescription;
-const ogImage = post.data.ogImage ?? post.data.image ?? '/images/og/blog-og.jpg';
+const ogImage = post.data.ogImage ?? `/images/og/blog/${post.id}-og.jpg`;
 const canonical = `/blog/${post.id}`;
 const canonicalUrl = absoluteUrl(canonical);
 const dateModified = post.data.updatedDate ?? post.data.publishDate;
@@ -47,9 +47,13 @@ const page = {
   ogTitle,
   ogDescription,
   ogImage,
+  ogImageAlt: post.data.imageAlt,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   twitterTitle: ogTitle,
   twitterDescription: ogDescription,
   twitterImage: ogImage,
+  twitterImageAlt: post.data.imageAlt,
   publishedDate: post.data.publishDate.toISOString(),
   modifiedDate: dateModified.toISOString(),
   articleAuthor: post.data.author,

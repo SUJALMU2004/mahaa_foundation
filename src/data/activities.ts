@@ -352,14 +352,14 @@ export const activities: ActivityItem[] = [
 export const activitiesSummary =
   'Mahaa Foundation continues to organize many more social service, education support, health awareness, and community welfare activities.';
 
-export function getActivitySchemas(activity: ActivityItem) {
+export function getActivitySchemas(activity: ActivityItem, socialImage = activity.image) {
   const activityUrl = absoluteUrl(`/activities/${activity.slug}`);
   const articleSchema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: activity.title,
     description: activity.description,
-    image: absoluteUrl(activity.image),
+    image: absoluteUrl(socialImage),
     author: {
       '@type': 'Organization',
       name: site.siteName,

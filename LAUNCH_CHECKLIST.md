@@ -1,10 +1,10 @@
 # Mahaa Foundation Mahalingpur Launch Checklist
 
-Use this checklist before publishing the site on the final production domain.
+Use this checklist before publishing the site on the production domain.
 
 ## Pre-Launch Content
 
-- [ ] Replace `https://www.example.org` with the final production domain in `src/data/site.ts`, `astro.config.mjs`, and `public/robots.txt`.
+- [x] Confirm production domain is set to `https://www.mahaafoundation.org` in `src/data/site.ts`, `astro.config.mjs`, and `public/robots.txt`.
 - [ ] Confirm the verified address remains `Vinayak Medical Shop, Double Rd, Mahalingpur, Karnataka 587312`.
 - [ ] Confirm the public display stays `Active Since 2025`.
 - [ ] Confirm no page claims a full year of service.
@@ -38,7 +38,7 @@ Use this checklist before publishing the site on the final production domain.
 - [ ] Confirm each canonical URL is absolute and matches the clean route.
 - [ ] Confirm public pages use `index, follow`.
 - [ ] Confirm sitemap output includes core pages, blog posts, category pages, gallery, videos, activities, and activity detail pages.
-- [ ] Confirm `robots.txt` points to the final sitemap URL after the domain is replaced.
+- [ ] Confirm `robots.txt` points to `https://www.mahaafoundation.org/sitemap-index.xml`.
 - [ ] Submit the final sitemap in Google Search Console.
 - [ ] Request indexing for the homepage and important service pages after launch.
 

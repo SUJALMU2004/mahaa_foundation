@@ -4,8 +4,7 @@ export const site = {
   tagline: 'Serving People. Supporting Education. Growing a Greener Mahalingpur.',
   description:
     'Mahaa Foundation Mahalingpur is a social service NGO in Bagalkot, Karnataka, working for ration distribution, student support, tree plantation, health awareness, and community welfare.',
-  // Replace https://www.example.org with the final production domain before launch.
-  url: 'https://www.example.org',
+  url: 'https://www.mahaafoundation.org',
   defaultOgImage: '/images/og/default-og.jpg',
   logo: '/images/logo/logo.png',
   phone: '7019170976',

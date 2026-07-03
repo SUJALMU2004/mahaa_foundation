@@ -37,6 +37,7 @@ npm run preview
 ## Current Verified Details
 
 - Name: `Mahaa Foundation Mahalingpur`
+- Website: `https://www.mahaafoundation.org`
 - Short name: `Mahaa Foundation`
 - City: `Mahalingpur`
 - District: `Bagalkot`
@@ -62,15 +63,11 @@ npm run preview
 
 The site does not process payments. Donors use UPI or bank transfer and manually send the payment screenshot on WhatsApp.
 
-## Launch-Time Replacement
+## Launch-Time Checks
 
-The final production domain has not been provided. Before production launch, replace `https://www.example.org` in:
+The production domain is configured as `https://www.mahaafoundation.org` in `src/data/site.ts`, `astro.config.mjs`, and `public/robots.txt`.
 
-- `src/data/site.ts`
-- `astro.config.mjs`
-- `public/robots.txt`
-
-Also add final optimized images and Open Graph images before launch. Do not invent registration details, legal exemption details, coordinates, opening hours, awards, ratings, reviews, or unverified social profiles.
+Before launch, confirm DNS, hosting, canonical URLs, sitemap, robots.txt, Open Graph previews, and contact links on the live domain. Do not invent registration details, legal exemption details, coordinates, opening hours, awards, ratings, reviews, or unverified social profiles.
 
 ## WhatsApp Forms
 
