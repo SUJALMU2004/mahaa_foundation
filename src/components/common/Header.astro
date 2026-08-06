@@ -18,6 +18,16 @@ function isActive(href: string) {
 ---
 
 <header class="site-header">
+  <div class="site-header__utility">
+    <Container class="site-header__utility-inner">
+      <p>Serving Mahalingpur & nearby communities</p>
+      <div>
+        <a href={site.phoneHref}>Call {site.phoneDisplay}</a>
+        <span aria-hidden="true">•</span>
+        <a href={site.locationUrl} target="_blank" rel="noopener noreferrer">Find our office</a>
+      </div>
+    </Container>
+  </div>
   <Container class="site-header__inner">
     <a class="site-header__brand" href="/" aria-label={`${site.siteName} home`}>
       <Image

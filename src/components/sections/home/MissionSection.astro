@@ -19,9 +19,9 @@ import { home } from '../../../data/home';
 
     <div class="mission-grid">
       {
-        home.missionCards.map((card) => (
+        home.missionCards.map((card, index) => (
           <article class="mission-card">
-            <span class="mission-card__icon" aria-hidden="true"></span>
+            <span class="mission-card__number" aria-hidden="true">0{index + 1}</span>
             <h3>{card.title}</h3>
             <p>{card.description}</p>
           </article>
@@ -33,7 +33,8 @@ import { home } from '../../../data/home';
 
 <style>
   .mission-section {
-    padding: var(--space-8) 0;
+    padding: var(--space-9) 0;
+    background: #ffffff;
   }
 
   .mission-section__intro {
@@ -74,27 +75,33 @@ import { home } from '../../../data/home';
   }
 
   .mission-card {
+    position: relative;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    background: #ffffff;
-    padding: var(--space-5);
-    box-shadow: var(--shadow-card);
+    background: var(--color-bg-soft);
+    padding: var(--space-6);
+    box-shadow: none;
     transition: box-shadow var(--transition), transform var(--transition);
   }
 
   .mission-card:hover {
+    border-color: var(--color-border-strong);
     box-shadow: var(--shadow-card-hover);
     transform: translateY(-2px);
   }
 
-  .mission-card__icon {
-    display: block;
-    width: 40px;
-    height: 40px;
+  .mission-card__number {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
     margin-bottom: var(--space-4);
-    border-radius: var(--radius);
-    background: var(--gradient-primary);
-    opacity: 0.9;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-dark);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
   }
 
   .mission-card p {

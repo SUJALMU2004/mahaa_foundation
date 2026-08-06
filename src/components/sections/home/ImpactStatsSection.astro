@@ -29,61 +29,84 @@ import { home } from '../../../data/home';
 
 <style>
   .impact-section {
+    position: relative;
+    overflow: hidden;
     padding: var(--space-8) 0;
-    background: var(--color-bg-soft);
+    background: var(--color-primary-dark);
+  }
+
+  .impact-section::after {
+    position: absolute;
+    top: -10rem;
+    right: -8rem;
+    width: 24rem;
+    height: 24rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    content: "";
+  }
+
+  .impact-section :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .impact-section :global(.section-header__eyebrow) {
+    color: #efc979;
+  }
+
+  .impact-section :global(.section-header h2) {
+    color: #ffffff;
+  }
+
+  .impact-section :global(.section-header__description) {
+    color: rgba(255, 255, 255, 0.68);
   }
 
   .impact-grid {
     display: grid;
-    gap: var(--space-4);
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   }
 
   .impact-card {
     position: relative;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: #ffffff;
-    padding: var(--space-5) var(--space-5) var(--space-5);
-    box-shadow: var(--shadow-card);
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0;
+    background: transparent;
+    padding: var(--space-5);
+    box-shadow: none;
     transition: box-shadow var(--transition), transform var(--transition);
     overflow: hidden;
   }
 
-  .impact-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gradient-primary);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-
   .impact-card:hover {
-    box-shadow: var(--shadow-card-hover);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.045);
+    box-shadow: none;
+    transform: none;
   }
 
   .impact-card strong {
     display: block;
     margin-bottom: var(--space-2);
-    color: var(--color-primary);
+    color: #efc979;
     font-family: var(--font-display);
     font-size: 2.4rem;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
   .impact-card h3 {
     margin-bottom: var(--space-2);
-    color: var(--color-text);
+    color: #ffffff;
   }
 
   .impact-card p {
     margin-bottom: 0;
-    color: var(--color-muted);
+    color: rgba(255, 255, 255, 0.62);
     font-size: 0.94rem;
     line-height: 1.6;
   }
@@ -92,11 +115,23 @@ import { home } from '../../../data/home';
     .impact-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .impact-card {
+      border-right: 1px solid rgba(255, 255, 255, 0.14);
+    }
   }
 
   @media (min-width: 1024px) {
     .impact-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .impact-card {
+      border-bottom: 0;
+    }
+
+    .impact-card:last-child {
+      border-right: 0;
     }
   }
 
