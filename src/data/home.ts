@@ -27,11 +27,11 @@ export type MediaPlaceholder = {
 
 export const home = {
   hero: {
-    eyebrow: 'Mahaa Foundation Mahalingpur',
-    title: 'Serving People, Supporting Students and Growing a Greener Mahalingpur',
-    kannadaLine: 'Mahaa Foundation Mahalingpur',
+    eyebrow: 'Community-led service in North Karnataka',
+    title: 'Local hands. Lasting change in Mahalingpur.',
+    kannadaLine: 'ಮಹಾ ಫೌಂಡೇಶನ್ ಮಹಾಲಿಂಗಪುರ',
     description:
-      'Mahaa Foundation Mahalingpur is a social service NGO in Bagalkot, Karnataka, working for ration distribution, student support, tree plantation, health camp support, cleanliness awareness, and community welfare. We bring volunteers and supporters together to help families, students, children, and local communities.',
+      'We bring volunteers and supporters together to help families, equip government-school students, plant trees, and strengthen community welfare across Mahalingpur and nearby areas.',
     phrase: 'Serve a Family. Support a Student. Plant a Tree.',
     ctas: [
       { label: 'Become a Volunteer', href: '/volunteer' },
@@ -173,7 +173,7 @@ export const home = {
     {
       title: site.foundedDisplay,
       description:
-        'Public display uses Active Since 2025 and does not claim one year of service.',
+        'A young, locally rooted foundation built around practical service and consistent community participation.',
     },
     {
       title: 'Founder-Led Service',
@@ -181,9 +181,9 @@ export const home = {
         'Founded by Anilkumar Ullagaddi with a focus on serving families, students, and public welfare.',
     },
     {
-      title: 'Verified Impact Numbers',
+      title: 'Clear, Responsible Updates',
       description:
-        'The site uses provided public impact numbers and avoids unverified awards or legal claims.',
+        'We share specific activity details and public impact numbers so supporters can understand the work they help make possible.',
     },
     {
       title: 'Volunteer Participation',

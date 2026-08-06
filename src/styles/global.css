@@ -4,22 +4,22 @@
 
 :root {
   /* ─── Color Palette ─── */
-  --color-primary: #0A3625;
-  --color-primary-dark: #052015;
-  --color-primary-light: #1E6B4E;
-  --color-primary-soft: #F4F7F5;
-  --color-secondary: #1E6B4E;
-  --color-accent: #C59A48;
-  --color-accent-dark: #A57D32;
-  --color-accent-soft: #FBF8F0;
+  --color-primary: #14573d;
+  --color-primary-dark: #062b1d;
+  --color-primary-light: #287759;
+  --color-primary-soft: #eaf3ee;
+  --color-secondary: #287759;
+  --color-accent: #dca64a;
+  --color-accent-dark: #9a6a1f;
+  --color-accent-soft: #fff4dd;
   --color-bg: #ffffff;
-  --color-bg-soft: #FCFAF6;
-  --color-bg-warm: #FAF7F0;
+  --color-bg-soft: #f5f8f6;
+  --color-bg-warm: #fbf6eb;
   --color-surface: #ffffff;
-  --color-text: #121C18;
-  --color-muted: #6E7C74;
-  --color-border: rgba(10, 54, 37, 0.06);
-  --color-border-strong: rgba(10, 54, 37, 0.12);
+  --color-text: #17231e;
+  --color-muted: #617169;
+  --color-border: rgba(6, 43, 29, 0.1);
+  --color-border-strong: rgba(6, 43, 29, 0.18);
   --color-focus: #C59A48;
   --color-whatsapp: #128C4A;
   --color-whatsapp-dark: #0D6B38;
@@ -27,29 +27,33 @@
   /* ─── Gradients ─── */
   --gradient-warm: linear-gradient(180deg, #FAF7F0 0%, #ffffff 100%);
   --gradient-subtle: linear-gradient(135deg, #FCFAF6 0%, #ffffff 100%);
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  --gradient-accent: linear-gradient(90deg, var(--color-accent), #efc979);
+  --gradient-dark: linear-gradient(135deg, var(--color-primary-dark), #104f38);
 
   /* ─── Typography ─── */
-  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-display: "Playfair Display", "Georgia", serif;
+  --font-sans: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 
   /* ─── Layout ─── */
-  --container: 1100px;
-  --header-height: 80px;
+  --container: 1180px;
+  --header-height: 76px;
 
   /* ─── Radius ─── */
-  --radius-sm: 2px;
-  --radius: 4px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
 
   /* ─── Shadows (Extremely subtle, high-end look) ─── */
-  --shadow-sm: 0 2px 8px rgba(10, 54, 37, 0.02);
-  --shadow-md: 0 10px 30px rgba(10, 54, 37, 0.04);
-  --shadow-lg: 0 20px 50px rgba(10, 54, 37, 0.06);
+  --shadow-xs: 0 1px 3px rgba(6, 43, 29, 0.06);
+  --shadow-sm: 0 5px 16px rgba(6, 43, 29, 0.06);
+  --shadow-md: 0 14px 34px rgba(6, 43, 29, 0.1);
+  --shadow-lg: 0 28px 70px rgba(6, 43, 29, 0.16);
   --shadow-soft: 0 8px 24px rgba(10, 54, 37, 0.03);
   --shadow-card: none;
-  --shadow-card-hover: 0 12px 36px rgba(10, 54, 37, 0.05);
+  --shadow-card-hover: 0 18px 44px rgba(6, 43, 29, 0.11);
 
   /* ─── Spacing (Generous editorial white space) ─── */
   --space-1: 0.25rem;
@@ -147,7 +151,7 @@ h3 {
   font-family: var(--font-display);
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   color: var(--color-primary-dark);
 }
 
@@ -225,12 +229,11 @@ ul {
   gap: var(--space-2);
   min-height: 48px;
   border: 1px solid transparent;
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   padding: 0.75rem 1.75rem;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -322,10 +325,45 @@ ul {
   top: 0;
   min-height: var(--header-height);
   border-bottom: 1px solid var(--color-border);
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: background-color var(--transition);
+}
+
+.site-header__utility {
+  display: none;
+  min-height: 30px;
+  align-items: center;
+  background: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.76rem;
+}
+
+.site-header__utility-inner {
+  display: flex;
+  min-height: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__utility p {
+  margin: 0;
+}
+
+.site-header__utility div {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.site-header__utility a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.site-header__utility a:hover {
+  color: #f1cc84;
 }
 
 .site-header__inner {
@@ -351,7 +389,7 @@ ul {
   display: block;
   width: clamp(128px, 15vw, 165px);
   height: auto;
-  max-height: 58px;
+  max-height: 54px;
   object-fit: contain;
 }
 
@@ -740,6 +778,14 @@ ul {
    =================================================================== */
 
 @media (min-width: 1060px) {
+  .site-header {
+    min-height: calc(var(--header-height) + 30px);
+  }
+
+  .site-header__utility {
+    display: flex;
+  }
+
   .site-header__desktop-nav {
     display: flex;
     align-items: center;
@@ -749,6 +795,7 @@ ul {
   }
 
   .site-header__nav-link {
+    position: relative;
     display: inline-flex;
     min-height: 44px;
     align-items: center;
@@ -758,14 +805,31 @@ ul {
     padding: 0.25rem 0.5rem;
     font-size: 0.88rem;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.01em;
     transition: color var(--transition);
   }
 
   .site-header__nav-link:hover,
   .site-header__nav-link.is-active {
     color: var(--color-primary-light);
+  }
+
+  .site-header__nav-link::after {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.2rem;
+    left: 0.5rem;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    background: var(--color-accent);
+    content: "";
+    transition: transform var(--transition);
+  }
+
+  .site-header__nav-link:hover::after,
+  .site-header__nav-link.is-active::after {
+    transform: scaleX(1);
   }
 
   .site-header__actions {
@@ -778,6 +842,16 @@ ul {
     min-height: 42px;
     padding: 0.5rem 1.25rem;
     font-size: 0.8rem;
+  }
+
+  .site-header__actions .button--primary {
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+  }
+
+  .site-header__actions .button--primary:hover {
+    background: #efc979;
+    color: var(--color-primary-dark);
   }
 
   .site-header__mobile-menu {

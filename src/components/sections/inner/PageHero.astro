@@ -103,23 +103,60 @@ function resolveHref(cta: CtaLink) {
 
 <style>
   .page-hero {
+    position: relative;
+    overflow: hidden;
     padding: var(--space-8) 0;
-    background: var(--color-bg);
+    background:
+      radial-gradient(circle at 8% 10%, rgba(220, 166, 74, 0.12), transparent 22rem),
+      var(--color-bg-warm);
+  }
+
+  .page-hero::after {
+    position: absolute;
+    right: -9rem;
+    bottom: -12rem;
+    width: 26rem;
+    height: 26rem;
+    border: 1px solid rgba(20, 87, 61, 0.1);
+    border-radius: 50%;
+    content: "";
   }
 
   .page-hero__grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     gap: var(--space-7);
     align-items: center;
   }
 
   .page-hero__eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.6rem;
     margin-bottom: var(--space-3);
-    color: var(--color-accent);
+    color: var(--color-primary);
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  .page-hero__eyebrow::before {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 5px rgba(220, 166, 74, 0.13);
+    content: "";
+  }
+
+  .page-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
   }
 
   .page-hero__description {
@@ -141,12 +178,14 @@ function resolveHref(cta: CtaLink) {
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    border: 8px solid rgba(255, 255, 255, 0.75);
+    border-radius: 0 3.5rem 0 3.5rem;
     background-image:
       var(--hero-image),
       linear-gradient(135deg, var(--color-primary-soft), var(--color-accent-soft));
     background-position: center;
     background-size: cover;
+    box-shadow: var(--shadow-lg);
   }
 
   .page-hero__media :global(img) {
@@ -158,7 +197,9 @@ function resolveHref(cta: CtaLink) {
 
   /* Modern variant (consistent visual rhythm without boxed layouts) */
   .page-hero--modern {
-    background: var(--color-bg-soft);
+    background:
+      radial-gradient(circle at 8% 10%, rgba(220, 166, 74, 0.12), transparent 22rem),
+      var(--color-bg-warm);
   }
 
   .page-hero--modern .page-hero__content {
