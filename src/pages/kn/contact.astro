@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import PageHero from '../../components/sections/inner/PageHero.astro';
+import FeatureGridSection from '../../components/sections/inner/FeatureGridSection.astro';
+import FaqSection from '../../components/sections/inner/FaqSection.astro';
+import InnerCtaSection from '../../components/sections/inner/InnerCtaSection.astro';
+import ContactConversionSection from '../../components/sections/conversion/ContactConversionSection.astro';
+import { innerPages, getPageSchemas } from '../../data/pages';
+import { seo } from '../../data/seo';
+
+const page = innerPages['kn'].contact;
+
+const meta = {
+  ...seo['kn'].contact,
+  ogTitle: page.seo.ogTitle,
+  ogDescription: page.seo.ogDescription,
+  ogImage: page.seo.ogImage,
+  twitterImage: page.seo.ogImage,
+  schema: getPageSchemas('contact'),
+};
+---
+
+<BaseLayout {...meta}>
+  <PageHero {...page.hero} variant="modern" hideActions hideMedia />
+  <ContactConversionSection />
+  {page.features && <FeatureGridSection {...page.features} variant="contact-modern" />}
+  {page.faqs && <FaqSection title="Common Questions" description="Helpful answers for people who want to contact, join, support, or collaborate with Mahaa Foundation." faqs={page.faqs} />}
+  <InnerCtaSection {...page.cta} variant="solid" />
+</BaseLayout>

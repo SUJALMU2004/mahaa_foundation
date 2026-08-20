@@ -8,9 +8,9 @@ import InnerCtaSection from '../components/sections/inner/InnerCtaSection.astro'
 import { innerPages, getPageSchemas } from '../data/pages';
 import { seo } from '../data/seo';
 
-const page = innerPages.ourWork;
+const page = innerPages['en'].ourWork;
 const meta = {
-  ...seo.ourWork,
+  ...seo['en'].ourWork,
   ogTitle: page.seo.ogTitle,
   ogDescription: page.seo.ogDescription,
   ogImage: page.seo.ogImage,

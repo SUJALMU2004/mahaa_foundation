@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import PageHero from '../../components/sections/inner/PageHero.astro';
+import IntroTextSection from '../../components/sections/inner/IntroTextSection.astro';
+import FeatureGridSection from '../../components/sections/inner/FeatureGridSection.astro';
+import ProcessSection from '../../components/sections/inner/ProcessSection.astro';
+import FaqSection from '../../components/sections/inner/FaqSection.astro';
+import InnerCtaSection from '../../components/sections/inner/InnerCtaSection.astro';
+import VolunteerConversionSection from '../../components/sections/conversion/VolunteerConversionSection.astro';
+import { innerPages, getPageSchemas } from '../../data/pages';
+import { seo } from '../../data/seo';
+
+const page = innerPages['kn'].volunteer;
+const meta = {
+  ...seo['kn'].volunteer,
+  ogTitle: page.seo.ogTitle,
+  ogDescription: page.seo.ogDescription,
+  ogImage: page.seo.ogImage,
+  twitterImage: page.seo.ogImage,
+  schema: getPageSchemas('volunteer'),
+};
+---
+
+<BaseLayout {...meta}>
+  <PageHero {...page.hero} variant="modern" hideActions />
+  <VolunteerConversionSection />
+  <IntroTextSection {...page.intro} />
+  {page.features && <FeatureGridSection {...page.features} variant="contact-modern" />}
+  {page.process && <ProcessSection {...page.process} />}
+  {page.faqs && <FaqSection title="Common Questions" description="Helpful answers for people who want to volunteer with Mahaa Foundation." faqs={page.faqs} />}
+  <InnerCtaSection {...page.cta} />
+</BaseLayout>

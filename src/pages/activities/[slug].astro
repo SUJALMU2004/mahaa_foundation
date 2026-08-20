@@ -17,14 +17,14 @@ import {
 } from '../../utils/media';
 
 export function getStaticPaths() {
-  return getPublishedActivities(activities).map((activity) => ({
+  return getPublishedActivities(activities['en']).map((activity) => ({
     params: { slug: activity.slug },
     props: { activity },
   }));
 }
 
 const { activity } = Astro.props;
-const relatedActivities = getRelatedActivities(activities, activity.slug, activity.category);
+const relatedActivities = getRelatedActivities(activities['en'], activity.slug, activity.category);
 const activityVideos = videoItems.filter((video) => activity.videos?.includes(video.id));
 const activityDate = activity.date ? new Date(activity.date).toISOString() : undefined;
 const activityOgImage = `/images/og/activities/${activity.slug}-og.jpg`;
@@ -51,7 +51,7 @@ const page = {
   schema: getActivitySchemas(activity, activityOgImage),
 };
 
-const allPublishedActivities = sortActivitiesByDate(getPublishedActivities(activities));
+const allPublishedActivities = sortActivitiesByDate(getPublishedActivities(activities['en']));
 ---
 
 <BaseLayout {...page}>

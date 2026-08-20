@@ -3,7 +3,12 @@ import Container from '../../common/Container.astro';
 import SectionHeader from '../../common/SectionHeader.astro';
 import Button from '../../common/Button.astro';
 import { home } from '../../../data/home';
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
 import { Image } from 'astro:assets';
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+const { gallerySection } = home[lang];
 ---
 
 <section class="gallery-section" aria-labelledby="gallery-title">
@@ -11,19 +16,18 @@ import { Image } from 'astro:assets';
     <div class="gallery-section__heading">
       <SectionHeader
         headingId="gallery-title"
-        eyebrow="Activity Moments"
-        title="Moments from Our Activities"
-        description="A glimpse of our plantation drives, ration distribution activities, environmental campaigns, and volunteer work."
+        eyebrow={gallerySection.eyebrow}
+        title={gallerySection.title}
+        description={gallerySection.description}
       />
       <div class="gallery-section__actions">
-        <Button href="/gallery" variant="outline">View Gallery</Button>
-        <Button href="/activities" variant="link">View Activities</Button>
+        <Button href={translatePath('/gallery', lang)} variant="outline">{gallerySection.viewGalleryBtn}</Button>
+        <Button href={translatePath('/activities', lang)} variant="link">{gallerySection.viewActivitiesBtn}</Button>
       </div>
     </div>
 
     <div class="gallery-grid">
-      {
-        home.galleryPreview.map((item) => (
+      {home[lang].galleryPreview.map((item) => (
           <figure class="gallery-card">
             <div class="gallery-card__media">
               <Image

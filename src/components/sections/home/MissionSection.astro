@@ -1,27 +1,29 @@
 ---
 import Container from '../../common/Container.astro';
 import Button from '../../common/Button.astro';
+import SectionHeader from '../../common/SectionHeader.astro';
 import { home } from '../../../data/home';
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+
+const { missionCards, missionSection } = home[lang];
 ---
 
 <section class="mission-section" aria-labelledby="mission-title">
   <Container>
     <div class="mission-section__intro">
-      <p class="mission-section__eyebrow">Mission</p>
-      <h2 id="mission-title">Serving People. Supporting Education. Growing Greener Communities.</h2>
-      <p>
-        Our mission is to serve communities in need through ration support, student assistance,
-        health awareness, tree plantation, and volunteer-driven social service activities in
-        Mahalingpur and nearby areas.
-      </p>
-      <Button href="/about" variant="outline">Learn About Our NGO</Button>
+      <p class="mission-section__eyebrow">{missionSection.eyebrow}</p>
+      <h2 id="mission-title">{missionSection.title}</h2>
+      <p>{missionSection.description}</p>
+      <Button href={translatePath('/about', lang)} variant="outline">{missionSection.btnLearnMore}</Button>
     </div>
 
     <div class="mission-grid">
       {
-        home.missionCards.map((card, index) => (
+        missionCards.map((card, index) => (
           <article class="mission-card">
-            <span class="mission-card__number" aria-hidden="true">0{index + 1}</span>
+            <span class="mission-card__icon" aria-hidden="true"></span>
             <h3>{card.title}</h3>
             <p>{card.description}</p>
           </article>
@@ -33,8 +35,7 @@ import { home } from '../../../data/home';
 
 <style>
   .mission-section {
-    padding: var(--space-9) 0;
-    background: #ffffff;
+    padding: var(--space-8) 0;
   }
 
   .mission-section__intro {
@@ -75,33 +76,27 @@ import { home } from '../../../data/home';
   }
 
   .mission-card {
-    position: relative;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    background: var(--color-bg-soft);
-    padding: var(--space-6);
-    box-shadow: none;
+    background: #ffffff;
+    padding: var(--space-5);
+    box-shadow: var(--shadow-card);
     transition: box-shadow var(--transition), transform var(--transition);
   }
 
   .mission-card:hover {
-    border-color: var(--color-border-strong);
     box-shadow: var(--shadow-card-hover);
     transform: translateY(-2px);
   }
 
-  .mission-card__number {
-    display: grid;
-    width: 44px;
-    height: 44px;
-    place-items: center;
+  .mission-card__icon {
+    display: block;
+    width: 40px;
+    height: 40px;
     margin-bottom: var(--space-4);
-    border-radius: 50%;
-    background: var(--color-accent-soft);
-    color: var(--color-accent-dark);
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    border-radius: var(--radius);
+    background: var(--gradient-primary);
+    opacity: 0.9;
   }
 
   .mission-card p {

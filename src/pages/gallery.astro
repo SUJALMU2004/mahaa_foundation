@@ -4,16 +4,19 @@ import GalleryHeroSection from '../components/sections/media/GalleryHeroSection.
 import GalleryGridSection from '../components/sections/media/GalleryGridSection.astro';
 import VideoPreviewSection from '../components/sections/media/VideoPreviewSection.astro';
 import MediaCtaSection from '../components/sections/media/MediaCtaSection.astro';
-import { galleryItems, videoItems } from '../data/media';
+import { media } from '../data/media';
+
+const galleryItems = media['en'].galleryItems;
+const videoItems = media['en'].videoItems;
 import { seo } from '../data/seo';
 import { absoluteUrl } from '../utils/seo';
 
 const page = {
-  ...seo.gallery,
+  ...seo['en'].gallery,
   ogTitle: 'Mahaa Foundation Activity Gallery in Mahalingpur',
   ogDescription:
     'See moments from tree plantation, ration distribution, student support, health support, awareness programs, and volunteer work in Mahalingpur.',
-  twitterImage: seo.gallery.ogImage,
+  twitterImage: seo['en'].gallery.ogImage,
   schema: [
     {
       '@context': 'https://schema.org',

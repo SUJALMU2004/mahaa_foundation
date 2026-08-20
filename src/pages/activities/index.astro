@@ -13,15 +13,15 @@ import {
   sortActivitiesByDate,
 } from '../../utils/media';
 
-const publishedActivities = sortActivitiesByDate(getPublishedActivities(activities));
-const featuredActivity = getFeaturedActivity(activities);
+const publishedActivities = sortActivitiesByDate(getPublishedActivities(activities['en']));
+const featuredActivity = getFeaturedActivity(activities['en']);
 
 const page = {
-  ...seo.activities,
+  ...seo['en'].activities,
   ogTitle: 'Mahaa Foundation Activities in Mahalingpur',
   ogDescription:
     'See Mahaa Foundation activities for tree plantation, ration support, student support, health support, cleanliness awareness, and social service in Mahalingpur.',
-  twitterImage: seo.activities.ogImage,
+  twitterImage: seo['en'].activities.ogImage,
   schema: [
     {
       '@context': 'https://schema.org',

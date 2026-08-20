@@ -1,0 +1,311 @@
+---
+import BaseLayout from '../../../components/layout/BaseLayout.astro';
+import Button from '../../../components/common/Button.astro';
+import ActivityDetailLayout from '../../../components/media/ActivityDetailLayout.astro';
+import ActivityHero from '../../../components/media/ActivityHero.astro';
+import GalleryCard from '../../../components/media/GalleryCard.astro';
+import VideoCard from '../../../components/media/VideoCard.astro';
+import RelatedActivities from '../../../components/media/RelatedActivities.astro';
+import MediaCtaSection from '../../../components/sections/media/MediaCtaSection.astro';
+import { activities, getActivitySchemas } from '../../../data/activities';
+import { videoItems } from '../../../data/media';
+import { site } from '../../../data/site';
+import {
+  getPublishedActivities,
+  getRelatedActivities,
+  sortActivitiesByDate,
+} from '../../../utils/media';
+
+export function getStaticPaths() {
+  return getPublishedActivities(activities['kn']).map((activity) => ({
+    params: { slug: activity.slug },
+    props: { activity },
+  }));
+}
+
+const { activity } = Astro.props;
+const relatedActivities = getRelatedActivities(activities['kn'], activity.slug, activity.category);
+const activityVideos = videoItems.filter((video) => activity.videos?.includes(video.id));
+const activityDate = activity.date ? new Date(activity.date).toISOString() : undefined;
+const activityOgImage = `/images/og/activities/${activity.slug}-og.jpg`;
+
+const page = {
+  title: `${activity.title} | NGO Activity in Mahalingpur`,
+  description: activity.description,
+  canonical: `/activities/${activity.slug}`,
+  ogType: 'article',
+  ogTitle: activity.title,
+  ogDescription: activity.description,
+  ogImage: activityOgImage,
+  ogImageAlt: activity.imageAlt,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  twitterTitle: activity.title,
+  twitterDescription: activity.description,
+  twitterImage: activityOgImage,
+  twitterImageAlt: activity.imageAlt,
+  ...(activityDate ? { publishedDate: activityDate, modifiedDate: activityDate } : {}),
+  articleAuthor: site.siteName,
+  articleSection: activity.category,
+  articleTags: activity.tags,
+  schema: getActivitySchemas(activity, activityOgImage),
+};
+
+const allPublishedActivities = sortActivitiesByDate(getPublishedActivities(activities['kn']));
+---
+
+<BaseLayout {...page}>
+  <nav class="activity-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/activities">Activities</a>
+    <span aria-hidden="true">/</span>
+    <span>{activity.title}</span>
+  </nav>
+
+  <ActivityDetailLayout activity={activity}>
+    <ActivityHero
+      title={activity.title}
+      kannadaTitle={activity.kannadaTitle}
+      description={activity.description}
+      category={activity.category}
+      date={activity.date}
+      dateLabel={activity.dateLabel}
+      time={activity.time}
+      location={activity.location}
+      image={activity.image}
+      imageAlt={activity.imageAlt}
+      primaryCta={{ label: 'Volunteer With Us', href: '/volunteer' }}
+      secondaryCta={{ label: 'View Gallery', href: '/gallery' }}
+    />
+
+    <section class="activity-content" aria-labelledby="activity-overview-title">
+      <div class="activity-content__inner">
+        <div>
+          <p class="eyebrow">Overview</p>
+          <h2 id="activity-overview-title">{activity.overviewTitle}</h2>
+          <p>{activity.overview}</p>
+        </div>
+        <div>
+          <p class="eyebrow">Purpose</p>
+          <h2>{activity.purposeTitle}</h2>
+          <p>{activity.purpose}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="activity-details" aria-labelledby="activity-details-title">
+      <div class="activity-details__inner">
+        <div class="activity-details__header">
+          <p class="eyebrow">Activity Details</p>
+          <h2 id="activity-details-title">How This Activity Was Supported</h2>
+          <p>
+            These notes keep the public activity record clear while leaving room for verified
+            photos and updates to be added later.
+          </p>
+        </div>
+        <div class="activity-details__grid">
+          {activity.details.map((detail) => (
+            <article>
+              <h3>{detail.title}</h3>
+              <p>{detail.content}</p>
+            </article>
+          ))}
+        </div>
+        {
+          activity.impactHighlights && (
+            <div class="activity-details__highlights" aria-label="Activity purpose highlights">
+              {activity.impactHighlights.map((item) => <span>{item}</span>)}
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <section class="activity-gallery" aria-labelledby="activity-gallery-title">
+      <div class="activity-gallery__inner">
+        <div class="activity-gallery__header">
+          <p class="eyebrow">Activity Gallery</p>
+          <h2 id="activity-gallery-title">Photos for This Activity</h2>
+          <p>Placeholder image areas keep the page stable until real photos are added.</p>
+        </div>
+        <div class="activity-gallery__grid">
+          {activity.gallery.map((item) => (
+            <GalleryCard
+              title={item.title}
+              description={item.caption}
+              category={activity.category}
+              image={item.image}
+              imageAlt={item.imageAlt}
+              caption={item.caption}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {
+      activityVideos.length > 0 && (
+        <section class="activity-videos" aria-labelledby="activity-videos-title">
+          <div class="activity-videos__inner">
+            <div class="activity-videos__header">
+              <p class="eyebrow">Activity Videos</p>
+              <h2 id="activity-videos-title">Activity Video</h2>
+              <p>Watch local activity videos without external embeds or autoplay.</p>
+            </div>
+            <div class="activity-videos__grid">
+              {activityVideos.map((video) => (
+                <VideoCard
+                  title={video.title}
+                  description={video.description}
+                  category={video.category}
+                  poster={video.poster}
+                  videoSrc={video.videoSrc}
+                  duration={video.duration}
+                  relatedHref={video.relatedHref}
+                  videoAltText={video.videoAltText}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <section class="activity-links" aria-labelledby="activity-links-title">
+      <div class="activity-links__inner">
+        <div>
+          <p class="eyebrow">Related Work</p>
+          <h2 id="activity-links-title">Explore Related NGO Work</h2>
+        </div>
+        <div class="activity-links__list">
+          {activity.relatedLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+          <a href="/activities">All Activities</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </div>
+    </section>
+  </ActivityDetailLayout>
+
+  <RelatedActivities activities={relatedActivities.length > 0 ? relatedActivities : allPublishedActivities.slice(0, 3)} />
+
+  <MediaCtaSection
+    title="Join Our Upcoming NGO Activities"
+    description="Support Mahaa Foundation Mahalingpur by volunteering, donating, or contacting us to participate in social service, student support, ration support, health support, and tree plantation work."
+    primaryCta={{ label: 'Volunteer With Us', href: '/volunteer' }}
+    secondaryCta={{ label: 'Donate Now', href: '/donate' }}
+    tertiaryCta={{ label: 'Contact Us', href: '/contact' }}
+  />
+</BaseLayout>
+
+<style>
+  .activity-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    width: min(100% - 2rem, var(--container));
+    margin: var(--space-5) auto 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .activity-breadcrumb a {
+    color: var(--color-primary-dark);
+  }
+
+  .activity-content,
+  .activity-gallery,
+  .activity-links {
+    padding: var(--space-7) 1rem;
+  }
+
+  .activity-details,
+  .activity-videos {
+    padding: var(--space-7) 1rem;
+    background: var(--color-bg-soft);
+  }
+
+  .activity-content__inner,
+  .activity-details__inner,
+  .activity-gallery__inner,
+  .activity-videos__inner,
+  .activity-links__inner {
+    width: min(100%, var(--container));
+    margin-inline: auto;
+  }
+
+  .activity-content__inner {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .activity-content p:not(.eyebrow),
+  .activity-details p:not(.eyebrow),
+  .activity-gallery p:not(.eyebrow),
+  .activity-videos p:not(.eyebrow) {
+    color: var(--color-muted);
+  }
+
+  .activity-details__header,
+  .activity-gallery__header,
+  .activity-videos__header {
+    max-width: 760px;
+    margin-bottom: var(--space-5);
+  }
+
+  .activity-details__grid,
+  .activity-gallery__grid,
+  .activity-videos__grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .activity-details__grid article {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: var(--space-5);
+  }
+
+  .activity-details__highlights,
+  .activity-links__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+  }
+
+  .activity-details__highlights span,
+  .activity-links__list a {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    color: var(--color-primary-dark);
+    padding: 0.55rem 0.78rem;
+    font-weight: 900;
+  }
+
+  .activity-links__list a {
+    text-decoration: none;
+  }
+
+  .activity-links__list a:hover {
+    background: var(--color-primary-soft);
+  }
+
+  @media (min-width: 760px) {
+    .activity-content__inner,
+    .activity-details__grid,
+    .activity-gallery__grid,
+    .activity-videos__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1040px) {
+    .activity-gallery__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

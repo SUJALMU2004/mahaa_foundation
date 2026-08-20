@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import PageHero from '../../components/sections/inner/PageHero.astro';
+import IntroTextSection from '../../components/sections/inner/IntroTextSection.astro';
+import SplitContentSection from '../../components/sections/inner/SplitContentSection.astro';
+import FeatureGridSection from '../../components/sections/inner/FeatureGridSection.astro';
+import TeamSection from '../../components/sections/inner/TeamSection.astro';
+import InnerCtaSection from '../../components/sections/inner/InnerCtaSection.astro';
+import { innerPages, getPageSchemas } from '../../data/pages';
+import { seo } from '../../data/seo';
+
+const page = innerPages['kn'].about;
+const volunteerOnlyCta = {
+  ...page.cta,
+  secondaryCta: undefined,
+};
+
+const meta = {
+  ...seo['kn'].about,
+  ogTitle: page.seo.ogTitle,
+  ogDescription: page.seo.ogDescription,
+  ogImage: page.seo.ogImage,
+  twitterImage: page.seo.ogImage,
+  schema: getPageSchemas('about'),
+};
+---
+
+<BaseLayout {...meta}>
+  <PageHero {...page.hero} hideActions />
+  <IntroTextSection {...page.intro} />
+  {page.split && <SplitContentSection {...page.split} />}
+  {page.features && <FeatureGridSection {...page.features} />}
+  <TeamSection
+    eyebrow="Team"
+    title="Team Behind Mahaa Foundation Mahalingpur"
+    description="A local team supports Mahaa Foundation Mahalingpur through service coordination, student support, health awareness, tree plantation, and community welfare activities."
+  />
+  <InnerCtaSection {...volunteerOnlyCta} />
+</BaseLayout>

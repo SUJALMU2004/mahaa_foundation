@@ -1,6 +1,7 @@
 ---
 import Container from './Container.astro';
 import Button from './Button.astro';
+import LanguagePicker from './LanguagePicker.astro';
 import {
   actionNavigation,
   primaryNavigation,
@@ -8,28 +9,25 @@ import {
 import { site } from '../../data/site';
 import logoImage from '../../assets/logo/logo.png';
 import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+const currentPrimaryNav = primaryNavigation[lang];
+const currentActionNav = actionNavigation[lang];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 function isActive(href: string) {
-  const normalizedHref = href.replace(/\/$/, '') || '/';
+  const translatedHref = translatePath(href, lang);
+  const normalizedHref = translatedHref.replace(/\/$/, '') || '/';
   return normalizedHref === currentPath;
 }
 ---
 
 <header class="site-header">
-  <div class="site-header__utility">
-    <Container class="site-header__utility-inner">
-      <p>Serving Mahalingpur & nearby communities</p>
-      <div>
-        <a href={site.phoneHref}>Call {site.phoneDisplay}</a>
-        <span aria-hidden="true">•</span>
-        <a href={site.locationUrl} target="_blank" rel="noopener noreferrer">Find our office</a>
-      </div>
-    </Container>
-  </div>
   <Container class="site-header__inner">
-    <a class="site-header__brand" href="/" aria-label={`${site.siteName} home`}>
+    <a class="site-header__brand" href={translatePath('/', lang)} aria-label={`${site.siteName} home`}>
       <Image
         class="site-header__logo"
         src={logoImage}
@@ -45,9 +43,9 @@ function isActive(href: string) {
 
     <nav class="site-header__desktop-nav" aria-label="Primary navigation">
       {
-        primaryNavigation.map((item) => (
+        currentPrimaryNav.map((item) => (
           <a
-            href={item.href}
+            href={translatePath(item.href, lang)}
             aria-current={isActive(item.href) ? 'page' : undefined}
             class:list={['site-header__nav-link', isActive(item.href) && 'is-active']}
           >
@@ -58,12 +56,13 @@ function isActive(href: string) {
     </nav>
 
     <div class="site-header__actions">
-      <Button href={actionNavigation[0].href} variant="outline" class="site-header__volunteer">
-        {actionNavigation[0].label}
+      <Button href={translatePath(currentActionNav[0].href, lang)} variant="outline" class="site-header__volunteer">
+        {currentActionNav[0].label}
       </Button>
-      <Button href={actionNavigation[1].href} variant="primary">
-        {actionNavigation[1].label}
+      <Button href={translatePath(currentActionNav[1].href, lang)} variant="primary">
+        {currentActionNav[1].label}
       </Button>
+      <LanguagePicker />
     </div>
 
     <details class="site-header__mobile-menu">
@@ -78,9 +77,9 @@ function isActive(href: string) {
             <div class="site-header__mobile-group">
               <p class="site-header__mobile-label">Main Navigation</p>
               {
-                primaryNavigation.map((item) => (
+                currentPrimaryNav.map((item) => (
                   <a
-                    href={item.href}
+                    href={translatePath(item.href, lang)}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                     class:list={['site-header__mobile-link', isActive(item.href) && 'is-active']}
                   >
@@ -91,12 +90,15 @@ function isActive(href: string) {
             </div>
 
             <div class="site-header__mobile-actions">
-              <Button href={actionNavigation[0].href} variant="outline">
-                {actionNavigation[0].label}
+              <Button href={translatePath(currentActionNav[0].href, lang)} variant="outline">
+                {currentActionNav[0].label}
               </Button>
-              <Button href={actionNavigation[1].href} variant="primary">
-                {actionNavigation[1].label}
+              <Button href={translatePath(currentActionNav[1].href, lang)} variant="primary">
+                {currentActionNav[1].label}
               </Button>
+              <div style="margin-top: 1rem;">
+                <LanguagePicker />
+              </div>
             </div>
           </nav>
         </Container>

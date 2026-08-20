@@ -2,6 +2,8 @@
 import Container from '../../common/Container.astro';
 import Button from '../../common/Button.astro';
 
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
+
 export interface Props {
   title: string;
   description: string;
@@ -11,6 +13,8 @@ export interface Props {
 }
 
 const { title, description, primaryCta, secondaryCta, tertiaryCta } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <section class="media-cta" aria-labelledby="media-cta-title">
@@ -21,9 +25,9 @@ const { title, description, primaryCta, secondaryCta, tertiaryCta } = Astro.prop
         <p>{description}</p>
       </div>
       <div class="media-cta__actions">
-        <Button href={primaryCta.href} variant="primary">{primaryCta.label}</Button>
-        {secondaryCta && <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>}
-        {tertiaryCta && <Button href={tertiaryCta.href} variant="secondary">{tertiaryCta.label}</Button>}
+        <Button href={translatePath(primaryCta.href, lang)} variant="primary">{primaryCta.label}</Button>
+        {secondaryCta && <Button href={translatePath(secondaryCta.href, lang)} variant="outline">{secondaryCta.label}</Button>}
+        {tertiaryCta && <Button href={translatePath(tertiaryCta.href, lang)} variant="secondary">{tertiaryCta.label}</Button>}
       </div>
     </div>
   </Container>

@@ -2,20 +2,25 @@
 import Container from '../../common/Container.astro';
 import SectionHeader from '../../common/SectionHeader.astro';
 import { home } from '../../../data/home';
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+
+const { impactStats, impactStatsSection } = home[lang];
 ---
 
 <section class="impact-section" aria-labelledby="impact-title">
   <Container>
     <SectionHeader
       headingId="impact-title"
-      eyebrow="Impact"
-      title="Our Growing Impact"
-      description="Every tree planted, every ration kit shared, and every volunteer hour brings us closer to a cleaner, kinder, and stronger community."
+      eyebrow={impactStatsSection.eyebrow}
+      title={impactStatsSection.title}
+      description={impactStatsSection.description}
     />
 
     <div class="impact-grid">
       {
-        home.impactStats.map((stat) => (
+        impactStats.map((stat) => (
           <article class="impact-card">
             <strong>{stat.value}</strong>
             <h3>{stat.label}</h3>
@@ -29,84 +34,61 @@ import { home } from '../../../data/home';
 
 <style>
   .impact-section {
-    position: relative;
-    overflow: hidden;
     padding: var(--space-8) 0;
-    background: var(--color-primary-dark);
-  }
-
-  .impact-section::after {
-    position: absolute;
-    top: -10rem;
-    right: -8rem;
-    width: 24rem;
-    height: 24rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    content: "";
-  }
-
-  .impact-section :global(.container) {
-    position: relative;
-    z-index: 1;
-  }
-
-  .impact-section :global(.section-header__eyebrow) {
-    color: #efc979;
-  }
-
-  .impact-section :global(.section-header h2) {
-    color: #ffffff;
-  }
-
-  .impact-section :global(.section-header__description) {
-    color: rgba(255, 255, 255, 0.68);
+    background: var(--color-bg-soft);
   }
 
   .impact-grid {
     display: grid;
-    gap: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    gap: var(--space-4);
   }
 
   .impact-card {
     position: relative;
-    border: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 0;
-    background: transparent;
-    padding: var(--space-5);
-    box-shadow: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #ffffff;
+    padding: var(--space-5) var(--space-5) var(--space-5);
+    box-shadow: var(--shadow-card);
     transition: box-shadow var(--transition), transform var(--transition);
     overflow: hidden;
   }
 
+  .impact-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
   .impact-card:hover {
-    background: rgba(255, 255, 255, 0.045);
-    box-shadow: none;
-    transform: none;
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
   }
 
   .impact-card strong {
     display: block;
     margin-bottom: var(--space-2);
-    color: #efc979;
+    color: var(--color-primary);
     font-family: var(--font-display);
     font-size: 2.4rem;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
   .impact-card h3 {
     margin-bottom: var(--space-2);
-    color: #ffffff;
+    color: var(--color-text);
   }
 
   .impact-card p {
     margin-bottom: 0;
-    color: rgba(255, 255, 255, 0.62);
+    color: var(--color-muted);
     font-size: 0.94rem;
     line-height: 1.6;
   }
@@ -115,23 +97,11 @@ import { home } from '../../../data/home';
     .impact-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    .impact-card {
-      border-right: 1px solid rgba(255, 255, 255, 0.14);
-    }
   }
 
   @media (min-width: 1024px) {
     .impact-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .impact-card {
-      border-bottom: 0;
-    }
-
-    .impact-card:last-child {
-      border-right: 0;
     }
   }
 

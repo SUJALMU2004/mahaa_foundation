@@ -14,10 +14,9 @@ import { homeWebsiteSchema } from '../data/home';
 import { seo } from '../data/seo';
 
 const page = {
-  ...seo.home,
-  ogTitle: 'Mahaa Foundation Mahalingpur',
-  ogDescription:
-    'Serving people, supporting students, providing ration help, organizing health awareness, and growing greener communities in Mahalingpur, Bagalkot, Karnataka.',
+  ...seo['en'].home,
+  ogTitle: seo['en'].home.title,
+  ogDescription: seo['en'].home.description,
   twitterImage: '/images/og/home-og.jpg',
   schema: homeWebsiteSchema,
 };

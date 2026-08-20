@@ -3,6 +3,11 @@ import Container from '../../common/Container.astro';
 import SectionHeader from '../../common/SectionHeader.astro';
 import Button from '../../common/Button.astro';
 import { home } from '../../../data/home';
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+const { blogSection } = home[lang];
 ---
 
 <section class="blog-section" aria-labelledby="blog-title">
@@ -10,21 +15,20 @@ import { home } from '../../../data/home';
     <div class="blog-section__heading">
       <SectionHeader
         headingId="blog-title"
-        eyebrow="NGO Blog"
-        title="Latest From Our NGO Blog"
-        description="Read updates, awareness articles, and stories about social service, tree plantation, student support, health support, awareness, and community welfare."
+        eyebrow={blogSection.eyebrow}
+        title={blogSection.title}
+        description={blogSection.description}
       />
-      <Button href="/blog" variant="outline">Visit Blog</Button>
+      <Button href={translatePath('/blog', lang)} variant="outline">{blogSection.visitBlogBtn}</Button>
     </div>
 
     <div class="blog-grid">
-      {
-        home.blogPreview.map((post) => (
+      {home[lang].blogPreview.map((post) => (
           <article class="blog-card">
             <p class="blog-card__category">{post.category}</p>
             <h3>{post.title}</h3>
             <p>{post.excerpt}</p>
-            <a href={post.href}>Read updates on the blog</a>
+            <a href={translatePath(post.href, lang)}>{blogSection.readUpdatesText}</a>
           </article>
         ))
       }

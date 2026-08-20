@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import PageHero from '../../components/sections/inner/PageHero.astro';
+import IntroTextSection from '../../components/sections/inner/IntroTextSection.astro';
+import FeatureGridSection from '../../components/sections/inner/FeatureGridSection.astro';
+import ImpactHighlightSection from '../../components/sections/inner/ImpactHighlightSection.astro';
+import InnerCtaSection from '../../components/sections/inner/InnerCtaSection.astro';
+import { innerPages, getPageSchemas } from '../../data/pages';
+import { seo } from '../../data/seo';
+
+const page = innerPages['kn'].ourWork;
+const meta = {
+  ...seo['kn'].ourWork,
+  ogTitle: page.seo.ogTitle,
+  ogDescription: page.seo.ogDescription,
+  ogImage: page.seo.ogImage,
+  twitterImage: page.seo.ogImage,
+  schema: getPageSchemas('ourWork'),
+};
+---
+
+<BaseLayout {...meta}>
+  <PageHero {...page.hero} variant="modern" />
+  <IntroTextSection {...page.intro} />
+  {page.features && <FeatureGridSection {...page.features} variant="work-modern" />}
+  {page.highlight && <ImpactHighlightSection {...page.highlight} />}
+  <InnerCtaSection {...page.cta} variant="solid" />
+</BaseLayout>

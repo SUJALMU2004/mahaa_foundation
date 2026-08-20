@@ -20,17 +20,17 @@ const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
 const categories = getCategories(posts);
 
 const page = {
-  ...seo.blog,
+  ...seo['en'].blog,
   ogTitle: 'Mahaa Foundation Blog on Social Service and Community Welfare',
   ogDescription: 'Read stories, updates, and awareness articles from Mahaa Foundation Mahalingpur.',
-  twitterImage: seo.blog.ogImage,
+  twitterImage: seo['en'].blog.ogImage,
   schema: [
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: 'Mahaa Foundation Blog',
       url: absoluteUrl('/blog'),
-      description: seo.blog.description,
+      description: seo['en'].blog.description,
       isPartOf: {
         '@type': 'WebSite',
         name: site.siteName,
@@ -42,7 +42,7 @@ const page = {
       '@type': 'Blog',
       name: 'Mahaa Foundation Blog',
       url: absoluteUrl('/blog'),
-      description: seo.blog.description,
+      description: seo['en'].blog.description,
       publisher: {
         '@type': site.organizationType,
         name: site.siteName,

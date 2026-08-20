@@ -9,14 +9,14 @@ import InnerCtaSection from '../components/sections/inner/InnerCtaSection.astro'
 import { innerPages, getPageSchemas } from '../data/pages';
 import { seo } from '../data/seo';
 
-const page = innerPages.about;
+const page = innerPages['en'].about;
 const volunteerOnlyCta = {
   ...page.cta,
   secondaryCta: undefined,
 };
 
 const meta = {
-  ...seo.about,
+  ...seo['en'].about,
   ogTitle: page.seo.ogTitle,
   ogDescription: page.seo.ogDescription,
   ogImage: page.seo.ogImage,

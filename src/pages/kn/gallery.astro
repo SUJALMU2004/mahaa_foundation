@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import GalleryHeroSection from '../../components/sections/media/GalleryHeroSection.astro';
+import GalleryGridSection from '../../components/sections/media/GalleryGridSection.astro';
+import VideoPreviewSection from '../../components/sections/media/VideoPreviewSection.astro';
+import MediaCtaSection from '../../components/sections/media/MediaCtaSection.astro';
+import { media } from '../../data/media';
+
+const galleryItems = media['kn'].galleryItems;
+const videoItems = media['kn'].videoItems;
+import { seo } from '../../data/seo';
+import { absoluteUrl } from '../../utils/seo';
+
+const page = {
+  ...seo['kn'].gallery,
+  ogTitle: 'Mahaa Foundation Activity Gallery in Mahalingpur',
+  ogDescription:
+    'See moments from tree plantation, ration distribution, student support, health support, awareness programs, and volunteer work in Mahalingpur.',
+  twitterImage: seo['kn'].gallery.ogImage,
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Mahaa Foundation Activity Gallery',
+      description:
+        'View photos and videos from Mahaa Foundation activities including tree plantation, ration distribution, student support, health support, awareness, and social work.',
+      url: absoluteUrl('/gallery'),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ImageGallery',
+      name: 'Mahaa Foundation Activity Gallery',
+      url: absoluteUrl('/gallery'),
+      image: galleryItems.map((item) => absoluteUrl(item.image)),
+    },
+  ],
+};
+---
+
+<BaseLayout {...page}>
+  <GalleryHeroSection />
+  <GalleryGridSection items={galleryItems} />
+  <VideoPreviewSection videos={videoItems} />
+
+  <MediaCtaSection
+    title="ಮುಂದಿನ ಚಟುವಟಿಕೆಯ ಭಾಗವಾಗಿರಿ"
+    description="ಮರ ನೆಡುವಿಕೆ, ರೇಷನ್ ವಿತರಣೆ, ವಿದ್ಯಾರ್ಥಿ ಬೆಂಬಲ, ಆರೋಗ್ಯ ಬೆಂಬಲ, ಜಾಗೃತಿ ಮತ್ತು ಸಮುದಾಯ ಕಲ್ಯಾಣ ಚಟುವಟಿಕೆಗಳಿಗಾಗಿ ಸ್ವಯಂಸೇವಕರಾಗಿ ಮಹಾ ಫೌಂಡೇಶನ್ ಕಾರ್ಯಕ್ಕೆ ಸೇರಿಕೊಳ್ಳಿ."
+    primaryCta={{ label: 'ಸ್ವಯಂಸೇವಕರಾಗಿ', href: '/volunteer' }}
+    secondaryCta={{ label: 'ಸಂಪರ್ಕಿಸಿ', href: '/contact' }}
+    tertiaryCta={{ label: 'ದೇಣಿಗೆ ನೀಡಿ', href: '/donate' }}
+  />
+</BaseLayout>

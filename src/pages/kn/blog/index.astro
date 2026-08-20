@@ -1,0 +1,184 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../components/layout/BaseLayout.astro';
+import BlogHero from '../../../components/blog/BlogHero.astro';
+import BlogCard from '../../../components/blog/BlogCard.astro';
+import CategoryPill from '../../../components/blog/CategoryPill.astro';
+import Container from '../../../components/common/Container.astro';
+import { seo } from '../../../data/seo';
+import { site } from '../../../data/site';
+import { absoluteUrl } from '../../../utils/seo';
+import {
+  getCategories,
+  getPublishedPosts,
+  slugifyCategory,
+  sortPostsByDate,
+} from '../../../utils/blog';
+
+const posts = sortPostsByDate(getPublishedPosts(await getCollection('blog')));
+const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
+const categories = getCategories(posts);
+
+const page = {
+  ...seo['kn'].blog,
+  ogTitle: 'Mahaa Foundation Blog on Social Service and Community Welfare',
+  ogDescription: 'Read stories, updates, and awareness articles from Mahaa Foundation Mahalingpur.',
+  twitterImage: seo['kn'].blog.ogImage,
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Mahaa Foundation Blog',
+      url: absoluteUrl('/blog'),
+      description: seo['kn'].blog.description,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: site.siteName,
+        url: site.url,
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'Mahaa Foundation Blog',
+      url: absoluteUrl('/blog'),
+      description: seo['kn'].blog.description,
+      publisher: {
+        '@type': site.organizationType,
+        name: site.siteName,
+        url: site.url,
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout {...page}>
+  <BlogHero
+    eyebrow="NGO Blog"
+    title="Mahaa Foundation Blog"
+    description="Read awareness articles, activity updates, and educational blogs about tree plantation, ration distribution, student support, health support, volunteering, and social service."
+  />
+
+  {
+    featuredPost && (
+      <section class="featured-blog" aria-labelledby="featured-blog-title">
+        <Container>
+          <div class="featured-blog__header">
+            <p>Featured Post</p>
+            <h2 id="featured-blog-title">{featuredPost.data.title}</h2>
+          </div>
+          <BlogCard
+            title={featuredPost.data.title}
+            description={featuredPost.data.description}
+            href={`/blog/${featuredPost.id}`}
+            image={featuredPost.data.image}
+            imageAlt={featuredPost.data.imageAlt}
+            category={featuredPost.data.category}
+            publishDate={featuredPost.data.publishDate}
+            tags={featuredPost.data.tags}
+            variant="featured"
+          />
+        </Container>
+      </section>
+    )
+  }
+
+  <section class="blog-categories" aria-labelledby="blog-categories-title">
+    <Container>
+      <h2 id="blog-categories-title">Browse by Category</h2>
+      <div class="category-pills">
+        {categories.map((category) => <CategoryPill label={category} href={`/blog/category/${slugifyCategory(category)}`} />)}
+      </div>
+    </Container>
+  </section>
+
+  <section class="blog-listing" aria-labelledby="blog-listing-title">
+    <Container>
+      <div class="blog-listing__header">
+        <h2 id="blog-listing-title">Latest Articles</h2>
+        <p>
+          Explore practical guides and awareness articles about social service, student support,
+          health support, environmental responsibility, food support, volunteering, and community
+          welfare.
+        </p>
+      </div>
+      <div class="blog-grid">
+        {
+          posts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              href={`/blog/${post.id}`}
+              image={post.data.image}
+              imageAlt={post.data.imageAlt}
+              category={post.data.category}
+              publishDate={post.data.publishDate}
+              tags={post.data.tags}
+              variant="modern"
+            />
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .featured-blog,
+  .blog-listing {
+    padding: var(--space-7) 0;
+  }
+
+  .featured-blog__header,
+  .blog-listing__header {
+    max-width: 760px;
+    margin-bottom: var(--space-5);
+  }
+
+  .featured-blog__header p {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .blog-categories {
+    padding: var(--space-6) 0;
+    background: var(--color-bg-soft);
+  }
+
+  .category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .blog-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .blog-listing {
+    background: #ffffff;
+  }
+
+  .blog-listing__header p {
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 680px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

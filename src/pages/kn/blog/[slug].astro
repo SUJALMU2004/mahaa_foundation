@@ -1,0 +1,278 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../components/layout/BaseLayout.astro';
+import BlogPostHeader from '../../../components/blog/BlogPostHeader.astro';
+import RelatedPosts from '../../../components/blog/RelatedPosts.astro';
+import Button from '../../../components/common/Button.astro';
+import VideoCard from '../../../components/media/VideoCard.astro';
+import { site } from '../../../data/site';
+import { videoItems } from '../../../data/media';
+import { absoluteUrl } from '../../../utils/seo';
+import {
+  getPublishedPosts,
+  getReadingTime,
+  getRelatedPosts,
+  sortPostsByDate,
+} from '../../../utils/blog';
+
+export async function getStaticPaths() {
+  const posts = sortPostsByDate(getPublishedPosts(await getCollection('blog')));
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, posts },
+  }));
+}
+
+const { post, posts } = Astro.props;
+const { Content } = await render(post);
+const readingTime = getReadingTime(post.body);
+const relatedPosts = getRelatedPosts(posts, post.id, post.data.category);
+const relatedVideos = videoItems.filter((video) => post.data.videoIds?.includes(video.id));
+
+const seoTitle = post.data.seoTitle ?? post.data.title;
+const seoDescription = post.data.seoDescription ?? post.data.description;
+const ogTitle = post.data.ogTitle ?? seoTitle;
+const ogDescription = post.data.ogDescription ?? seoDescription;
+const ogImage = post.data.ogImage ?? `/images/og/blog/${post.id}-og.jpg`;
+const canonical = `/blog/${post.id}`;
+const canonicalUrl = absoluteUrl(canonical);
+const dateModified = post.data.updatedDate ?? post.data.publishDate;
+
+const page = {
+  title: seoTitle,
+  description: seoDescription,
+  canonical,
+  ogType: 'article',
+  ogTitle,
+  ogDescription,
+  ogImage,
+  ogImageAlt: post.data.imageAlt,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  twitterTitle: ogTitle,
+  twitterDescription: ogDescription,
+  twitterImage: ogImage,
+  twitterImageAlt: post.data.imageAlt,
+  publishedDate: post.data.publishDate.toISOString(),
+  modifiedDate: dateModified.toISOString(),
+  articleAuthor: post.data.author,
+  articleSection: post.data.category,
+  articleTags: post.data.tags,
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      description: post.data.description,
+      image: absoluteUrl(ogImage),
+      author: {
+        '@type': 'Organization',
+        name: post.data.author,
+      },
+      publisher: {
+        '@type': site.organizationType,
+        name: site.siteName,
+        url: site.url,
+        logo: {
+          '@type': 'ImageObject',
+          url: absoluteUrl(site.logo),
+        },
+      },
+      datePublished: post.data.publishDate.toISOString(),
+      dateModified: dateModified.toISOString(),
+      mainEntityOfPage: canonicalUrl,
+      articleSection: post.data.category,
+      keywords: post.data.tags.join(', '),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: absoluteUrl('/blog') },
+        { '@type': 'ListItem', position: 3, name: post.data.title, item: canonicalUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout {...page}>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/blog">Blog</a>
+    <span aria-hidden="true">/</span>
+    <span>{post.data.title}</span>
+  </nav>
+
+  <article>
+    <BlogPostHeader
+      title={post.data.title}
+      description={post.data.description}
+      category={post.data.category}
+      publishDate={post.data.publishDate}
+      updatedDate={post.data.updatedDate}
+      author={post.data.author}
+      readingTime={readingTime}
+      tags={post.data.tags}
+      image={post.data.image}
+      imageAlt={post.data.imageAlt}
+    />
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+
+  {
+    relatedVideos.length > 0 && (
+      <section class="article-videos" aria-labelledby="article-videos-title">
+        <div class="article-videos__inner">
+          <div class="article-videos__header">
+            <p class="eyebrow">Related Videos</p>
+            <h2 id="article-videos-title">Watch Related Activity Videos</h2>
+            <p>These local videos are connected to the topic covered in this article.</p>
+          </div>
+          <div class="article-videos__grid">
+            {relatedVideos.map((video) => (
+              <VideoCard
+                title={video.title}
+                description={video.description}
+                category={video.category}
+                poster={video.poster}
+                videoSrc={video.videoSrc}
+                duration={video.duration}
+                relatedHref={video.relatedHref}
+                videoAltText={video.videoAltText}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <RelatedPosts posts={relatedPosts} />
+
+  <section class="post-cta" aria-labelledby="post-cta-title">
+    <div class="post-cta__inner">
+      <h2 id="post-cta-title">Take the Next Step</h2>
+      <p>Support our work by volunteering, donating, or joining our community activities.</p>
+      <div>
+        <Button href="/volunteer" variant="primary">Volunteer With Us</Button>
+        <Button href="/donate" variant="outline">Support Our Work</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    width: min(100% - 2rem, 920px);
+    margin: var(--space-5) auto 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .breadcrumb a {
+    color: var(--color-primary-dark);
+  }
+
+  .article-content {
+    width: min(100% - 2rem, 760px);
+    margin: 0 auto;
+    padding: var(--space-4) 0 var(--space-7);
+  }
+
+  .article-content :global(h2) {
+    margin-top: var(--space-7);
+  }
+
+  .article-content :global(h3) {
+    margin-top: var(--space-5);
+  }
+
+  .article-content :global(p),
+  .article-content :global(li) {
+    color: var(--color-text);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .article-content :global(a) {
+    color: var(--color-primary-dark);
+    font-weight: 800;
+  }
+
+  .article-content :global(blockquote) {
+    margin: var(--space-5) 0;
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-bg-soft);
+    padding: var(--space-4);
+  }
+
+  .article-videos {
+    padding: var(--space-7) 1rem;
+    background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .article-videos__inner {
+    width: min(100%, var(--container));
+    margin-inline: auto;
+  }
+
+  .article-videos__header {
+    max-width: 760px;
+    margin-bottom: var(--space-5);
+  }
+
+  .article-videos__header p:not(.eyebrow) {
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .article-videos__grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 760px) {
+    .article-videos__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .post-cta {
+    padding: var(--space-7) 1rem;
+  }
+
+  .post-cta__inner {
+    display: grid;
+    gap: var(--space-4);
+    width: min(100%, var(--container));
+    margin-inline: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgb(232 243 235 / 0.92), rgb(255 244 228 / 0.86)),
+      #ffffff;
+    padding: var(--space-6);
+  }
+
+  .post-cta p {
+    color: var(--color-muted);
+  }
+
+  .post-cta div div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+</style>

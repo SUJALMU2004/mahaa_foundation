@@ -2,24 +2,37 @@
 import Container from '../../common/Container.astro';
 import MediaGrid from '../../media/MediaGrid.astro';
 import type { GalleryItem } from '../../../data/media';
+import { getLangFromUrl } from '../../../i18n/utils';
 
 export interface Props {
   items: GalleryItem[];
 }
 
 const { items } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    eyebrow: 'Activity Proof',
+    title: 'Photos from NGO Activities',
+    description: 'Browse photo moments from tree plantation, ration distribution, student support, health support, social service, awareness, and volunteer activities.',
+  },
+  kn: {
+    eyebrow: 'ಚಟುವಟಿಕೆ ಸಾಕ್ಷ್ಯ',
+    title: 'ಎನ್‌ಜಿಒ ಚಟುವಟಿಕೆಗಳ ಫೋಟೋಗಳು',
+    description: 'ಮರ ನೆಡುವಿಕೆ, ರೇಷನ್ ವಿತರಣೆ, ವಿದ್ಯಾರ್ಥಿ ಬೆಂಬಲ, ಆರೋಗ್ಯ ಬೆಂಬಲ, ಸಮಾಜ ಸೇವೆ, ಜಾಗೃತಿ ಮತ್ತು ಸ್ವಯಂಸೇವಕ ಚಟುವಟಿಕೆಗಳಿಂದ ಫೋಟೋ ಕ್ಷಣಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ.',
+  }
+};
+const t = content[lang];
 ---
 
 <section class="gallery-grid-section" aria-labelledby="gallery-grid-title">
   <Container>
     <div class="gallery-grid-section__header">
       <div>
-        <p class="eyebrow">Activity Proof</p>
-        <h2 id="gallery-grid-title">Photos from NGO Activities</h2>
-        <p>
-          Browse photo moments from tree plantation, ration distribution, student support, health
-          support, social service, awareness, and volunteer activities.
-        </p>
+        <p class="eyebrow">{t.eyebrow}</p>
+        <h2 id="gallery-grid-title">{t.title}</h2>
+        <p>{t.description}</p>
       </div>
     </div>
     <MediaGrid items={items} />

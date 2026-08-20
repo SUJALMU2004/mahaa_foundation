@@ -25,6 +25,24 @@ const {
   videoAltText,
 } = Astro.props;
 
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+
+const content = {
+  en: {
+    durationLabel: 'Duration',
+    notice: 'Real local video can be added later in public/videos/.',
+    viewRelated: 'View related work',
+  },
+  kn: {
+    durationLabel: 'ಅವಧಿ',
+    notice: 'ನೈಜ ಸ್ಥಳೀಯ ವೀಡಿಯೊವನ್ನು ನಂತರ public/videos/ ನಲ್ಲಿ ಸೇರಿಸಬಹುದು.',
+    viewRelated: 'ಸಂಬಂಧಿತ ಕೆಲಸವನ್ನು ವೀಕ್ಷಿಸಿ',
+  }
+};
+const t = content[lang];
+
 const videoFilePath = videoSrc ? join(process.cwd(), 'public', videoSrc.replace(/^\/+/, '')) : '';
 const hasLocalVideo = Boolean(videoSrc && existsSync(videoFilePath));
 ---
@@ -49,17 +67,17 @@ const hasLocalVideo = Boolean(videoSrc && existsSync(videoFilePath));
     <h3>{title}</h3>
     <p>{description}</p>
     {
-      duration && <p class="video-card__duration">Duration: {duration}</p>
+      duration && <p class="video-card__duration">{t.durationLabel}: {duration}</p>
     }
     {
       !hasLocalVideo && (
-        <p class="video-card__notice">Real local video can be added later in public/videos/.</p>
+        <p class="video-card__notice">{t.notice}</p>
       )
     }
     {
       relatedHref && (
-        <a class="video-card__link" href={relatedHref}>
-          View related work
+        <a class="video-card__link" href={translatePath(relatedHref, lang)}>
+          {t.viewRelated}
         </a>
       )
     }

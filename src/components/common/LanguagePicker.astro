@@ -1,0 +1,50 @@
+---
+import { languages } from '../../i18n/ui';
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+
+let rawPath = Astro.url.pathname;
+if (lang !== 'en') {
+  const prefix = `/${lang}`;
+  if (rawPath.startsWith(prefix + '/')) {
+    rawPath = rawPath.slice(prefix.length);
+  } else if (rawPath === prefix) {
+    rawPath = '/';
+  }
+}
+---
+<div class="language-picker">
+  <select onchange="window.location.href=this.value" aria-label="Select language">
+    {Object.entries(languages).map(([code, label]) => (
+      <option value={translatePath(rawPath, code as 'en' | 'kn')} selected={code === lang}>
+        {label}
+      </option>
+    ))}
+  </select>
+</div>
+
+<style>
+  .language-picker {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+  }
+  
+  .language-picker select {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 0.375rem;
+    background-color: var(--color-background, #ffffff);
+    color: var(--color-text, #1f2937);
+    font-size: 0.875rem;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .language-picker select:focus {
+    border-color: var(--color-primary, #176b3a);
+    box-shadow: 0 0 0 1px var(--color-primary, #176b3a);
+  }
+</style>

@@ -2,8 +2,10 @@
 import Container from '../../common/Container.astro';
 import Button from '../../common/Button.astro';
 import { home } from '../../../data/home';
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
 
-const cta = home.ctas.donate;
+const cta = home[lang].ctas.donate;
 ---
 
 <section class="donate-section" aria-labelledby="donate-cta-title">

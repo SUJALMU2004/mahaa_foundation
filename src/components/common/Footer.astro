@@ -2,7 +2,12 @@
 import Container from './Container.astro';
 import { mainNavigation } from '../../data/navigation';
 import { site } from '../../data/site';
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils';
 import { whatsappUrl } from '../../utils/seo';
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+const currentMainNavigation = mainNavigation[lang];
 
 const currentYear = new Date().getFullYear();
 ---
@@ -29,18 +34,21 @@ const currentYear = new Date().getFullYear();
             Email
           </a>
         </div>
+        <p>
+          &copy; {currentYear} {site.siteName}. All rights reserved. Built by <a href="https://sujalmujamadar.com/" target="_blank" rel="noopener noreferrer">Sujal Mujamadar</a>
+        </p>
       </section>
 
       <nav aria-labelledby="footer-quick-links" class="site-footer__nav">
         <h3 id="footer-quick-links" class="footer-heading">Directory</h3>
         <ul class="site-footer__links">
-          {mainNavigation.map((item) => (
-            <li>
-              <a href={item.href} class="site-footer__link">
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {
+            currentMainNavigation.map((item) => (
+              <li>
+                <a href={translatePath(item.href, lang)} class="site-footer__link">{item.label}</a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
 
@@ -64,7 +72,7 @@ const currentYear = new Date().getFullYear();
         <p>&copy; {currentYear} {site.siteName}. All rights reserved.</p>
       </div>
       <div class="site-footer__meta">
-        <p>{site.foundedDisplay} · Mahalingpur, Karnataka</p>
+        <p>{site.foundedDisplay} - Fast Static Platform</p>
       </div>
     </div>
   </Container>
@@ -72,9 +80,9 @@ const currentYear = new Date().getFullYear();
 
 <style>
   .site-footer {
-    border-top: 0;
-    background: var(--color-primary-dark);
-    color: #eaf1ed;
+    border-top: 1px solid var(--color-border);
+    background: #050C09; /* Deep off-black green */
+    color: #DFE5E2; /* Clean off-white */
     padding: var(--space-9) 0 var(--space-7);
     font-family: var(--font-sans);
   }
@@ -105,7 +113,7 @@ const currentYear = new Date().getFullYear();
   }
 
   .site-footer__mission {
-    color: #a9bdb2;
+    color: #9BB0A6; /* Clean muted light sage green */
     font-size: 0.92rem;
     line-height: 1.65;
     margin-bottom: var(--space-5);

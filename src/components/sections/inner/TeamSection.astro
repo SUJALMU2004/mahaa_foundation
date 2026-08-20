@@ -1,6 +1,10 @@
 ---
 import Container from '../../common/Container.astro';
-import { founder, teamMembers } from '../../../data/team';
+import { team } from '../../../data/team';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const { founder, teamMembers } = team[lang];
 
 export interface Props {
   eyebrow?: string;
@@ -12,8 +16,7 @@ const allMembers = [founder, ...teamMembers];
 const {
   eyebrow = 'Founder and Team',
   title = 'People Behind Mahaa Foundation Mahalingpur',
-  description =
-    'Mahaa Foundation Mahalingpur is led by founder Anilkumar Ullagaddi with a local team supporting service, education, health awareness, and community welfare activities.',
+  description = 'Mahaa Foundation Mahalingpur is led by founder Anilkumar Ullagaddi with a local team supporting service, education, health awareness, and community welfare activities.',
 } = Astro.props;
 ---
 

@@ -4,9 +4,9 @@ import InnerPageSections from '../components/sections/inner/InnerPageSections.as
 import { innerPages, getPageSchemas } from '../data/pages';
 import { seo } from '../data/seo';
 
-const page = innerPages.treePlantation;
+const page = innerPages['en'].treePlantation;
 const meta = {
-  ...seo.treePlantation,
+  ...seo['en'].treePlantation,
   ogTitle: page.seo.ogTitle,
   ogDescription: page.seo.ogDescription,
   ogImage: page.seo.ogImage,

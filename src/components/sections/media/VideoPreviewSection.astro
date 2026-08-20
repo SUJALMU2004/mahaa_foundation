@@ -3,26 +3,42 @@ import Container from '../../common/Container.astro';
 import Button from '../../common/Button.astro';
 import VideoCard from '../../media/VideoCard.astro';
 import type { VideoItem } from '../../../data/media';
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
 
 export interface Props {
   videos: VideoItem[];
 }
 
 const { videos } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+
+const content = {
+  en: {
+    eyebrow: 'Activity Videos',
+    title: 'Activity Videos',
+    description: 'Watch local activity videos from Mahaa Foundation work without external players, embeds, or autoplay.',
+    btnViewAll: 'View All Videos',
+  },
+  kn: {
+    eyebrow: 'ಚಟುವಟಿಕೆ ವೀಡಿಯೊಗಳು',
+    title: 'ಚಟುವಟಿಕೆ ವೀಡಿಯೊಗಳು',
+    description: 'ಬಾಹ್ಯ ಪ್ಲೇಯರ್‌ಗಳು, ಎಂಬೆಡ್‌ಗಳು ಅಥವಾ ಆಟೋಪ್ಲೇ ಇಲ್ಲದೆ ಮಹಾ ಫೌಂಡೇಶನ್ ಕೆಲಸದ ಸ್ಥಳೀಯ ಚಟುವಟಿಕೆಯ ವೀಡಿಯೊಗಳನ್ನು ವೀಕ್ಷಿಸಿ.',
+    btnViewAll: 'ಎಲ್ಲಾ ವೀಡಿಯೊಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
+  }
+};
+const t = content[lang];
 ---
 
 <section class="video-preview" aria-labelledby="video-preview-title">
   <Container>
     <div class="video-preview__header">
       <div>
-        <p class="eyebrow">Activity Videos</p>
-        <h2 id="video-preview-title">Activity Videos</h2>
-        <p>
-          Watch local activity videos from Mahaa Foundation work without external players,
-          embeds, or autoplay.
-        </p>
+        <p class="eyebrow">{t.eyebrow}</p>
+        <h2 id="video-preview-title">{t.title}</h2>
+        <p>{t.description}</p>
       </div>
-      <Button href="/videos" variant="outline">View All Videos</Button>
+      <Button href={translatePath('/videos', lang)} variant="outline">{t.btnViewAll}</Button>
     </div>
     <div class="video-preview__grid">
       {

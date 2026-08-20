@@ -4,9 +4,9 @@ import InnerPageSections from '../components/sections/inner/InnerPageSections.as
 import { innerPages, getPageSchemas } from '../data/pages';
 import { seo } from '../data/seo';
 
-const page = innerPages.rationDistribution;
+const page = innerPages['en'].rationDistribution;
 const meta = {
-  ...seo.rationDistribution,
+  ...seo['en'].rationDistribution,
   ogTitle: page.seo.ogTitle,
   ogDescription: page.seo.ogDescription,
   ogImage: page.seo.ogImage,

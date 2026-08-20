@@ -4,22 +4,40 @@ import Button from '../../common/Button.astro';
 import { site } from '../../../data/site';
 import galleryHeroImage from '../../../assets/inner/gallery-hero.png';
 import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+
+const content = {
+  en: {
+    eyebrow: 'Gallery',
+    title: 'Mahaa Foundation Gallery',
+    description: `Explore photos and videos from our tree plantation drives, ration distribution activities, student support, health support, awareness work, volunteer service, and community welfare initiatives in ${site.city}.`,
+    btnVolunteer: 'Join as Volunteer',
+    btnActivities: 'View Activities',
+  },
+  kn: {
+    eyebrow: 'ಗ್ಯಾಲರಿ',
+    title: 'ಮಹಾ ಫೌಂಡೇಶನ್ ಗ್ಯಾಲರಿ',
+    description: `${site.city}ಯಲ್ಲಿ ನಮ್ಮ ಮರ ನೆಡುವಿಕೆ ಅಭಿಯಾನಗಳು, ರೇಷನ್ ವಿತರಣೆ ಚಟುವಟಿಕೆಗಳು, ವಿದ್ಯಾರ್ಥಿ ಬೆಂಬಲ, ಆರೋಗ್ಯ ಬೆಂಬಲ, ಜಾಗೃತಿ ಕಾರ್ಯ, ಸ್ವಯಂಸೇವಕ ಸೇವೆ ಮತ್ತು ಸಮುದಾಯ ಕಲ್ಯಾಣ ಉಪಕ್ರಮಗಳ ಫೋಟೋಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.`,
+    btnVolunteer: 'ಸ್ವಯಂಸೇವಕರಾಗಿ',
+    btnActivities: 'ಚಟುವಟಿಕೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
+  }
+};
+const t = content[lang];
 ---
 
 <section class="media-hero" aria-labelledby="gallery-page-title">
   <Container>
     <div class="media-hero__grid">
       <div>
-        <p class="eyebrow">Gallery</p>
-        <h1 id="gallery-page-title">Mahaa Foundation Gallery</h1>
-        <p class="media-hero__description">
-          Explore photos and videos from our tree plantation drives, ration distribution activities,
-          student support, health support, awareness work, volunteer service, and community welfare
-          initiatives in {site.city}.
-        </p>
+        <p class="eyebrow">{t.eyebrow}</p>
+        <h1 id="gallery-page-title">{t.title}</h1>
+        <p class="media-hero__description">{t.description}</p>
         <div class="media-hero__actions">
-          <Button href="/volunteer" variant="primary">Join as Volunteer</Button>
-          <Button href="/activities" variant="outline">View Activities</Button>
+          <Button href={translatePath('/volunteer', lang)} variant="primary">{t.btnVolunteer}</Button>
+          <Button href={translatePath('/activities', lang)} variant="outline">{t.btnActivities}</Button>
         </div>
       </div>
       <div class="media-hero__panel">

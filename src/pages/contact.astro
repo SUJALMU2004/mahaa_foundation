@@ -8,10 +8,10 @@ import ContactConversionSection from '../components/sections/conversion/ContactC
 import { innerPages, getPageSchemas } from '../data/pages';
 import { seo } from '../data/seo';
 
-const page = innerPages.contact;
+const page = innerPages['en'].contact;
 
 const meta = {
-  ...seo.contact,
+  ...seo['en'].contact,
   ogTitle: page.seo.ogTitle,
   ogDescription: page.seo.ogDescription,
   ogImage: page.seo.ogImage,
