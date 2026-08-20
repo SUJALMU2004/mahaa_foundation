@@ -16,9 +16,9 @@ const { hero } = home[lang];
       <div class="home-hero__content">
         <p class="home-hero__eyebrow">{hero.eyebrow}</p>
         <h1 id="home-hero-title" class={lang === 'kn' ? 'is-kannada' : ''}>{hero.title}</h1>
-        <p class="home-hero__kannada">{hero.kannadaLine}</p>
+        {hero.kannadaLine && <p class="home-hero__kannada">{hero.kannadaLine}</p>}
         <p class="home-hero__lead">{hero.description}</p>
-        <p class="home-hero__phrase"><span>{hero.focusPrefix}</span> {hero.phrase}</p>
+        {hero.phrase && <p class="home-hero__phrase"><span>{hero.focusPrefix}</span> {hero.phrase}</p>}
 
         <div class="home-hero__actions" aria-label="Homepage actions">
           <Button href={translatePath(hero.ctas[0].href, lang)} variant="primary">{hero.ctas[0].label}</Button>
@@ -47,7 +47,7 @@ const { hero } = home[lang];
 
 <style>
   .home-hero {
-    padding: var(--space-8) 0;
+    padding: var(--space-6) 0;
     background: var(--color-bg-soft);
   }
 
@@ -76,8 +76,10 @@ const { hero } = home[lang];
 
   .home-hero h1.is-kannada {
     max-width: 100%;
-    font-size: clamp(2.0rem, 3.8vw, 3.4rem);
-    line-height: 1.1;
+    font-size: clamp(1.75rem, 6.5vw, 3.4rem);
+    line-height: 1.2;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .home-hero__lead {
@@ -125,9 +127,9 @@ const { hero } = home[lang];
 
   .home-hero__media {
     display: block;
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
-    border-radius: var(--radius-lg);
+    border-radius: var(--space-4);
     border: 1px solid var(--color-border);
     background: var(--color-bg-soft);
     box-shadow: var(--shadow-card-hover);
@@ -149,9 +151,14 @@ const { hero } = home[lang];
   }
 
   @media (min-width: 768px) {
+    .home-hero {
+      padding: var(--space-8) 0;
+    }
+
     .home-hero__grid {
-      grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
-      align-items: stretch;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-6);
     }
 
     .home-hero__media-wrapper {
@@ -160,20 +167,21 @@ const { hero } = home[lang];
     }
 
     .home-hero__media {
-      height: clamp(430px, 48vw, 560px);
-      aspect-ratio: auto;
+      height: auto;
+      aspect-ratio: 1 / 1.05;
     }
   }
 
   @media (min-width: 1180px) {
     .home-hero__grid {
-      grid-template-columns: minmax(500px, 0.95fr) minmax(560px, 1.05fr);
-      gap: var(--space-7);
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      align-items: center;
     }
 
     .home-hero__media {
-      height: clamp(560px, 44vw, 680px);
-      aspect-ratio: auto;
+      height: auto;
+      aspect-ratio: 1 / 1;
     }
 
     .home-hero__media-wrapper {

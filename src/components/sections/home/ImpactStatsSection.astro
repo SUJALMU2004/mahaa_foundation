@@ -34,7 +34,7 @@ const { impactStats, impactStatsSection } = home[lang];
 
 <style>
   .impact-section {
-    padding: var(--space-8) 0;
+    padding: var(--space-5) 0 var(--space-6);
     background: var(--color-bg-soft);
   }
 
@@ -93,7 +93,11 @@ const { impactStats, impactStatsSection } = home[lang];
     line-height: 1.6;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
+    .impact-section {
+      padding: var(--space-8) 0;
+    }
+
     .impact-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }

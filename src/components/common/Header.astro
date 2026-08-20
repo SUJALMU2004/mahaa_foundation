@@ -65,44 +65,58 @@ function isActive(href: string) {
       <LanguagePicker />
     </div>
 
-    <details class="site-header__mobile-menu">
-      <summary class="site-header__mobile-toggle">
-        <span class="site-header__menu-icon" aria-hidden="true"></span>
-        <span>Menu</span>
-      </summary>
+    <div class="site-header__mobile-controls">
+      <LanguagePicker />
+      <details class="site-header__mobile-menu">
+        <summary class="site-header__mobile-toggle">
+          <span class="site-header__menu-icon" aria-hidden="true"></span>
+          <span>Menu</span>
+        </summary>
 
-      <div class="site-header__mobile-panel" id="mobile-menu-panel">
-        <Container>
-          <nav class="site-header__mobile-nav" aria-label="Mobile primary navigation">
-            <div class="site-header__mobile-group">
-              <p class="site-header__mobile-label">Main Navigation</p>
-              {
-                currentPrimaryNav.map((item) => (
-                  <a
-                    href={translatePath(item.href, lang)}
-                    aria-current={isActive(item.href) ? 'page' : undefined}
-                    class:list={['site-header__mobile-link', isActive(item.href) && 'is-active']}
-                  >
-                    {item.label}
-                  </a>
-                ))
-              }
-            </div>
-
-            <div class="site-header__mobile-actions">
-              <Button href={translatePath(currentActionNav[0].href, lang)} variant="outline">
-                {currentActionNav[0].label}
-              </Button>
-              <Button href={translatePath(currentActionNav[1].href, lang)} variant="primary">
-                {currentActionNav[1].label}
-              </Button>
-              <div style="margin-top: 1rem;">
-                <LanguagePicker />
+        <div class="site-header__mobile-panel" id="mobile-menu-panel">
+          <Container>
+            <nav class="site-header__mobile-nav" aria-label="Mobile primary navigation">
+              <div class="site-header__mobile-group">
+                <p class="site-header__mobile-label">Main Navigation</p>
+                {
+                  currentPrimaryNav.map((item) => (
+                    <a
+                      href={translatePath(item.href, lang)}
+                      aria-current={isActive(item.href) ? 'page' : undefined}
+                      class:list={['site-header__mobile-link', isActive(item.href) && 'is-active']}
+                    >
+                      {item.label}
+                    </a>
+                  ))
+                }
               </div>
-            </div>
-          </nav>
-        </Container>
-      </div>
-    </details>
+
+              <div class="site-header__mobile-actions">
+                <Button href={translatePath(currentActionNav[0].href, lang)} variant="outline">
+                  {currentActionNav[0].label}
+                </Button>
+                <Button href={translatePath(currentActionNav[1].href, lang)} variant="primary">
+                  {currentActionNav[1].label}
+                </Button>
+              </div>
+            </nav>
+          </Container>
+        </div>
+      </details>
+    </div>
   </Container>
 </header>
+
+<style>
+  .site-header__mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 1060px) {
+    .site-header__mobile-controls {
+      display: none;
+    }
+  }
+</style>

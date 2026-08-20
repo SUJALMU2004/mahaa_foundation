@@ -22,7 +22,7 @@ export const ui = {
     'footer.designed': 'Designed by volunteers.',
   },
   kn: {
-    'nav.home': 'ಮುಖಪುಟ',
+    'nav.home': 'ಮನೆ',
     'nav.about': 'ನಮ್ಮ ಬಗ್ಗೆ',
     'nav.work': 'ನಮ್ಮ ಕೆಲಸ',
     'nav.volunteer': 'ಸ್ವಯಂಸೇವಕರಾಗಿ',
