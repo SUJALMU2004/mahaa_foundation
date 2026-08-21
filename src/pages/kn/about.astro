@@ -30,10 +30,6 @@ const meta = {
   <IntroTextSection {...page.intro} />
   {page.split && <SplitContentSection {...page.split} />}
   {page.features && <FeatureGridSection {...page.features} />}
-  <TeamSection
-    eyebrow="Team"
-    title="Team Behind Mahaa Foundation Mahalingpur"
-    description="A local team supports Mahaa Foundation Mahalingpur through service coordination, student support, health awareness, tree plantation, and community welfare activities."
-  />
+  {page.team && <TeamSection {...page.team} />}
   <InnerCtaSection {...volunteerOnlyCta} />
 </BaseLayout>

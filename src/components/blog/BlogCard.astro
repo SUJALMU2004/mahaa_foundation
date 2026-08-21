@@ -1,5 +1,6 @@
 ---
 import BlogMeta from './BlogMeta.astro';
+import { getLangFromUrl } from '../../i18n/utils';
 
 export interface Props {
   title: string;
@@ -24,6 +25,9 @@ const {
   tags = [],
   variant = 'default',
 } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const readMoreText = lang === 'kn' ? 'ಇನ್ನಷ್ಟು ಓದಿ' : 'Read More';
 ---
 
 <article class:list={['blog-card', `blog-card--${variant}`]}>
@@ -44,7 +48,7 @@ const {
         </ul>
       )
     }
-    <a class="blog-card__link" href={href}>Read More</a>
+    <a class="blog-card__link" href={href}>{readMoreText}</a>
   </div>
 </article>
 

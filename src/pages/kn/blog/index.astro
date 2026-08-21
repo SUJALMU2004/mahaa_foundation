@@ -15,7 +15,9 @@ import {
   sortPostsByDate,
 } from '../../../utils/blog';
 
-const posts = sortPostsByDate(getPublishedPosts(await getCollection('blog')));
+const allPosts = await getCollection('blog');
+const knPosts = allPosts.filter((post) => post.id.startsWith('kn/'));
+const posts = sortPostsByDate(getPublishedPosts(knPosts));
 const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
 const categories = getCategories(posts);
 
@@ -55,9 +57,9 @@ const page = {
 
 <BaseLayout {...page}>
   <BlogHero
-    eyebrow="NGO Blog"
-    title="Mahaa Foundation Blog"
-    description="Read awareness articles, activity updates, and educational blogs about tree plantation, ration distribution, student support, health support, volunteering, and social service."
+    eyebrow="ಎನ್‌ಜಿಒ ಬ್ಲಾಗ್"
+    title="ಮಹಾ ಫೌಂಡೇಶನ್ ಬ್ಲಾಗ್"
+    description="ಮರ ನೆಡುವಿಕೆ, ಪಡಿತರ ವಿತರಣೆ, ವಿದ್ಯಾರ್ಥಿ ಬೆಂಬಲ, ಆರೋಗ್ಯ ಬೆಂಬಲ, ಸ್ವಯಂಸೇವಕ ಕಾರ್ಯ ಮತ್ತು ಸಮಾಜ ಸೇವೆಯ ಬಗ್ಗೆ ಜಾಗೃತಿ ಲೇಖನಗಳು, ಚಟುವಟಿಕೆಗಳ ನವೀಕರಣಗಳು ಮತ್ತು ಶೈಕ್ಷಣಿಕ ಬ್ಲಾಗ್‌ಗಳನ್ನು ಓದಿ."
   />
 
   {
@@ -65,13 +67,13 @@ const page = {
       <section class="featured-blog" aria-labelledby="featured-blog-title">
         <Container>
           <div class="featured-blog__header">
-            <p>Featured Post</p>
+            <p>ವೈಶಿಷ್ಟ್ಯಪೂರ್ಣ ಲೇಖನ</p>
             <h2 id="featured-blog-title">{featuredPost.data.title}</h2>
           </div>
           <BlogCard
             title={featuredPost.data.title}
             description={featuredPost.data.description}
-            href={`/blog/${featuredPost.id}`}
+            href={`/kn/blog/${featuredPost.id.replace('kn/', '')}`}
             image={featuredPost.data.image}
             imageAlt={featuredPost.data.imageAlt}
             category={featuredPost.data.category}
@@ -84,23 +86,14 @@ const page = {
     )
   }
 
-  <section class="blog-categories" aria-labelledby="blog-categories-title">
-    <Container>
-      <h2 id="blog-categories-title">Browse by Category</h2>
-      <div class="category-pills">
-        {categories.map((category) => <CategoryPill label={category} href={`/blog/category/${slugifyCategory(category)}`} />)}
-      </div>
-    </Container>
-  </section>
+
 
   <section class="blog-listing" aria-labelledby="blog-listing-title">
     <Container>
       <div class="blog-listing__header">
-        <h2 id="blog-listing-title">Latest Articles</h2>
+        <h2 id="blog-listing-title">ಇತ್ತೀಚಿನ ಲೇಖನಗಳು</h2>
         <p>
-          Explore practical guides and awareness articles about social service, student support,
-          health support, environmental responsibility, food support, volunteering, and community
-          welfare.
+          ಸಮಾಜ ಸೇವೆ, ವಿದ್ಯಾರ್ಥಿ ಬೆಂಬಲ, ಆರೋಗ್ಯ ಬೆಂಬಲ, ಪರಿಸರ ಜವಾಬ್ದಾರಿ, ಆಹಾರ ಬೆಂಬಲ, ಸ್ವಯಂಸೇವಕ ಕಾರ್ಯ ಮತ್ತು ಸಮುದಾಯ ಕಲ್ಯಾಣದ ಬಗ್ಗೆ ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶಿಗಳು ಮತ್ತು ಜಾಗೃತಿ ಲೇಖನಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.
         </p>
       </div>
       <div class="blog-grid">
@@ -109,7 +102,7 @@ const page = {
             <BlogCard
               title={post.data.title}
               description={post.data.description}
-              href={`/blog/${post.id}`}
+              href={`/kn/blog/${post.id.replace('kn/', '')}`}
               image={post.data.image}
               imageAlt={post.data.imageAlt}
               category={post.data.category}

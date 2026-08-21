@@ -1,23 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../../components/layout/BaseLayout.astro';
-import BlogHero from '../../../components/blog/BlogHero.astro';
-import BlogCard from '../../../components/blog/BlogCard.astro';
-import Button from '../../../components/common/Button.astro';
-import Container from '../../../components/common/Container.astro';
-import { site } from '../../../data/site';
-import { absoluteUrl } from '../../../utils/seo';
+import BaseLayout from '../../../../components/layout/BaseLayout.astro';
+import BlogHero from '../../../../components/blog/BlogHero.astro';
+import BlogCard from '../../../../components/blog/BlogCard.astro';
+import Button from '../../../../components/common/Button.astro';
+import Container from '../../../../components/common/Container.astro';
+import { site } from '../../../../data/site';
+import { absoluteUrl } from '../../../../utils/seo';
 import {
   getCategories,
   getPublishedPosts,
   slugifyCategory,
   sortPostsByDate,
-} from '../../../utils/blog';
+} from '../../../../utils/blog';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
-  const enPosts = allPosts.filter((post) => post.id.startsWith('en/'));
-  const posts = getPublishedPosts(enPosts);
+  const knPosts = allPosts.filter((post) => post.id.startsWith('kn/'));
+  const posts = getPublishedPosts(knPosts);
   const categories = getCategories(posts);
 
   return categories.map((category) => ({
@@ -107,7 +107,7 @@ const page = {
             <BlogCard
               title={post.data.title}
               description={post.data.description}
-              href={`/blog/${post.id.replace('en/', '')}`}
+              href={`/kn/blog/${post.id.replace('kn/', '')}`}
               image={post.data.image}
               imageAlt={post.data.imageAlt}
               category={post.data.category}

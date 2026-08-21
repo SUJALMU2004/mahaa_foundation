@@ -152,6 +152,11 @@ const en = {
         { title: 'Nearby Areas', description: 'Mudhol, Jamkhandi, Chikodi, North Karnataka, and local villages.' },
       ],
     },
+    team: {
+      eyebrow: 'Team',
+      title: 'Team Behind Mahaa Foundation Mahalingpur',
+      description: 'A local team supports Mahaa Foundation Mahalingpur through service coordination, student support, health awareness, tree plantation, and community welfare activities.',
+    },
     cta: {
       title: 'Join Mahaa Foundation Mahalingpur',
       description: 'Volunteer, donate, or contact us to support ration distribution, student help, tree plantation, health awareness, and social service.',
@@ -448,6 +453,11 @@ const kn = {
         { title: 'ಬಾಗಲಕೋಟೆ ಜಿಲ್ಲೆ', description: 'ಜಿಲ್ಲಾ ಮಟ್ಟದ ಎಸ್‌ಇಒ ಮತ್ತು ಸಮುದಾಯದ ಪ್ರಸ್ತುತತೆ.' },
         { title: 'ಸಮೀಪದ ಪ್ರದೇಶಗಳು', description: 'ಮುಧೋಳ, ಜಮಖಂಡಿ, ಚಿಕ್ಕೋಡಿ, ಉತ್ತರ ಕರ್ನಾಟಕ, ಮತ್ತು ಸ್ಥಳೀಯ ಹಳ್ಳಿಗಳು.' },
       ],
+    },
+    team: {
+      eyebrow: 'ತಂಡ',
+      title: 'ಮಹಾ ಫೌಂಡೇಶನ್ ಮಹಾಲಿಂಗಪುರದ ಹಿಂದಿನ ತಂಡ',
+      description: 'ಸೇವಾ ಸಮನ್ವಯ, ವಿದ್ಯಾರ್ಥಿ ಬೆಂಬಲ, ಆರೋಗ್ಯ ಜಾಗೃತಿ, ಮರ ನೆಡುವಿಕೆ ಮತ್ತು ಸಮುದಾಯ ಕಲ್ಯಾಣ ಚಟುವಟಿಕೆಗಳ ಮೂಲಕ ಸ್ಥಳೀಯ ತಂಡವು ಮಹಾ ಫೌಂಡೇಶನ್ ಮಹಾಲಿಂಗಪುರವನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.',
     },
     cta: {
       title: 'ಮಹಾ ಫೌಂಡೇಶನ್ ಮಹಾಲಿಂಗಪುರವನ್ನು ಸೇರಿ',

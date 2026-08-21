@@ -16,12 +16,17 @@ import {
 } from '../../../utils/blog';
 
 export async function getStaticPaths() {
-  const posts = sortPostsByDate(getPublishedPosts(await getCollection('blog')));
+  const allPosts = await getCollection('blog');
+  const knPosts = allPosts.filter((post) => post.id.startsWith('kn/'));
+  const posts = sortPostsByDate(getPublishedPosts(knPosts));
 
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post, posts },
-  }));
+  return posts.map((post) => {
+    const slug = post.id.replace('kn/', '');
+    return {
+      params: { slug },
+      props: { post, posts },
+    };
+  });
 }
 
 const { post, posts } = Astro.props;
@@ -34,8 +39,8 @@ const seoTitle = post.data.seoTitle ?? post.data.title;
 const seoDescription = post.data.seoDescription ?? post.data.description;
 const ogTitle = post.data.ogTitle ?? seoTitle;
 const ogDescription = post.data.ogDescription ?? seoDescription;
-const ogImage = post.data.ogImage ?? `/images/og/blog/${post.id}-og.jpg`;
-const canonical = `/blog/${post.id}`;
+const ogImage = post.data.ogImage ?? `/images/og/blog/${post.id.replace('kn/', '')}-og.jpg`;
+const canonical = `/kn/blog/${post.id.replace('kn/', '')}`;
 const canonicalUrl = absoluteUrl(canonical);
 const dateModified = post.data.updatedDate ?? post.data.publishDate;
 
@@ -100,9 +105,9 @@ const page = {
 
 <BaseLayout {...page}>
   <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a>
+    <a href="/kn">ಮುಖಪುಟ</a>
     <span aria-hidden="true">/</span>
-    <a href="/blog">Blog</a>
+    <a href="/kn/blog">ಬ್ಲಾಗ್</a>
     <span aria-hidden="true">/</span>
     <span>{post.data.title}</span>
   </nav>
@@ -130,9 +135,9 @@ const page = {
       <section class="article-videos" aria-labelledby="article-videos-title">
         <div class="article-videos__inner">
           <div class="article-videos__header">
-            <p class="eyebrow">Related Videos</p>
-            <h2 id="article-videos-title">Watch Related Activity Videos</h2>
-            <p>These local videos are connected to the topic covered in this article.</p>
+            <p class="eyebrow">ಸಂಬಂಧಿತ ವೀಡಿಯೊಗಳು</p>
+            <h2 id="article-videos-title">ಸಂಬಂಧಿತ ಚಟುವಟಿಕೆಗಳ ವೀಡಿಯೊಗಳನ್ನು ವೀಕ್ಷಿಸಿ</h2>
+            <p>ಈ ಸ್ಥಳೀಯ ವೀಡಿಯೊಗಳು ಈ ಲೇಖನದಲ್ಲಿ ಒಳಗೊಂಡಿರುವ ವಿಷಯಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ.</p>
           </div>
           <div class="article-videos__grid">
             {relatedVideos.map((video) => (
@@ -157,11 +162,11 @@ const page = {
 
   <section class="post-cta" aria-labelledby="post-cta-title">
     <div class="post-cta__inner">
-      <h2 id="post-cta-title">Take the Next Step</h2>
-      <p>Support our work by volunteering, donating, or joining our community activities.</p>
+      <h2 id="post-cta-title">ಮುಂದಿನ ಹೆಜ್ಜೆ ಇರಿಸಿ</h2>
+      <p>ಸ್ವಯಂಸೇವಕರಾಗಿ, ದೇಣಿಗೆ ನೀಡಿ ಅಥವಾ ನಮ್ಮ ಸಮುದಾಯ ಚಟುವಟಿಕೆಗಳಿಗೆ ಸೇರುವ ಮೂಲಕ ನಮ್ಮ ಕೆಲಸವನ್ನು ಬೆಂಬಲಿಸಿ.</p>
       <div>
-        <Button href="/volunteer" variant="primary">Volunteer With Us</Button>
-        <Button href="/donate" variant="outline">Support Our Work</Button>
+        <Button href="/kn/volunteer" variant="primary">ನಮ್ಮೊಂದಿಗೆ ಸ್ವಯಂಸೇವಕರಾಗಿ</Button>
+        <Button href="/kn/donate" variant="outline">ನಮ್ಮ ಕೆಲಸವನ್ನು ಬೆಂಬಲಿಸಿ</Button>
       </div>
     </div>
   </section>

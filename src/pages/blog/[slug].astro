@@ -16,12 +16,17 @@ import {
 } from '../../utils/blog';
 
 export async function getStaticPaths() {
-  const posts = sortPostsByDate(getPublishedPosts(await getCollection('blog')));
+  const allPosts = await getCollection('blog');
+  const enPosts = allPosts.filter((post) => post.id.startsWith('en/'));
+  const posts = sortPostsByDate(getPublishedPosts(enPosts));
 
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post, posts },
-  }));
+  return posts.map((post) => {
+    const slug = post.id.replace('en/', '');
+    return {
+      params: { slug },
+      props: { post, posts },
+    };
+  });
 }
 
 const { post, posts } = Astro.props;
@@ -34,8 +39,8 @@ const seoTitle = post.data.seoTitle ?? post.data.title;
 const seoDescription = post.data.seoDescription ?? post.data.description;
 const ogTitle = post.data.ogTitle ?? seoTitle;
 const ogDescription = post.data.ogDescription ?? seoDescription;
-const ogImage = post.data.ogImage ?? `/images/og/blog/${post.id}-og.jpg`;
-const canonical = `/blog/${post.id}`;
+const ogImage = post.data.ogImage ?? `/images/og/blog/${post.id.replace('en/', '')}-og.jpg`;
+const canonical = `/blog/${post.id.replace('en/', '')}`;
 const canonicalUrl = absoluteUrl(canonical);
 const dateModified = post.data.updatedDate ?? post.data.publishDate;
 

@@ -15,7 +15,9 @@ import {
   sortPostsByDate,
 } from '../../utils/blog';
 
-const posts = sortPostsByDate(getPublishedPosts(await getCollection('blog')));
+const allPosts = await getCollection('blog');
+const enPosts = allPosts.filter((post) => post.id.startsWith('en/'));
+const posts = sortPostsByDate(getPublishedPosts(enPosts));
 const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
 const categories = getCategories(posts);
 
@@ -71,7 +73,7 @@ const page = {
           <BlogCard
             title={featuredPost.data.title}
             description={featuredPost.data.description}
-            href={`/blog/${featuredPost.id}`}
+            href={`/blog/${featuredPost.id.replace('en/', '')}`}
             image={featuredPost.data.image}
             imageAlt={featuredPost.data.imageAlt}
             category={featuredPost.data.category}
@@ -109,7 +111,7 @@ const page = {
             <BlogCard
               title={post.data.title}
               description={post.data.description}
-              href={`/blog/${post.id}`}
+              href={`/blog/${post.id.replace('en/', '')}`}
               image={post.data.image}
               imageAlt={post.data.imageAlt}
               category={post.data.category}
